@@ -6,9 +6,20 @@ cmake_minimum_required(VERSION 2.8.3)
 
 set(CATKIN_TOPLEVEL TRUE)
 
-set( CMAKE_BUILD_TYPE Debug )
 
-#set(CMAKE_BUILD_TYPE Debug CACHE STRING "set build type to debug")
+# Fix Cmake problems in ROS
+set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_PREFIX_PATH $ENV{CMAKE_PREFIX_PATH})
+set(CATKIN_DEVEL_PREFIX ${PROJECT_SOURCE_DIR}/../devel)
+# Add custom (non compiling) targets
+# so launch scripts and python files show up in QT Creator's project view.
+file(GLOB_RECURSE EXTRA_FILES */*)
+add_custom_target(${PROJECT_NAME}_OTHER_FILES ALL WORKING_DIRECTORY
+    ${PROJECT_SOURCE_DIR} SOURCES ${EXTRA_FILES})
+
+#message(STATUS "First CMAKE_PREFIX_PATH is: ${CMAKE_PREFIX_PATH}")
+#message(STATUS "CMAKE_DEVEL_PATH is: ${CATKIN_DEVEL_PREFIX}")
+
 
 # search for catkin within the workspace
 set(_cmd "catkin_find_pkg" "catkin" "${CMAKE_SOURCE_DIR}")
@@ -19,6 +30,7 @@ execute_process(COMMAND ${_cmd}
   OUTPUT_STRIP_TRAILING_WHITESPACE
   ERROR_STRIP_TRAILING_WHITESPACE
 )
+
 if(NOT _res EQUAL 0 AND NOT _res EQUAL 2)
   # searching fot catkin resulted in an error
   string(REPLACE ";" " " _cmd_str "${_cmd}")
@@ -40,6 +52,7 @@ else()
       string(REPLACE ":" ";" CMAKE_PREFIX_PATH $ENV{CMAKE_PREFIX_PATH})
     endif()
   endif()
+
 
   # list of catkin workspaces
   set(catkin_search_path "")
@@ -64,5 +77,7 @@ else()
     message(FATAL_ERROR "find_package(catkin) failed. catkin was neither found in the workspace nor in the CMAKE_PREFIX_PATH. One reason may be that no ROS setup.sh was sourced before.")
   endif()
 endif()
+
+
 
 catkin_workspace()

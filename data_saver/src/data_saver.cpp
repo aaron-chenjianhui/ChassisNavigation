@@ -10,6 +10,7 @@ void CustomSaveCallback(const sensor_msgs::LaserScan &custom_data);
 
 int main(int argc, char* argv[]){
   ros::init(argc, argv, "lms_saver");
+  ROS_INFO("Start Lidar data saving\r\n");
 
   ros::NodeHandle nh;
   ros::Subscriber lidar_suber;
@@ -41,7 +42,7 @@ void LmsSaveCallback(const sensor_msgs::LaserScan &laser_data){
   std::vector<float> intensities = laser_data.intensities;
 
   std::ofstream out_file;
-  out_file.open("lidar_data.txt", std::ofstream::out | std::ofstream::app);
+  out_file.open("./data/lidar_data.txt", std::ofstream::out | std::ofstream::app);
 
   if(out_file.is_open()){
     ROS_INFO("Writing!!!\r\n");
@@ -97,7 +98,7 @@ void LmsSaveCallback(const sensor_msgs::LaserScan &laser_data){
       std::vector<float> intensities = custom_data.intensities;
 
       std::ofstream out_file;
-      out_file.open("custom_data.txt", std::ofstream::out | std::ofstream::app);
+      out_file.open("./data/custom_data.txt", std::ofstream::out | std::ofstream::app);
 
       if(out_file.is_open()){
         ROS_INFO("Writing!!!\r\n");
@@ -126,11 +127,11 @@ void LmsSaveCallback(const sensor_msgs::LaserScan &laser_data){
         }
         out_file << *it << std::endl;
         // 写入intensities
-        out_file << "[intensities]" << std::endl;
-        for(it = intensities.begin(); it != intensities.end()-1; ++it){
-          out_file << *it << ", ";
-        }
-        out_file << *it << std::endl;
+        // out_file << "[intensities]" << std::endl;
+        // for(it = intensities.begin(); it != intensities.end()-1; ++it){
+        //   out_file << *it << ", ";
+        // }
+        // out_file << *it << std::endl;
         //
         out_file << "[tail]" << std::endl << std::endl;
 
@@ -138,5 +139,3 @@ void LmsSaveCallback(const sensor_msgs::LaserScan &laser_data){
         out_file.close();
       }
   }
-
-

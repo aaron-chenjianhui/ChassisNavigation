@@ -51,7 +51,7 @@ void LaserDetect::ParamInit(){
         ROS_INFO("Initialization Error!\r\n");
     }
 
-    m_ave_num = 250;
+    m_ave_num = 200;
 }
 
 bool LaserDetect::LaserSrvCallback(laser_detect::laser_detect_srv::Request &req,
@@ -142,9 +142,15 @@ void LaserDetect::LaserDetectCallback(const sensor_msgs::LaserScan &laser_data){
 
     // Put lidar_data_raw into filter deque
     lidar_filter_in.push_back(lidar_data_raw);
+
+
+    int index = lidar_filter_in.size();
+
     if (m_ave_num < lidar_filter_in.size()){
         lidar_filter_in.pop_front();
     }
+
+    ROS_INFO("filter size is: %d\r\n", index);
     MAFilter(lidar_filter_in, lidar_data_filter, m_ave_num);
 
     // For Display
@@ -153,14 +159,25 @@ void LaserDetect::LaserDetectCallback(const sensor_msgs::LaserScan &laser_data){
     vec_data_type ori_pose;
     vec_data_type l_line_param, r_line_param, f_line_param;
 
-    //
+    // Save custom data
     sensor_msgs::LaserScan custom_msgs;
     std::vector<float> custom_data;
     lidar_iter_type custom_iter;
     for (custom_iter = lidar_data_disp.begin(); custom_iter != lidar_data_disp.end(); ++custom_iter){
         custom_data.push_back((float)(custom_iter->second));
     }
+    custom_msgs.header.frame_id = "laser";
+    custom_msgs.header.seq = laser_data.header.seq;
+    custom_msgs.angle_min = laser_data.angle_min;
+    custom_msgs.angle_max = laser_data.angle_max;
+    custom_msgs.angle_increment = laser_data.angle_increment;
+    custom_msgs.time_increment = laser_data.time_increment;
+    custom_msgs.scan_time = laser_data.scan_time;
+    custom_msgs.range_min = laser_data.range_min;
+    custom_msgs.range_max = laser_data.range_max;
     custom_msgs.ranges = custom_data;
+    custom_msgs.intensities = laser_data.intensities;
+
     m_filter_lidar_puber.publish(custom_msgs);
 
 
@@ -291,7 +308,8 @@ void LaserDetect::BWFilter(lidar_filter_type &filter_data_in, lidar_filter_type&
     }
 }
 
-void LaserDetect::MAFilter(lidar_filter_type &filter_data_in, lidar_data_type &filter_data_out, int ave_num){
+void LaserDetect::MAFilter(lidar_filter_type &filter_data_in,
+                            lidar_data_type &filter_data_out, int ave_num){
     filter_data_out.erase(filter_data_out.begin(), filter_data_out.end());
     if (ave_num >= filter_data_in.size()){
         //

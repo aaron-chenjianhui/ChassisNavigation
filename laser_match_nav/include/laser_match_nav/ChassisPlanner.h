@@ -12,14 +12,14 @@
 
 // 0: 停止； 1： 加速； 2： 匀速； 3： 减速； 4： 位置到位； 5：到位； 6： error
 typedef enum ChassisStatus{
-    STOP,
-    SPEEDUP,
-    SPEEDCONST,
-    SPEEDSLOW,
-    ADJUST,
-    HOLDON,
-    ERROR
-}ChassisStatus;
+    STOP = 0,
+    SPEEDUP = 1,
+    SPEEDCONST = 2,
+    SPEEDSLOW = 3,
+    ADJUST = 4,
+    HOLDON = 5,
+    ERROR = 6
+}chassis_status_t;
 
 typedef Eigen::Matrix<double, 3, 3> mat3x3;
 
@@ -31,8 +31,19 @@ public:
                    double accel_dist, double accel_time, double ctrl_period);
     ~ChassisPlanner();
 
+    // Initialize Parameter
+    void InitParam();
+
     // State Machine
     void StatusDef();
+    // State function
+    void StopPlan(double &linear_vel, double &angular_vel);
+    void SpupPlan(double &linear_vel, double &angular_vel);
+    void SpconstPlan(double &linear_vel, double &angular_vel);
+    void SpslowPlan(double &linear_vel, double &angular_vel);
+    void AdjPlan(double &linear_vel, double &angular_vel);
+    void HoldonPlan(double &linear_vel, double &angular_vel);
+    void ErrPlan(double &linear_vel, double &angular_vel);
 
     // Planning
     void PoseUpdateCallback(const geometry_msgs::Pose2D& chassis_pose);
@@ -41,6 +52,7 @@ public:
     // PID Algorithm
     double AngVelPID(double err, double err_integral, double last_err,
                      double kp, double ki, double kd);
+    void SendVel(double linear_vel, double angular_vel);
 
     //
     void PoseToMat(double pose[3], mat3x3& pose_mat);
@@ -79,7 +91,7 @@ private:
 
 
     //
-    ChassisStatus m_chassis_status;
+    chassis_status_t m_chassis_status;
     // 行驶方向
     int m_head_flag;
     // 根据启动该节点的时小车处在的位置
