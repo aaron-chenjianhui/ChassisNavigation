@@ -30,6 +30,7 @@
 #include <string>
 
 #define DEG2RAD M_PI/180.0
+#define RAD2DEG 180.0/M_PI
 
 int main(int argc, char **argv)
 {
@@ -45,16 +46,19 @@ int main(int argc, char **argv)
   std::string frame_id;
   bool inf_range;
   int port;
+  int scan_freq;
 
   ros::init(argc, argv, "lms1xx");
   ros::NodeHandle nh;
   ros::NodeHandle n("~");
   ros::Publisher scan_pub = nh.advertise<sensor_msgs::LaserScan>("scan", 1);
 
-  n.param<std::string>("host", host, "192.168.1.2");
+  n.param<std::string>("host", host, "192.168.1.8");
   n.param<std::string>("frame_id", frame_id, "laser");
   n.param<bool>("publish_min_range_as_inf", inf_range, false);
   n.param<int>("port", port, 2111);
+  n.param<int>("scan_frequency", scan_freq, 2500);
+
 
   while (ros::ok())
   {
@@ -71,8 +75,9 @@ int main(int argc, char **argv)
     laser.login();
     cfg = laser.getScanCfg();
     outputRange = laser.getScanOutputRange();
+    outputRange.angleResolution = 0.25*10000.0;
 
-    if (cfg.scaningFrequency != 5000)
+    if (cfg.scaningFrequency != scan_freq)
     {
       laser.disconnect();
       ROS_WARN("Unable to get laser output range. Retrying.");
@@ -88,6 +93,7 @@ int main(int argc, char **argv)
               outputRange.angleResolution, outputRange.startAngle, outputRange.stopAngle);
 
     // Set Loop Frequency
+    // Do not need this actually
     double loop_freq = cfg.scaningFrequency/100;
     ros::Rate loop_rate(loop_freq);
 
@@ -212,6 +218,7 @@ int main(int argc, char **argv)
         break;
       }
 
+      // Do not need this to keep loop frequency
       ros::spinOnce();
       loop_rate.sleep();
     }

@@ -14,6 +14,8 @@ LaserDetect::LaserDetect(){
     // For checkout error
     m_pose_puber = m_nh.advertise<geometry_msgs::Pose2D>("ori_pose", 1000);
     m_filter_lidar_puber = m_nh.advertise<sensor_msgs::LaserScan>("custom_scan", 1000);
+    m_line_param_puber = m_nh.advertise<laser_detect::detect_msg>("line_param", 1000);
+    m_laser_pose_puber = m_nh.advertise<geometry_msgs::Pose2D>("laser_pose", 1000);
 }
 
 LaserDetect::~LaserDetect(){
@@ -144,13 +146,10 @@ void LaserDetect::LaserDetectCallback(const sensor_msgs::LaserScan &laser_data){
     lidar_filter_in.push_back(lidar_data_raw);
 
 
-    int index = lidar_filter_in.size();
-
     if (m_ave_num < lidar_filter_in.size()){
         lidar_filter_in.pop_front();
     }
 
-    ROS_INFO("filter size is: %d\r\n", index);
     MAFilter(lidar_filter_in, lidar_data_filter, m_ave_num);
 
     // For Display
@@ -185,12 +184,40 @@ void LaserDetect::LaserDetectCallback(const sensor_msgs::LaserScan &laser_data){
         DataProcess(l_line_param, r_line_param, f_line_param, ori_pose);
         ResultDisp(lidar_data_disp, ori_pose, l_line_param, r_line_param, f_line_param);
 
-        //
+        // Publish pose data
         geometry_msgs::Pose2D ori_pose_msg;
         ori_pose_msg.x = ori_pose[0];
         ori_pose_msg.y = ori_pose[1];
         ori_pose_msg.theta = ori_pose[2];
         m_pose_puber.publish(ori_pose_msg);
+
+
+            // Publish laser pose in original coordinate
+            geometry_msgs::Pose2D laser_pose_msg;
+            mat3x3 T_Ori_in_Laser;
+            mat3x3 T_Laser_in_Ori;
+            double pose_Ori_in_Laser[3];
+            double pose_Laser_in_Ori[3];
+            pose_Ori_in_Laser[0] = ori_pose[0];
+            pose_Ori_in_Laser[1] = ori_pose[1];
+            pose_Ori_in_Laser[2] = ori_pose[2];
+
+            PoseToMat(pose_Ori_in_Laser, T_Ori_in_Laser);
+            T_Laser_in_Ori = T_Ori_in_Laser.inverse();
+            MatToPose(T_Laser_in_Ori, pose_Laser_in_Ori);
+            laser_pose_msg.x = pose_Laser_in_Ori[0];
+            laser_pose_msg.y = pose_Laser_in_Ori[1];
+            laser_pose_msg.theta = pose_Laser_in_Ori[2];
+            m_laser_pose_puber.publish(laser_pose_msg);
+
+
+        // Publish line parameter
+        laser_detect::detect_msg line_msg;
+        line_msg.right_line_param = r_line_param;
+        line_msg.left_line_param = l_line_param;
+        line_msg.front_line_param = f_line_param;
+        m_line_param_puber.publish(line_msg);
+
 
         // Broadcast tf tree
         tf::Transform transform;
@@ -790,6 +817,36 @@ bool LaserDetect::WallDetect(lidar_data_type& lidar_data, vec_data_type& l_param
         ROS_INFO("ERROR\r\n");
         return false;
     }
+}
+
+
+void LaserDetect::PoseToMat(double pose[], mat3x3 &pose_mat){
+    double pose_x = pose[0];
+    double pose_y = pose[1];
+    double pose_theta = pose[2];
+    double sin_theta = sin(pose_theta);
+    double cos_theta = cos(pose_theta);
+
+    pose_mat(0,2) = pose_x;
+    pose_mat(1,2) = pose_y;
+    pose_mat(0,0) = cos_theta;
+    pose_mat(0,1) = -sin_theta;
+    pose_mat(1,0) = sin_theta;
+    pose_mat(1,1) = cos_theta;
+    pose_mat(2,0) = 0;
+    pose_mat(2,1) = 0;
+    pose_mat(2,2) = 1;
+}
+
+void LaserDetect::MatToPose(mat3x3 &pose_mat, double pose[]){
+    double pose_x, pose_y, pose_theta;
+    pose_x = pose_mat(0,2);
+    pose_y = pose_mat(1,2);
+    pose_theta = atan(pose_mat(1,0)/pose_mat(0,0));
+
+    pose[0] = pose_x;
+    pose[1] = pose_y;
+    pose[2] = pose_theta;
 }
 
 void LaserDetect::ResultDisp(lidar_data_type& lidar_data, vec_data_type& ori_pose, vec_data_type &left_line_param,

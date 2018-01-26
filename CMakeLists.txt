@@ -9,8 +9,12 @@ set(CATKIN_TOPLEVEL TRUE)
 
 # Fix Cmake problems in ROS
 set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_PREFIX_PATH $ENV{CMAKE_PREFIX_PATH})
+# set(CMAKE_PREFIX_PATH $ENV{CMAKE_PREFIX_PATH})
 set(CATKIN_DEVEL_PREFIX ${PROJECT_SOURCE_DIR}/../devel)
+
+message(STATUS "CMAKE_PREFIX_PATH IS ${CMAKE_PREFIX_PATH}")
+message(STATUS "STD MSG IS ${std_msgs_DIR}")
+
 # Add custom (non compiling) targets
 # so launch scripts and python files show up in QT Creator's project view.
 file(GLOB_RECURSE EXTRA_FILES */*)

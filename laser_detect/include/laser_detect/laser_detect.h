@@ -9,6 +9,7 @@
 #include <geometry_msgs/Pose2D.h>
 #include <tf/transform_broadcaster.h>
 #include <laser_detect/laser_detect_srv.h>
+#include <laser_detect/detect_msg.h>
 
 #include <Eigen/Eigen>
 #include <boost/thread/mutex.hpp>
@@ -39,6 +40,7 @@ typedef std::deque<lidar_data_type>::reverse_iterator filter_riter_type;
 // Eigen type for least square
 typedef Eigen::Matrix<double, 2, 2> mat2x2;
 typedef Eigen::Matrix<double, 2, 1> mat2x1;
+typedef Eigen::Matrix<double, 3, 3> mat3x3;
 
 namespace lms{
 class LaserDetect{
@@ -98,6 +100,10 @@ public:
         }
     }
 
+    //
+    void PoseToMat(double pose[3], mat3x3& pose_mat);
+    void MatToPose(mat3x3& pose_mat, double pose[3]);
+
 private:
     // Boolean
     bool detect_flag;   //
@@ -123,6 +129,8 @@ private:
     // For Check out Error
     ros::Publisher m_pose_puber;
     ros::Publisher m_filter_lidar_puber;
+    ros::Publisher m_line_param_puber;
+    ros::Publisher m_laser_pose_puber;
 
     // tf broadcast
     tf::TransformBroadcaster m_br;

@@ -2,10 +2,19 @@
 #include <ros/ros.h>
 
 #include <sensor_msgs/LaserScan.h>
+#include <geometry_msgs/Pose2D.h>
+#include <laser_detect/detect_msg.h>
+
+
+
+typedef std::vector<double> vec_data_type;
+typedef std::vector<double>::iterator vec_iter_type;
 
 
 void LmsSaveCallback(const sensor_msgs::LaserScan &laser_data);
 void CustomSaveCallback(const sensor_msgs::LaserScan &custom_data);
+void DetectLineCallback(const laser_detect::detect_msg &line_data);
+void OriPoseCallback(const geometry_msgs::Pose2D &ori_pose);
 
 
 int main(int argc, char* argv[]){
@@ -15,12 +24,17 @@ int main(int argc, char* argv[]){
   ros::NodeHandle nh;
   ros::Subscriber lidar_suber;
   ros::Subscriber custom_suber;
+  ros::Subscriber pose_suber;
+  ros::Subscriber line_suber;
+
 
   lidar_suber = nh.subscribe("scan", 1000, LmsSaveCallback);
   custom_suber = nh.subscribe("custom_scan", 1000, CustomSaveCallback);
+  pose_suber = nh.subscribe("laser_pose", 1000, OriPoseCallback);
+  line_suber = nh.subscribe("line_param", 1000, DetectLineCallback);
 
 
-  ros::MultiThreadedSpinner spinner(2);
+  ros::MultiThreadedSpinner spinner(4);
   spinner.spin();
 
 
@@ -45,7 +59,7 @@ void LmsSaveCallback(const sensor_msgs::LaserScan &laser_data){
   out_file.open("./data/lidar_data.txt", std::ofstream::out | std::ofstream::app);
 
   if(out_file.is_open()){
-    ROS_INFO("Writing!!!\r\n");
+    ROS_INFO("Writing laser data!!!\r\n");
     //
     out_file << "[seq]" << std::endl << seq << std::endl;
     //
@@ -101,7 +115,7 @@ void LmsSaveCallback(const sensor_msgs::LaserScan &laser_data){
       out_file.open("./data/custom_data.txt", std::ofstream::out | std::ofstream::app);
 
       if(out_file.is_open()){
-        ROS_INFO("Writing!!!\r\n");
+        ROS_INFO("Writing custom laser data!!!\r\n");
         //
         out_file << "[seq]" << std::endl << seq << std::endl;
         //
@@ -139,3 +153,70 @@ void LmsSaveCallback(const sensor_msgs::LaserScan &laser_data){
         out_file.close();
       }
   }
+
+void OriPoseCallback(const geometry_msgs::Pose2D &ori_pose){
+  double x, y, theta;
+
+  x = ori_pose.x;
+  y = ori_pose.y;
+  theta = ori_pose.theta;
+
+      std::ofstream out_file;
+      out_file.open("./data/ori_data.txt", std::ofstream::out | std::ofstream::app);
+
+      if(out_file.is_open()){
+        ROS_INFO("Writing pose data!!!\r\n");
+        //
+        out_file << "[X Y Theta]" << std::endl;
+        out_file << x << " " << y << " " << " " << theta << std::endl;
+
+        // 关闭文件
+        out_file.close();
+      }
+}
+
+
+void DetectLineCallback(const laser_detect::detect_msg &line_data){
+    double r_n_x, r_n_y, r_a_x, r_a_y;
+    double l_n_x, l_n_y, l_a_x, l_a_y;
+    double f_n_x, f_n_y, f_a_x, f_a_y;
+
+  vec_data_type r_line_param;
+  vec_data_type l_line_param;
+  vec_data_type f_line_param;
+
+  r_line_param = line_data.right_line_param;
+  l_line_param = line_data.left_line_param;
+  f_line_param = line_data.front_line_param;
+
+    r_n_x = r_line_param[0];
+    r_n_y = r_line_param[1];
+    r_a_x = r_line_param[2];
+    r_a_y = r_line_param[3];
+    l_n_x = l_line_param[0];
+    l_n_y = l_line_param[1];
+    l_a_x = l_line_param[2];
+    l_a_y = l_line_param[3];
+    f_n_x = f_line_param[0];
+    f_n_y = f_line_param[1];
+    f_a_x = f_line_param[2];
+    f_a_y = f_line_param[3];
+
+      std::ofstream out_file;
+      out_file.open("./data/line_param.txt", std::ofstream::out | std::ofstream::app);
+
+      if(out_file.is_open()){
+        ROS_INFO("Writing line parameter!!!\r\n");
+        //
+        out_file << "[r_n_x r_n_y r_a_x r_a_y l_n_x l_n_y l_a_x l_a_y f_n_x f_n_y f_a_x f_a_y]" << std::endl;
+        out_file << r_n_x << " " << r_n_y << " " << r_a_x << " " << r_a_y << " ";
+        out_file << l_n_x << " " << l_n_y << " " << l_a_x << " " << l_a_y << " ";
+        out_file << f_n_x << " " << f_n_y << " " << f_a_x << " " << f_a_y << " ";
+        out_file << std::endl;
+
+        // 关闭文件
+        out_file.close();
+      }
+
+
+}
