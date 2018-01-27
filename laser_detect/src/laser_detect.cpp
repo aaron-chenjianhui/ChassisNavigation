@@ -1,5 +1,7 @@
 #include "laser_detect.h"
 
+// Used for detect debug
+#define DETECT_DEBUG 0
 
 namespace lms{
 LaserDetect::LaserDetect(){
@@ -63,8 +65,9 @@ bool LaserDetect::LaserSrvCallback(laser_detect::laser_detect_srv::Request &req,
     ask_for_calib = req.flag;
 
     if (true == ask_for_calib){
-       while(1){}
-        // sleep(2);
+        // Wait for filter
+        sleep(4);
+
         //
         boost::mutex::scoped_lock lock(m_mutex);
 
@@ -152,6 +155,7 @@ void LaserDetect::LaserDetectCallback(const sensor_msgs::LaserScan &laser_data){
 
     MAFilter(lidar_filter_in, lidar_data_filter, m_ave_num);
 
+#ifdef DETECT_DEBUG
     // For Display
     lidar_data_type lidar_data_disp = lidar_data_filter;
     vec_data_type path_param;
@@ -230,6 +234,7 @@ void LaserDetect::LaserDetectCallback(const sensor_msgs::LaserScan &laser_data){
     else{
         ROS_INFO("Detect Error\r\n");
     }
+#endif
 
 }
 
