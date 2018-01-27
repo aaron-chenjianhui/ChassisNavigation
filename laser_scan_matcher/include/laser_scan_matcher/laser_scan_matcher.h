@@ -55,8 +55,8 @@
 #include <pcl/filters/voxel_grid.h>
 #include <pcl_ros/point_cloud.h>
 
-// #include </home/xiaoqiang/workspace/catkin_ws/src/csm/sm/csm/csm_all.h>  // csm defines min and max, but Eigen complains
-#include </home/chenjianhui/catkin_ws/src/csm/sm/csm/csm_all.h>
+#include </home/xiaoqiang/workspace/catkin_ws/src/csm/sm/csm/csm_all.h>  // csm defines min and max, but Eigen complains
+// #include </home/chenjianhui/catkin_ws/src/csm/sm/csm/csm_all.h>
 // #include <csm/csm_all.h>
 
 #undef min
