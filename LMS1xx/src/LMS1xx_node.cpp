@@ -59,6 +59,8 @@ int main(int argc, char **argv)
   n.param<int>("port", port, 2111);
   n.param<int>("scan_frequency", scan_freq, 2500);
 
+  // Compensating value for lidar detect, obtained from calibration
+  double dist_comp = 32.5/1000.0;
 
   while (ros::ok())
   {
@@ -192,7 +194,9 @@ int main(int argc, char **argv)
       {
         for (int i = 0; i < data.dist_len1; i++)
         {
-          float range_data = data.dist1[i] * 0.001;
+          // float range_data = data.dist1[i] * 0.001;
+          // Add lidar detection compensation
+          float range_data = data.dist1[i]*0.001 + dist_comp;
 
           if (inf_range && range_data < scan_msg.range_min)
           {
