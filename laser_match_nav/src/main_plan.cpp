@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     int rate_hz = 1000/ctrl_period;
     ros::Rate loop_rate(rate_hz);
 
-    while(ros::ok()){
+    while(ros::ok()) {
         chassis_planner.AutoPlanner();
         // lidar_plan.ChassisStatus();
 

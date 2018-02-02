@@ -7,34 +7,34 @@
 #include <nav_msgs/Odometry.h>
 
 
-class SensorHandle{
+class SensorHandle {
 
 private:
-  ros::NodeHandle m_nh;
-  ros::Subscriber m_imu_suber;
-  ros::Subscriber m_pose_suber;
-  ros::Publisher m_imu_puber;
-  ros::Publisher m_pose_puber;
+ros::NodeHandle m_nh;
+ros::Subscriber m_imu_suber;
+ros::Subscriber m_pose_suber;
+ros::Publisher m_imu_puber;
+ros::Publisher m_pose_puber;
 
-  double imu_ori_last;
+double imu_ori_last;
 
 public:
-  SensorHandle(){
+SensorHandle(){
     m_imu_suber = m_nh.subscribe("xqserial_server/Twist", 1000,
-                  &SensorHandle::ImuCallback, this);
+                                 &SensorHandle::ImuCallback, this);
     m_pose_suber = m_nh.subscribe("xqserial_server/Pose2D", 1000,
-                    &SensorHandle::OdomCallback, this);
+                                  &SensorHandle::OdomCallback, this);
     m_imu_puber = m_nh.advertise<sensor_msgs::Imu>("imu/data", 1000);
     m_pose_puber = m_nh.advertise<nav_msgs::Odometry>("odom", 1000);
 
     imu_ori_last = 0.0;
-  }
+}
 
-  ~SensorHandle(){
-    
-  }
+~SensorHandle(){
 
-  void ImuCallback(const geometry_msgs::Twist& imu_data){
+}
+
+void ImuCallback(const geometry_msgs::Twist& imu_data){
     sensor_msgs::Imu imu_msgs;
     double imu_ang_vel = imu_data.angular.z;
     double imu_ori = imu_ori_last + imu_ang_vel;
@@ -51,9 +51,9 @@ public:
     imu_msgs.orientation.z = sin(imu_ori/2.0);
     imu_msgs.orientation.w = cos(imu_ori/2.0);
     m_imu_puber.publish(imu_msgs);
-  }
+}
 
-  void OdomCallback(const geometry_msgs::Pose2D& pose_data){
+void OdomCallback(const geometry_msgs::Pose2D& pose_data){
     nav_msgs::Odometry odom_msgs;
     double odom_x = pose_data.x;
     double odom_y = pose_data.y;
@@ -66,14 +66,14 @@ public:
     odom_msgs.pose.pose.orientation.z = sin(odom_ori/2.0);
     odom_msgs.pose.pose.orientation.w = cos(odom_ori/2.0);
     m_pose_puber.publish(odom_msgs);
-  }
+}
 };
 
 
 int main(int argc, char *argv[]){
-  ros::init(argc, argv, "sensor_handle");
+    ros::init(argc, argv, "sensor_handle");
 
-  SensorHandle sensor_handle;
+    SensorHandle sensor_handle;
 
-  ros::spin();
+    ros::spin();
 }

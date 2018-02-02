@@ -48,7 +48,7 @@ ChassisPlanner::ChassisPlanner(){
 }
 
 ChassisPlanner::ChassisPlanner(double separation, double radius, double max_speed,
-          double accel_dist, double accel_time, double ctrl_period){
+                               double accel_dist, double accel_time, double ctrl_period){
     new (this)ChassisPlanner();
 
     m_ctrl_period = ctrl_period;
@@ -76,9 +76,9 @@ void ChassisPlanner::InitParam(){
 }
 
 /**
-* 更新机器人位姿
-* @param chassis_pose [description]
-*/
+ * 更新机器人位姿
+ * @param chassis_pose [description]
+ */
 void ChassisPlanner::PoseUpdateCallback(const geometry_msgs::Pose2D& chassis_pose){
     double chassis_pose_x = chassis_pose.x*1000;
     double chassis_pose_y = chassis_pose.y*1000;
@@ -87,7 +87,7 @@ void ChassisPlanner::PoseUpdateCallback(const geometry_msgs::Pose2D& chassis_pos
     //
     boost::mutex::scoped_lock lock(m_mutex);
     // 成功启动的标志
-    if (true == m_b_pose_init){
+    if (true == m_b_pose_init) {
         double pose_Laser_in_Ref[3], pose_Laser_in_Ori[3];
         pose_Laser_in_Ref[0] = chassis_pose_x;
         pose_Laser_in_Ref[1] = chassis_pose_y;
@@ -110,7 +110,7 @@ void ChassisPlanner::PoseUpdateCallback(const geometry_msgs::Pose2D& chassis_pos
         m_br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "original", "dest"));
 
         // Heading Direction
-        if (dest_pose_x < pose_x){
+        if (dest_pose_x < pose_x) {
             m_head_flag = -1;
         }
         else{
@@ -126,9 +126,9 @@ void ChassisPlanner::PoseUpdateCallback(const geometry_msgs::Pose2D& chassis_pos
 
         ROS_INFO("IN service\r\n");
 
-        if (m_client.call(srv)){
+        if (m_client.call(srv)) {
 
-          ROS_INFO("IN Call\r\n");
+            ROS_INFO("IN Call\r\n");
             //
             mat3x3 T_Ori_in_Laser;
             double pose_Ori_in_Laser[3];
@@ -165,7 +165,7 @@ void ChassisPlanner::PoseUpdateCallback(const geometry_msgs::Pose2D& chassis_pos
             dest_pose_y = -1.15*1000;
             dest_pose_theta = 0.0;
 
-            if (dest_pose_x < pose_x){
+            if (dest_pose_x < pose_x) {
                 m_head_flag = -1;
             }
             else{
@@ -180,15 +180,15 @@ void ChassisPlanner::PoseUpdateCallback(const geometry_msgs::Pose2D& chassis_pos
 
             ROS_INFO("Initialization Occurs Error!!!\r\n");
         }
-                ROS_INFO("Out CALL\r\n");
+        ROS_INFO("Out CALL\r\n");
 
     }
 }
 
 
 /**
-* 状态判断
-*/
+ * 状态判断
+ */
 void ChassisPlanner::StatusDef(){
     // double start_dist = sqrt(pow((pose_x-start_pose_x), 2) +
     //                           pow((pose_y-start_pose_y), 2));
@@ -201,34 +201,34 @@ void ChassisPlanner::StatusDef(){
              start_dist, end_dist, theta_dist);
 
     // 初始化未完成
-    if (false == m_b_pose_init){
+    if (false == m_b_pose_init) {
         m_chassis_status = STOP;
     }
     // 加速阶段
     else if (true == m_b_pose_init && start_dist <= m_accel_dist &&
              end_dist > m_accel_dist && SPEEDSLOW != m_chassis_status &&
-             ADJUST != m_chassis_status && HOLDON!= m_chassis_status){
+             ADJUST != m_chassis_status && HOLDON!= m_chassis_status) {
         m_chassis_status = SPEEDUP;
     }
     // 匀速阶段
     else if (true == m_b_pose_init && start_dist > m_accel_dist && end_dist > m_accel_dist &&
-             (SPEEDUP == m_chassis_status || SPEEDCONST == m_chassis_status) && HOLDON != m_chassis_status){
+             (SPEEDUP == m_chassis_status || SPEEDCONST == m_chassis_status) && HOLDON != m_chassis_status) {
         m_chassis_status = SPEEDCONST;
     }
     // 减速阶段
     else if (true == m_b_pose_init && start_dist > m_accel_dist &&
              end_dist <= m_accel_dist && end_dist >= dist_thre &&
-             HOLDON != m_chassis_status){
+             HOLDON != m_chassis_status) {
         m_chassis_status = SPEEDSLOW;
     }
     // 位置到位，调整姿态
     else if (true == m_b_pose_init && end_dist < dist_thre && SPEEDSLOW == m_chassis_status &&
-             theta_dist >= theta_thre && HOLDON != m_chassis_status){
+             theta_dist >= theta_thre && HOLDON != m_chassis_status) {
         m_chassis_status = ADJUST;
     }
     // 到达终点
     else if (true == m_b_pose_init && end_dist < dist_thre && theta_dist < theta_thre &&
-             (SPEEDSLOW == m_chassis_status || ADJUST == m_chassis_status) || (HOLDON == m_chassis_status)){
+             (SPEEDSLOW == m_chassis_status || ADJUST == m_chassis_status) || (HOLDON == m_chassis_status)) {
         m_chassis_status = HOLDON;
     }
     // 状态出现错误
@@ -252,233 +252,233 @@ void ChassisPlanner::StatusDef(){
  * StopPlan 停止状态时的规划函数
  */
 void ChassisPlanner::StopPlan(double &linear_vel, double &angular_vel){
-        linear_vel = 0;
-        angular_vel = 0;
+    linear_vel = 0;
+    angular_vel = 0;
 
-        last_linear_cmd = 0;
-        last_angular_cmd = 0;
+    last_linear_cmd = 0;
+    last_angular_cmd = 0;
 }
 
 void ChassisPlanner::SpupPlan(double &linear_vel, double &angular_vel){
-  double linear_up_vel;
-  double angular_up_vel;
+    double linear_up_vel;
+    double angular_up_vel;
 
-        double dist_kp = 1.5;
-        double dist_ki = 0;
-        double dist_kd = 0;
-        double theta_kp = 0.6;
-        double theta_ki = 0;
-        double theta_kd = 0;
+    double dist_kp = 1.5;
+    double dist_ki = 0;
+    double dist_kd = 0;
+    double theta_kp = 0.6;
+    double theta_ki = 0;
+    double theta_kd = 0;
 
-        static double ang_dist_integ_up = 0.0;
-        static double ang_theta_integ_up = 0.0;
-        static double last_ang_dist_up = 0.0;
-        static double last_ang_theta_up = 0.0;
+    static double ang_dist_integ_up = 0.0;
+    static double ang_theta_integ_up = 0.0;
+    static double last_ang_dist_up = 0.0;
+    static double last_ang_theta_up = 0.0;
 
-        // 直线速度
-        linear_up_vel = last_linear_cmd + m_head_flag*m_accel*(m_ctrl_period/1000.0);
+    // 直线速度
+    linear_up_vel = last_linear_cmd + m_head_flag*m_accel*(m_ctrl_period/1000.0);
 
-        // 角速度
-        double ang_dist_up = asin((dest_pose_y-pose_y)/head_dist);
-        double ang_theta_up = dest_pose_theta - pose_theta;
-        // 积分误差
-        ang_dist_integ_up += ang_dist_up;
-        ang_theta_integ_up += ang_theta_up;
-        // 角度PID
-        double ang_dist_vel = AngVelPID(ang_dist_up, ang_dist_integ_up, last_ang_dist_up,
-                                        dist_kp, dist_ki, dist_kd);
-        double ang_theta_vel = AngVelPID(ang_theta_up, ang_theta_integ_up, last_ang_theta_up,
-                                         theta_kp, theta_ki, theta_kd);
-        angular_up_vel = ang_dist_vel + ang_theta_vel;
+    // 角速度
+    double ang_dist_up = asin((dest_pose_y-pose_y)/head_dist);
+    double ang_theta_up = dest_pose_theta - pose_theta;
+    // 积分误差
+    ang_dist_integ_up += ang_dist_up;
+    ang_theta_integ_up += ang_theta_up;
+    // 角度PID
+    double ang_dist_vel = AngVelPID(ang_dist_up, ang_dist_integ_up, last_ang_dist_up,
+                                    dist_kp, dist_ki, dist_kd);
+    double ang_theta_vel = AngVelPID(ang_theta_up, ang_theta_integ_up, last_ang_theta_up,
+                                     theta_kp, theta_ki, theta_kd);
+    angular_up_vel = ang_dist_vel + ang_theta_vel;
 
-        //
-        linear_vel = linear_up_vel;
-        angular_vel = angular_up_vel;
-        // 更新上一次角度误差
-        last_ang_dist_up = ang_dist_up;
-        last_ang_theta_up = ang_theta_up;
-        // 更新上一次角度命令
-        last_linear_cmd = linear_vel;
-        last_angular_cmd = angular_vel;
+    //
+    linear_vel = linear_up_vel;
+    angular_vel = angular_up_vel;
+    // 更新上一次角度误差
+    last_ang_dist_up = ang_dist_up;
+    last_ang_theta_up = ang_theta_up;
+    // 更新上一次角度命令
+    last_linear_cmd = linear_vel;
+    last_angular_cmd = angular_vel;
 
-        file << "Angular Distant UP is: " << ang_dist_up << std::endl;
-        file << "Angular Theta UP is: " << ang_theta_up << std::endl;
-        file << "Angular Dist Vel is: " << ang_dist_vel << std::endl;
-        file << "Angular Theta Vel is: " << ang_theta_vel << std::endl;
-        file << "Linear Velocity is: " << linear_vel << std::endl;
-        file << "Angular Velocity is: " << angular_vel << std::endl;
+    file << "Angular Distant UP is: " << ang_dist_up << std::endl;
+    file << "Angular Theta UP is: " << ang_theta_up << std::endl;
+    file << "Angular Dist Vel is: " << ang_dist_vel << std::endl;
+    file << "Angular Theta Vel is: " << ang_theta_vel << std::endl;
+    file << "Linear Velocity is: " << linear_vel << std::endl;
+    file << "Angular Velocity is: " << angular_vel << std::endl;
 }
 
 void ChassisPlanner::SpconstPlan(double &linear_vel, double &angular_vel){
-  double linear_const_vel;
-  double angular_const_vel;
+    double linear_const_vel;
+    double angular_const_vel;
 
-        double dist_kp = 1.5;
-        double dist_ki = 0;
-        double dist_kd = 0;
-        double theta_kp = 0.6;
-        double theta_ki = 0;
-        double theta_kd = 0;
+    double dist_kp = 1.5;
+    double dist_ki = 0;
+    double dist_kd = 0;
+    double theta_kp = 0.6;
+    double theta_ki = 0;
+    double theta_kd = 0;
 
-        static double ang_dist_integ_ave = 0.0;
-        static double ang_theta_integ_ave = 0.0;
-        static double last_ang_dist_ave = 0.0;
-        static double last_ang_theta_ave = 0.0;
-
-
-        // 直线速度
-        linear_const_vel = last_linear_cmd;
-
-        // 角速度
-        double ang_dist_ave = asin((dest_pose_y-pose_y)/head_dist);
-        double ang_theta_ave = dest_pose_theta - pose_theta;
-        // 积分误差
-        ang_dist_integ_ave += ang_dist_ave;
-        ang_theta_integ_ave += ang_theta_ave;
-        // 角度PID
-        double ang_dist_vel = AngVelPID(ang_dist_ave, ang_dist_integ_ave, last_ang_dist_ave,
-                                        dist_kp, dist_ki, dist_kd);
-        double ang_theta_vel = AngVelPID(ang_theta_ave, ang_theta_integ_ave, last_ang_theta_ave,
-                                         theta_kp, theta_ki, theta_kd);
-        angular_const_vel = ang_dist_vel + ang_theta_vel;
-        //
-        linear_vel = linear_const_vel;
-        angular_vel = angular_const_vel;
-        // 更新上一次角度误差
-        last_ang_dist_ave = ang_dist_ave;
-        last_ang_theta_ave = ang_theta_ave;
-        // 更新上一次角度命令
-        last_linear_cmd = linear_vel;
-        last_angular_cmd = angular_vel;
+    static double ang_dist_integ_ave = 0.0;
+    static double ang_theta_integ_ave = 0.0;
+    static double last_ang_dist_ave = 0.0;
+    static double last_ang_theta_ave = 0.0;
 
 
-        file << "Angular Distant AVE is: " << ang_dist_ave << std::endl;
-        file << "Angular Theta AVE is: " << ang_theta_ave << std::endl;
-        file << "Angular Dist Vel is: " << ang_dist_vel << std::endl;
-        file << "Angular Theta Vel is: " << ang_theta_vel << std::endl;
-        file << "Linear Velocity is: " << linear_vel << std::endl;
-        file << "Angular Velocity is: " << angular_vel << std::endl;
+    // 直线速度
+    linear_const_vel = last_linear_cmd;
+
+    // 角速度
+    double ang_dist_ave = asin((dest_pose_y-pose_y)/head_dist);
+    double ang_theta_ave = dest_pose_theta - pose_theta;
+    // 积分误差
+    ang_dist_integ_ave += ang_dist_ave;
+    ang_theta_integ_ave += ang_theta_ave;
+    // 角度PID
+    double ang_dist_vel = AngVelPID(ang_dist_ave, ang_dist_integ_ave, last_ang_dist_ave,
+                                    dist_kp, dist_ki, dist_kd);
+    double ang_theta_vel = AngVelPID(ang_theta_ave, ang_theta_integ_ave, last_ang_theta_ave,
+                                     theta_kp, theta_ki, theta_kd);
+    angular_const_vel = ang_dist_vel + ang_theta_vel;
+    //
+    linear_vel = linear_const_vel;
+    angular_vel = angular_const_vel;
+    // 更新上一次角度误差
+    last_ang_dist_ave = ang_dist_ave;
+    last_ang_theta_ave = ang_theta_ave;
+    // 更新上一次角度命令
+    last_linear_cmd = linear_vel;
+    last_angular_cmd = angular_vel;
+
+
+    file << "Angular Distant AVE is: " << ang_dist_ave << std::endl;
+    file << "Angular Theta AVE is: " << ang_theta_ave << std::endl;
+    file << "Angular Dist Vel is: " << ang_dist_vel << std::endl;
+    file << "Angular Theta Vel is: " << ang_theta_vel << std::endl;
+    file << "Linear Velocity is: " << linear_vel << std::endl;
+    file << "Angular Velocity is: " << angular_vel << std::endl;
 }
 
 void ChassisPlanner::SpslowPlan(double &linear_vel, double &angular_vel){
-  double linear_slow_vel;
-  double angular_slow_vel;
+    double linear_slow_vel;
+    double angular_slow_vel;
 
-        double dist_kp = 1.5;
-        double dist_ki = 0;
-        double dist_kd = 0;
-        double theta_kp = 0.6;
-        double theta_ki = 0;
-        double theta_kd = 0;
+    double dist_kp = 1.5;
+    double dist_ki = 0;
+    double dist_kd = 0;
+    double theta_kp = 0.6;
+    double theta_ki = 0;
+    double theta_kd = 0;
 
-        static double ang_dist_integ_slow = 0.0;
-        static double ang_theta_integ_slow = 0.0;
-        static double last_ang_dist_slow = 0.0;
-        static double last_ang_theta_slow = 0.0;
-
-
-        // 直线速度
-        // double end_dist = sqrt(pow((pose_x-dest_pose_x), 2) +
-        //                       pow((pose_y-dest_pose_y), 2));
-        double end_dist = abs(pose_x - dest_pose_x);
-        double slow_kp = 0.0032;
-        // linear_vel = last_linear_cmd*(end_dist/m_accel_dist);
-        linear_slow_vel = slow_kp*m_head_flag*end_dist;
-
-        // 角速度
-        double ang_dist_slow = asin((dest_pose_y-pose_y)/head_dist);
-        double ang_theta_slow = dest_pose_theta - pose_theta;
-        // 积分误差
-        ang_dist_integ_slow += ang_dist_slow;
-        ang_theta_integ_slow += ang_theta_slow;
-        // 角度PID
-        double ang_dist_vel = AngVelPID(ang_dist_slow, ang_dist_integ_slow, last_ang_dist_slow,
-                                        dist_kp, dist_ki, dist_kd);
-        double ang_theta_vel = AngVelPID(ang_theta_slow, ang_theta_integ_slow, last_ang_theta_slow,
-                                         theta_kp, theta_ki, theta_kd);
-        angular_slow_vel = ang_dist_vel + ang_theta_vel;
-
-        //
-        linear_vel = linear_slow_vel;
-        angular_vel = angular_slow_vel;
-        // 更新上一次角度误差
-        last_ang_dist_slow = ang_dist_slow;
-        last_ang_theta_slow = ang_theta_slow;
-        // 更新上一次角度命令
-        last_linear_cmd = linear_vel;
-        last_angular_cmd = angular_vel;
+    static double ang_dist_integ_slow = 0.0;
+    static double ang_theta_integ_slow = 0.0;
+    static double last_ang_dist_slow = 0.0;
+    static double last_ang_theta_slow = 0.0;
 
 
-        file << "Angular Distant SLOW is: " << ang_dist_slow << std::endl;
-        file << "Angular Theta SLOW is: " << ang_theta_slow << std::endl;
-        file << "Angular Dist Vel is: " << ang_dist_vel << std::endl;
-        file << "Angular Theta Vel is: " << ang_theta_vel << std::endl;
-        file << "Linear Velocity is: " << linear_vel << std::endl;
-        file << "Angular Velocity is: " << angular_vel << std::endl;
+    // 直线速度
+    // double end_dist = sqrt(pow((pose_x-dest_pose_x), 2) +
+    //                       pow((pose_y-dest_pose_y), 2));
+    double end_dist = abs(pose_x - dest_pose_x);
+    double slow_kp = 0.0032;
+    // linear_vel = last_linear_cmd*(end_dist/m_accel_dist);
+    linear_slow_vel = slow_kp*m_head_flag*end_dist;
+
+    // 角速度
+    double ang_dist_slow = asin((dest_pose_y-pose_y)/head_dist);
+    double ang_theta_slow = dest_pose_theta - pose_theta;
+    // 积分误差
+    ang_dist_integ_slow += ang_dist_slow;
+    ang_theta_integ_slow += ang_theta_slow;
+    // 角度PID
+    double ang_dist_vel = AngVelPID(ang_dist_slow, ang_dist_integ_slow, last_ang_dist_slow,
+                                    dist_kp, dist_ki, dist_kd);
+    double ang_theta_vel = AngVelPID(ang_theta_slow, ang_theta_integ_slow, last_ang_theta_slow,
+                                     theta_kp, theta_ki, theta_kd);
+    angular_slow_vel = ang_dist_vel + ang_theta_vel;
+
+    //
+    linear_vel = linear_slow_vel;
+    angular_vel = angular_slow_vel;
+    // 更新上一次角度误差
+    last_ang_dist_slow = ang_dist_slow;
+    last_ang_theta_slow = ang_theta_slow;
+    // 更新上一次角度命令
+    last_linear_cmd = linear_vel;
+    last_angular_cmd = angular_vel;
+
+
+    file << "Angular Distant SLOW is: " << ang_dist_slow << std::endl;
+    file << "Angular Theta SLOW is: " << ang_theta_slow << std::endl;
+    file << "Angular Dist Vel is: " << ang_dist_vel << std::endl;
+    file << "Angular Theta Vel is: " << ang_theta_vel << std::endl;
+    file << "Linear Velocity is: " << linear_vel << std::endl;
+    file << "Angular Velocity is: " << angular_vel << std::endl;
 }
 
 void ChassisPlanner::AdjPlan(double &linear_vel, double &angular_vel){
-  double linear_adj_vel;
-  double angular_adj_vel;
+    double linear_adj_vel;
+    double angular_adj_vel;
 
-        double theta_kp = 0.6;
-        double theta_ki = 0;
-        double theta_kd = 0;
+    double theta_kp = 0.6;
+    double theta_ki = 0;
+    double theta_kd = 0;
 
-        static double ang_theta_integ_adj = 0.0;
-        static double last_ang_theta_adj = 0.0;
+    static double ang_theta_integ_adj = 0.0;
+    static double last_ang_theta_adj = 0.0;
 
-        // 直线速度
-        linear_adj_vel = 0.0;
+    // 直线速度
+    linear_adj_vel = 0.0;
 
-        // 角速度
-        double ang_theta_adj = dest_pose_theta - pose_theta;
-        // 积分误差
-        ang_theta_integ_adj += ang_theta_adj;
-        // 角度PID
-        double ang_theta_vel = AngVelPID(ang_theta_adj, ang_theta_integ_adj, last_ang_theta_adj,
-                                         theta_kp, theta_ki, theta_kd);
-        angular_adj_vel = ang_theta_vel;
+    // 角速度
+    double ang_theta_adj = dest_pose_theta - pose_theta;
+    // 积分误差
+    ang_theta_integ_adj += ang_theta_adj;
+    // 角度PID
+    double ang_theta_vel = AngVelPID(ang_theta_adj, ang_theta_integ_adj, last_ang_theta_adj,
+                                     theta_kp, theta_ki, theta_kd);
+    angular_adj_vel = ang_theta_vel;
 
-        //
-        linear_vel = linear_adj_vel;
-        angular_vel = angular_adj_vel;
-        // 更新上一次角度误差
-        last_ang_theta_adj = ang_theta_adj;
+    //
+    linear_vel = linear_adj_vel;
+    angular_vel = angular_adj_vel;
+    // 更新上一次角度误差
+    last_ang_theta_adj = ang_theta_adj;
 
-        // 调整姿态后位置发生改变，故不能这么干
-        linear_vel = 0.0;
-        angular_vel = 0.0;
-        // 更新上一次角度命令
-        last_linear_cmd = linear_vel;
-        last_angular_cmd = angular_vel;
+    // 调整姿态后位置发生改变，故不能这么干
+    linear_vel = 0.0;
+    angular_vel = 0.0;
+    // 更新上一次角度命令
+    last_linear_cmd = linear_vel;
+    last_angular_cmd = angular_vel;
 
 
-        file << "Angular Theta adj is: " << ang_theta_adj << std::endl;
-        file << "Angular Theta Vel is: " << ang_theta_vel << std::endl;
-        file << "Linear Velocity is: " << linear_vel << std::endl;
-        file << "Angular Velocity is: " << angular_vel << std::endl;
+    file << "Angular Theta adj is: " << ang_theta_adj << std::endl;
+    file << "Angular Theta Vel is: " << ang_theta_vel << std::endl;
+    file << "Linear Velocity is: " << linear_vel << std::endl;
+    file << "Angular Velocity is: " << angular_vel << std::endl;
 }
 
 void ChassisPlanner::HoldonPlan(double &linear_vel, double &angular_vel){
-        linear_vel = 0;
-        angular_vel = 0;
+    linear_vel = 0;
+    angular_vel = 0;
 
-        last_linear_cmd = 0;
-        last_angular_cmd = 0;
+    last_linear_cmd = 0;
+    last_angular_cmd = 0;
 }
 
 void ChassisPlanner::ErrPlan(double &linear_vel, double &angular_vel){
-        linear_vel = 0;
-        angular_vel = 0;
+    linear_vel = 0;
+    angular_vel = 0;
 
-        last_linear_cmd = 0;
-        last_angular_cmd = 0;
+    last_linear_cmd = 0;
+    last_angular_cmd = 0;
 }
 
 /**
-* 速度规划
-*/
+ * 速度规划
+ */
 void ChassisPlanner::AutoPlanner(){
     //
     boost::mutex::scoped_lock lock(m_mutex);
@@ -489,26 +489,26 @@ void ChassisPlanner::AutoPlanner(){
     StatusDef();
 
     // 根据底盘状态进行规划
-    switch(m_chassis_status){
-      case STOP:
+    switch(m_chassis_status) {
+    case STOP:
         StopPlan(linear_vel, angular_vel);
         break;
-      case SPEEDUP:
+    case SPEEDUP:
         SpupPlan(linear_vel, angular_vel);
         break;
-      case SPEEDCONST:
+    case SPEEDCONST:
         SpconstPlan(linear_vel, angular_vel);
         break;
-      case SPEEDSLOW:
+    case SPEEDSLOW:
         SpslowPlan(linear_vel, angular_vel);
         break;
-      case ADJUST:
+    case ADJUST:
         AdjPlan(linear_vel, angular_vel);
         break;
-      case HOLDON:
+    case HOLDON:
         HoldonPlan(linear_vel, angular_vel);
         break;
-      default:
+    default:
         ErrPlan(linear_vel, angular_vel);
     }
 
@@ -535,7 +535,7 @@ void ChassisPlanner::SendVel(double linear_vel, double angular_vel){
 }
 
 double ChassisPlanner::AngVelPID(double err, double err_integral, double last_err,
-                 double kp, double ki, double kd)
+                                 double kp, double ki, double kd)
 {
     double vel_plan = kp*err + ki*err_integral + kd*(err - last_err);
 
