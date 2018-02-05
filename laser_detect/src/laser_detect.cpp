@@ -817,8 +817,8 @@ bool LaserDetect::WallDetect(lidar_data_type& lidar_data, vec_data_type& l_param
       l_fin_angle_max = left_max;
 
       DataSelect(f_fin_angle_min,
-                                  f_fin_angle_max,
-                                                   lidar_filter,
+                 f_fin_angle_max,
+                 lidar_filter,
                  front_select_lidar);
       DataSelect(l_fin_angle_min, l_fin_angle_max, lidar_filter,
                  left_select_lidar);
