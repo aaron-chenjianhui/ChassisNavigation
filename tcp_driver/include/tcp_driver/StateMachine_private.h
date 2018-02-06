@@ -1,5 +1,6 @@
 //
-// File: StateMachine_types.h
+
+// File: StateMachine_private.h
 //
 // Code generated for Simulink model 'StateMachine'.
 //
@@ -12,13 +13,10 @@
 // Code generation objectives: Unspecified
 // Validation result: Not run
 //
-#ifndef RTW_HEADER_StateMachine_types_h_
-#define RTW_HEADER_StateMachine_types_h_
-
-// Forward declaration for rtModel
-typedef struct tag_RTM_StateMachine_T RT_MODEL_StateMachine_T;
-
-#endif                                 // RTW_HEADER_StateMachine_types_h_
+#ifndef RTW_HEADER_StateMachine_private_h_
+#define RTW_HEADER_StateMachine_private_h_
+#include "tcp_driver/rtwtypes.h"
+#endif // RTW_HEADER_StateMachine_private_h_
 
 //
 // File trailer for generated code.

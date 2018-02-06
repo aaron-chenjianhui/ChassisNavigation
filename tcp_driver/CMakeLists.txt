@@ -133,6 +133,7 @@ ${catkin_INCLUDE_DIRS}
 set(SRC_LISTS
 src/chassis_conn_node.cpp
 src/chassis_conn.cpp
+src/StateMachine.cpp
 )
 add_executable(${PROJECT_NAME}_node ${SRC_LISTS})
 

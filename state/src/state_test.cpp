@@ -16,6 +16,8 @@ int main(int argc, char *argv[]) {
     StateMachine_initialize();
     int count = 0;
 
+        uint8_t system_state_init = StateMachine_Y.sys_state;
+
   while (ros::ok()) {
       StateMachine_U.lidar_state       = 0;
       StateMachine_U.tcp_state         = 0;

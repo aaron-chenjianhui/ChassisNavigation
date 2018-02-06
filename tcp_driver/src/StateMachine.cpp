@@ -1,4 +1,5 @@
 //
+
 // File: StateMachine.cpp
 //
 // Code generated for Simulink model 'StateMachine'.
@@ -12,8 +13,8 @@
 // Code generation objectives: Unspecified
 // Validation result: Not run
 //
-#include "StateMachine.h"
-#include "StateMachine_private.h"
+#include "tcp_driver/StateMachine.h"
+#include "tcp_driver/StateMachine_private.h"
 
 // Named constants for Chart: '<Root>/StateMachine'
 #define StateMachin_IN_GlobalLocationOK ((uint8_T)1U)
@@ -61,7 +62,8 @@ void StateMachine_step(void)
     StateMachine_Y.sys_state = 0U;
   } else {
     switch (StateMachine_DW.is_c3_StateMachine) {
-     case StateMachin_IN_GlobalLocationOK:
+    case StateMachin_IN_GlobalLocationOK:
+
       // During 'GlobalLocationOK': '<S1>:12'
       if ((StateMachine_U.lidar_state == 0) || (StateMachine_U.tcp_state == 0))
       {
@@ -84,7 +86,8 @@ void StateMachine_step(void)
       }
       break;
 
-     case StateMachin_IN_GlobalLocationOn:
+    case StateMachin_IN_GlobalLocationOn:
+
       // During 'GlobalLocationOn': '<S1>:11'
       if ((StateMachine_U.lidar_state == 0) || (StateMachine_U.tcp_state == 0))
       {
@@ -106,12 +109,13 @@ void StateMachine_step(void)
       }
       break;
 
-     case StateMachine_IN_Initialization:
+    case StateMachine_IN_Initialization:
+
       // During 'Initialization': '<S1>:8'
       if ((StateMachine_U.lidar_state == 1) && (StateMachine_U.tcp_state == 1) &&
           (StateMachine_U.detect_node_state == 0) &&
           (StateMachine_U.nav_node_state == 0) && (StateMachine_U.recv_msg_state
-           == 0)) {
+                                                   == 0)) {
         // Transition: '<S1>:15'
         StateMachine_DW.is_c3_StateMachine = StateMachine_IN_Ready;
 
@@ -121,7 +125,8 @@ void StateMachine_step(void)
       }
       break;
 
-     case StateMachine_IN_Ready:
+    case StateMachine_IN_Ready:
+
       // During 'Ready': '<S1>:10'
       if ((StateMachine_U.lidar_state == 0) || (StateMachine_U.tcp_state == 0))
       {
@@ -145,7 +150,8 @@ void StateMachine_step(void)
       }
       break;
 
-     default:
+    default:
+
       // During 'SimuLocation': '<S1>:13'
       if ((StateMachine_U.lidar_state == 0) || (StateMachine_U.tcp_state == 0))
       {
@@ -181,8 +187,8 @@ void StateMachine_initialize(void)
   rtmSetErrorStatus(StateMachine_M, (NULL));
 
   // states (dwork)
-  (void) memset((void *)&StateMachine_DW, 0,
-                sizeof(DW_StateMachine_T));
+  (void)memset((void *)&StateMachine_DW, 0,
+               sizeof(DW_StateMachine_T));
 
   // external inputs
   (void)memset((void *)&StateMachine_U, 0, sizeof(ExtU_StateMachine_T));
@@ -192,7 +198,7 @@ void StateMachine_initialize(void)
 
   // SystemInitialize for Chart: '<Root>/StateMachine'
   StateMachine_DW.is_active_c3_StateMachine = 0U;
-  StateMachine_DW.is_c3_StateMachine = StateMachine_IN_NO_ACTIVE_CHILD;
+  StateMachine_DW.is_c3_StateMachine        = StateMachine_IN_NO_ACTIVE_CHILD;
 
   // SystemInitialize for Outport: '<Root>/sys_state' incorporates:
   //   SystemInitialize for Chart: '<Root>/StateMachine'

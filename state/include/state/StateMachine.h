@@ -3,9 +3,9 @@
 //
 // Code generated for Simulink model 'StateMachine'.
 //
-// Model version                  : 1.12
+// Model version                  : 1.18
 // Simulink Coder version         : 8.11 (R2016b) 25-Aug-2016
-// C/C++ source code generated on : Mon Feb  5 19:57:41 2018
+// C/C++ source code generated on : Tue Feb  6 13:44:39 2018
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)

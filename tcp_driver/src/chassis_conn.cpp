@@ -374,6 +374,9 @@ void ChassisConn::parseTCPData(const u_char     *buffer_data,
     else if (0x12 == pack_cmd_data) {
       chassis_status = track_cmd;
     }
+    else if (0x10 == pack_cmd_data) {
+      chassis_status = chassis_ready;
+    }
   }
 }
 }

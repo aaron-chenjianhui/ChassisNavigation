@@ -31,7 +31,7 @@ typedef enum {
   pc_ready     = 0x20,
   global_cal   = 0x21,
   global_ready = 0x22,
-  track_ready  = 0x32
+  track_ready  = 0x23
 } pc_status_t;
 
 struct LocationData {
