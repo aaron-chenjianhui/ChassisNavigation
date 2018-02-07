@@ -1,8 +1,11 @@
 #include "ros/ros.h"
 
+// StateMachine headers
 #include "tcp_driver/chassis_conn.h"
-
 #include "tcp_driver/StateMachine.h"
+
+// Service headers
+#include "laser_msgs/status_srv.h"
 
 #define _TCP_BUF_DEBUG 0
 
@@ -39,8 +42,10 @@ typedef enum {
   sys_track      = 4
 } sys_status_t;
 
+void QueryNodeStatus();
 
-int main(int argc, char *argv[]) {
+
+int  main(int argc, char *argv[]) {
   // ROS related parameter
   ros::init(argc, argv, "chassis_conn");
   ros::NodeHandle n("~");

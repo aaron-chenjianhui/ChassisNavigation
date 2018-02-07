@@ -51,8 +51,10 @@
   <buildtool_depend>catkin</buildtool_depend>
 
   <build_depend>roscpp</build_depend>
+  <build_depend>laser_msgs</build_depend>
 
   <run_depend>roscpp</run_depend>
+  <run_depend>laser_msgs</run_depend>
 
 
 

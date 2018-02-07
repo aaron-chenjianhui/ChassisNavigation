@@ -15,7 +15,7 @@
 //
 #ifndef RTW_HEADER_StateMachine_private_h_
 #define RTW_HEADER_StateMachine_private_h_
-#include "rtwtypes.h"
+#include "state/rtwtypes.h"
 #endif // RTW_HEADER_StateMachine_private_h_
 
 //
