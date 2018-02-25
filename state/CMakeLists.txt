@@ -134,8 +134,9 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 set(SRC_LISTS
+src/CoreStateMachine.cpp
+src/CoreStateMachine_data.cpp
 src/state_main.cpp
-src/StateMachine.cpp
 )
 add_executable(${PROJECT_NAME}_node ${SRC_LISTS})
 

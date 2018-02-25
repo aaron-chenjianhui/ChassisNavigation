@@ -29,30 +29,18 @@
 #include <limits>
 #include <string>
 
-#include "laser_msgs/status_srv.h"
+#include "laser_msgs/lidar_srv.h"
+#include "SysStateTypes.h"
 
 #define DEG2RAD M_PI / 180.0
 #define RAD2DEG 180.0 / M_PI
 
-// system status defines
-typedef enum {
-  lidar_conn    = 1,
-  lidar_disconn = 0
-} lidar_status_t;
-
-typedef enum {
-  sys_init       = 0,
-  sys_ready      = 1,
-  sys_global_ing = 2,
-  sys_global_ok  = 3,
-  sys_track      = 4
-} sys_status_t;
 
 lidar_status_t lidar_status  = lidar_disconn;
 sys_status_t   system_status = sys_init;
 
-bool statusCallback(laser_msgs::status_srv::Request & req,
-                    laser_msgs::status_srv::Response& res);
+bool statusCallback(laser_msgs::lidar_srv::Request & req,
+                    laser_msgs::lidar_srv::Response& res);
 
 int  main(int argc, char **argv)
 {
@@ -75,11 +63,20 @@ int  main(int argc, char **argv)
   ros::NodeHandle n("~");
   ros::Publisher  scan_pub = nh.advertise<sensor_msgs::LaserScan>("scan", 1);
 
+  //
+  ros::ServiceServer lidar_server =
+    nh.advertiseService("lidar_status", statusCallback);
+
   n.param<std::string>("host",                     host,      "192.168.0.8");
   n.param<std::string>("frame_id",                 frame_id,  "laser");
   n.param<bool>(       "publish_min_range_as_inf", inf_range, false);
   n.param<int>(        "port",                     port,      2111);
   n.param<int>(        "scan_frequency",           scan_freq, 2500);
+
+  // Set Loop Frequency
+  // Do not need this actually
+  //  double loop_freq = cfg.scaningFrequency / 100;
+  ros::Rate loop_rate(25);
 
   // Compensating value for lidar detect, obtained from calibration
   double dist_comp = 32.5 / 1000.0;
@@ -92,7 +89,11 @@ int  main(int argc, char **argv)
     if (!laser.isConnected())
     {
       ROS_WARN("Unable to connect, retrying.");
-      ros::Duration(1).sleep();
+
+      // ros::Duration(1).sleep();
+      lidar_status = lidar_disconn;
+      ros::spinOnce();
+      loop_rate.sleep();
       continue;
     }
 
@@ -106,7 +107,14 @@ int  main(int argc, char **argv)
     {
       laser.disconnect();
       ROS_WARN("Unable to get laser output range. Retrying.");
-      ros::Duration(1).sleep();
+
+      //      ros::Duration(1).sleep();
+
+      // ros::Duration(1).sleep();
+      lidar_status = lidar_disconn;
+      ros::spinOnce();
+      loop_rate.sleep();
+
       continue;
     }
 
@@ -124,10 +132,6 @@ int  main(int argc, char **argv)
       outputRange.startAngle,
       outputRange.stopAngle);
 
-    // Set Loop Frequency
-    // Do not need this actually
-    double loop_freq = cfg.scaningFrequency / 100;
-    ros::Rate loop_rate(loop_freq);
 
     scan_msg.header.frame_id = frame_id;
     scan_msg.range_min       = 0.01;
@@ -192,7 +196,12 @@ int  main(int argc, char **argv)
     {
       ROS_WARN("Laser not ready. Retrying initialization.");
       laser.disconnect();
-      ros::Duration(1).sleep();
+
+      lidar_status = lidar_disconn;
+
+      //      ros::Duration(1).sleep();
+      ros::spinOnce();
+      loop_rate.sleep();
       continue;
     }
 
@@ -280,16 +289,16 @@ int  main(int argc, char **argv)
   return 0;
 }
 
-bool statusCallback(laser_msgs::status_srv::Request & req,
-                    laser_msgs::status_srv::Response& res) {
+bool statusCallback(laser_msgs::lidar_srv::Request & req,
+                    laser_msgs::lidar_srv::Response& res) {
   // transfer system status to node
   uint8_t system_status_now = req.sys_status;
 
-  system_status = system_status_now;
+  system_status = (sys_status_t)system_status_now;
 
   // transfer node status to system
-  uint8_t lidar_status_now = lidar_status;
-  res.node_status = lidar_status_now;
+  bool lidar_status_now = lidar_status;
+  res.lidar_conn = lidar_status_now;
 
   return true;
 }

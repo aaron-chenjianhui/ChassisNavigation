@@ -12,19 +12,20 @@ LaserDetect::LaserDetect() {
   m_suber = m_nh.subscribe("scan", 1000, &LaserDetect::LaserDetectCallback, this);
   m_puber = m_nh.advertise<sensor_msgs::PointCloud>("point", 1000);
 
-  //
-  m_srver = m_nh.advertiseService("global_calib",
-                                  &LaserDetect::LaserSrvCallback,
-                                  this);
+  m_pose_puber = m_nh.advertise<geometry_msgs::Pose2D>("ori_pose", 1000);
 
   // For checkout error
-  m_pose_puber         = m_nh.advertise<geometry_msgs::Pose2D>("ori_pose", 1000);
   m_filter_lidar_puber = m_nh.advertise<sensor_msgs::LaserScan>("custom_scan",
                                                                 1000);
-  m_line_param_puber = m_nh.advertise<laser_detect::detect_msg>("line_param",
-                                                                1000);
+  m_line_param_puber = m_nh.advertise<laser_msgs::detect_msg>("line_param",
+                                                              1000);
   m_laser_pose_puber =
-    m_nh.advertise<geometry_msgs::Pose2D>("laser_pose", 1000);
+    m_nh.advertise<geometry_msgs::Pose2D>("debug_laser_pose", 1000);
+
+  // For node status
+  m_detect_server = m_nh.advertiseService("detect_status",
+                                          &LaserDetect::statusCallback,
+                                          this);
 }
 
 LaserDetect::~LaserDetect() {}
@@ -64,51 +65,47 @@ void LaserDetect::ParamInit() {
   }
 
   m_ave_num = 200;
+
+  // status parameter
+  m_detect_status = detect_ready;
+  m_sys_status    = sys_init;
+  m_filter_count  = 0;
+  m_detect_flag   = 0;
+
+  // State Machine
 }
 
-bool LaserDetect::LaserSrvCallback(laser_detect::laser_detect_srv::Request & req,
-                                   laser_detect::laser_detect_srv::Response& res)
+bool LaserDetect::LaserCal(lidar_data_type& lidar_data_cal)
 {
-  // Ask for Laser Detect
-  bool ask_for_calib = false;
+  //
+  boost::mutex::scoped_lock lock(m_mutex);
 
-  ask_for_calib = req.flag;
+  // detect result
+  vec_data_type path_param;
+  vec_data_type ori_pose;
+  vec_data_type l_line_param, r_line_param, f_line_param;
 
-  if (true == ask_for_calib) {
-    // Wait for filter
-    sleep(4);
+  //
+  if (WallDetect(lidar_data_cal, l_line_param, r_line_param, f_line_param)) {
+    DataProcess(l_line_param, r_line_param, f_line_param, ori_pose);
 
-    //
-    boost::mutex::scoped_lock lock(m_mutex);
+    m_ori_pose_x     = ori_pose[0];
+    m_ori_pose_y     = ori_pose[1];
+    m_ori_pose_theta = ori_pose[2];
 
-    vec_data_type path_param;
-    vec_data_type ori_pose;
-    vec_data_type l_line_param, r_line_param, f_line_param;
+    tf::Transform transform;
+    transform.setOrigin(tf::Vector3(m_ori_pose_x / 1000.0, m_ori_pose_y / 1000.0,
+                                    0.0));
+    tf::Quaternion q;
+    q.setRPY(0, 0, m_ori_pose_theta);
+    transform.setRotation(q);
+    m_br.sendTransform(tf::StampedTransform(transform, ros::Time::now(),
+                                            "laser", "original"));
 
-    //
-    if (WallDetect(lidar_data_filter, l_line_param, r_line_param, f_line_param)) {
-      DataProcess(l_line_param, r_line_param, f_line_param, ori_pose);
-
-      res.pose.x     = ori_pose[0];
-      res.pose.y     = ori_pose[1];
-      res.pose.theta = ori_pose[2];
-
-      tf::Transform transform;
-      transform.setOrigin(tf::Vector3(ori_pose[0] / 1000.0, ori_pose[1] / 1000.0,
-                                      0.0));
-      tf::Quaternion q;
-      q.setRPY(0, 0, ori_pose[2]);
-      transform.setRotation(q);
-      m_br.sendTransform(tf::StampedTransform(transform, ros::Time::now(),
-                                              "laser", "original"));
-
-      return true;
-    }
-    else {
-      return false;
-    }
+    return true;
   }
   else {
+    // Detect Failed
     return false;
   }
 }
@@ -116,6 +113,13 @@ bool LaserDetect::LaserSrvCallback(laser_detect::laser_detect_srv::Request & req
 void LaserDetect::LaserDetectCallback(const sensor_msgs::LaserScan& laser_data) {
   //
   boost::mutex::scoped_lock lock(m_mutex);
+
+  // collection count
+  m_filter_count++;
+
+  if (m_filter_count > 10000) {
+    m_filter_count = 0;
+  }
 
   lidar_data_raw.clear();
   lidar_data_filter.clear();
@@ -159,12 +163,22 @@ void LaserDetect::LaserDetectCallback(const sensor_msgs::LaserScan& laser_data) 
   // Put lidar_data_raw into filter deque
   lidar_filter_in.push_back(lidar_data_raw);
 
-
   if (m_ave_num < lidar_filter_in.size()) {
     lidar_filter_in.pop_front();
   }
 
   MAFilter(lidar_filter_in, lidar_data_filter, m_ave_num);
+
+
+  //
+  if ((m_sys_status == sys_global_ok) || (m_sys_status == sys_track)) {
+    // Publish pose data
+    geometry_msgs::Pose2D ori_pose_msg;
+    ori_pose_msg.x     = m_ori_pose_x;
+    ori_pose_msg.y     = m_ori_pose_y;
+    ori_pose_msg.theta = m_ori_pose_theta;
+    m_pose_puber.publish(ori_pose_msg);
+  }
 
 #if DETECT_DEBUG
 
@@ -1042,5 +1056,47 @@ void LaserDetect::ResultDisp(lidar_data_type& lidar_data,
   cloud.channels[0].values = intensity_value;
 
   m_puber.publish(cloud);
+}
+
+bool LaserDetect::statusCallback(laser_msgs::laser_detect_srv::Request & req,
+                                 laser_msgs::laser_detect_srv::Response& res) {
+  // transfer system status to node
+  uint8_t system_status_now = req.sys_status;
+  uint8_t detect_status_now = req.detect_status;
+  bool    cal_flag_input    = req.cal_flag_input;
+
+  m_sys_status    = (sys_status_t)system_status_now;
+  m_detect_status = (detect_status_t)detect_status_now;
+
+  //
+  if (cal_flag_input && (m_detect_status == detect_cal_ing)) {
+    bool ret = LaserCal(lidar_data_filter);
+
+    if (ret) {
+      m_detect_flag = true;
+    }
+    else {
+      m_detect_flag = false;
+    }
+  }
+
+  // cal_flag for res
+  if (detect_cal_ing != m_detect_status) {
+    m_detect_flag = false;
+  }
+  bool cal_flag_output = cal_flag_input & (!m_detect_flag);
+
+  // detect_conn for res
+  bool detect_conn = true;
+
+  // cal_count for res
+  uint16_t cal_count = m_filter_count;
+
+  // service return
+  res.detect_conn     = detect_conn;
+  res.cal_count       = m_filter_count;
+  res.cal_flag_output = cal_flag_output;
+
+  return true;
 }
 }

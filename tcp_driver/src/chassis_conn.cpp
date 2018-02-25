@@ -34,6 +34,9 @@ void ChassisConn::connect(std::string host, int port) {
 
     if (m_socket_fd)
     {
+      int flags = fcntl(m_socket_fd, F_GETFL, 0);
+      fcntl(m_socket_fd, F_SETFL, flags | O_NONBLOCK);
+
       struct sockaddr_in stSockAddr;
       stSockAddr.sin_family = PF_INET;
       stSockAddr.sin_port   = htons(port);
@@ -76,8 +79,8 @@ int ChassisConn::WRSelect(bool& readOK, bool& writeOK) {
   fd_set readset, writeset;
   struct timeval timeout;
 
-  timeout.tv_usec = 0; // us
-  timeout.tv_sec  = 5; // s
+  timeout.tv_usec = 10000; // us
+  timeout.tv_sec  = 0;     // s
 
   //
   FD_ZERO(&readset);

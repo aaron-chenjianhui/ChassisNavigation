@@ -11,9 +11,11 @@
 #include <arpa/inet.h>
 #include <sys/select.h>
 #include <errno.h>
+#include <fcntl.h>
+
+#include <ros/ros.h>
 
 #include "tcp_buffer.h"
-
 
 #include "console_bridge/console.h"
 

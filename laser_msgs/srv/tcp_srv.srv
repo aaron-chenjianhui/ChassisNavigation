@@ -1,0 +1,4 @@
+uint8 sys_status
+---
+bool tcp_conn
+uint8 msg_status

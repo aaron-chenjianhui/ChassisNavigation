@@ -15,8 +15,10 @@
   <depend>roscpp</depend>
   <depend>roscpp_serialization</depend>
   <depend>sensor_msgs</depend>
+  <depend>laser_msgs</depend>
 
   <test_depend>roslaunch</test_depend>
   <test_depend>roslint</test_depend>
   <test_depend>rosunit</test_depend>
+  <test_depend>laser_msgs</test_depend>
 </package>

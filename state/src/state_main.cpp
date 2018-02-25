@@ -3,146 +3,210 @@
 #include <unistd.h>
 #include <vector>
 
-#include "state/StateMachine.h"
-#include "laser_msgs/status_srv.h"
-#include "laser_msgs/driver_srv.h"
+#include "state/CoreStateMachine.h"
+#include "state/SysStateTypes.h"
 
-typedef enum {
-  lidar_conn    = 1,
-  lidar_disconn = 0
-} lidar_status_t;
-typedef enum {
-  tcp_conn    = 1,
-  tcp_disconn = 0
-} tcp_status_t;
+#include "laser_msgs/lidar_srv.h"
+#include "laser_msgs/nav_srv.h"
+#include "laser_msgs/tcp_srv.h"
+#include "laser_msgs/laser_detect_srv.h"
 
-// TODO(CJH): add detect disconnected status
-typedef enum {
-  detect_ready   = 0,
-  detect_cal_ing = 1,
-  detect_cal_ok  = 2
-} detect_status_t;
 
-// TODO(CJH): add nav disconnected status
-typedef enum {
-  nav_ready = 0,
-  nav_calib = 1,
-  nav_ok    = 2
-} nav_status_t;
-
-// TODO(CJH): add msg disconnected status
-typedef enum {
-  msg_ready  = 0,
-  msg_global = 1,
-  msg_track  = 2
-} msg_status_t;
-typedef enum {
-  sys_init       = 0,
-  sys_ready      = 1,
-  sys_global_ing = 2,
-  sys_global_ok  = 3,
-  sys_track      = 4
-} sys_status_t;
+#define CAL_TIMES 20
 
 int main(int argc, char *argv[]) {
   ros::init(argc, argv, "state_machine");
   ros::NodeHandle nh;
 
-  int rate_hz = 50;
+  int rate_hz = 1;
   ros::Rate loop_rate(rate_hz);
 
-  // Monitoring service
-  ros::ServiceClient lidar_client = nh.serviceClient<laser_msgs::status_srv>(
-    "lidar_status");
-  ros::ServiceClient detect_client = nh.serviceClient<laser_msgs::status_srv>(
-    "detect_status");
-  ros::ServiceClient nav_client = nh.serviceClient<laser_msgs::status_srv>(
+  // create client for service
+  ros::ServiceClient lidar_client =
+    nh.serviceClient<laser_msgs::lidar_srv>(
+      "lidar_status");
+  ros::ServiceClient detect_client =
+    nh.serviceClient<laser_msgs::laser_detect_srv>(
+      "detect_status");
+  ros::ServiceClient nav_client = nh.serviceClient<laser_msgs::nav_srv>(
     "nav_status");
-  ros::ServiceClient driver_client = nh.serviceClient<laser_msgs::status_srv>(
-    "driver_status");
+  ros::ServiceClient tcp_client = nh.serviceClient<laser_msgs::tcp_srv>(
+    "tcp_status");
 
-  //
-  laser_msgs::status_srv lidar_srv;
-  laser_msgs::status_srv detect_srv;
-  laser_msgs::status_srv nav_srv;
-  laser_msgs::driver_srv driver_srv;
+  // create instances of srv files
+  laser_msgs::lidar_srv lidar_status_srv;
+  laser_msgs::laser_detect_srv detect_status_srv;
+  laser_msgs::nav_srv nav_status_srv;
+  laser_msgs::tcp_srv tcp_status_srv;
 
-  lidar_status_t  lidar_status  = lidar_disconn;
-  tcp_status_t    tcp_status    = tcp_disconn;
-  detect_status_t detect_status = detect_ready;
-  nav_status_t    nav_status    = nav_ready;
-  msg_status_t    msg_status    = msg_ready;
-  sys_status_t    sys_status    = sys_init;
+  // system status parameters(input)
+  lidar_status_t lidar_conn_status  = lidar_disconn;
+  tcp_status_t   tcp_conn_status    = tcp_disconn;
+  nav_conn_status_t nav_conn_status = nav_disconn;
+  detect_input_status_t detect_input_status;
+  detect_input_status.detect_conn_status = detect_disconn;
+  detect_input_status.filter_count       = (uint16_t)0;
+  detect_input_status.cal_flag           = false;
+  msg_status_t msg_status = no_msg;
 
-  StateMachine_initialize();
-  uint8_t system_state_init = StateMachine_Y.sys_state;
-  sys_status = (sys_status_t)system_state_init;
+  // system status parameters (output)
+  sys_status_t sys_status = sys_init;
+  nav_status_t nav_status = nav_err;
+  detect_output_status_t detect_output_status;
+  detect_output_status.detect_status = detect_err;
+  detect_output_status.cal_flag      = false;
+
+  // model parameter: cal times
+  CoreStateMachine_P.counter_times = (uint16_t)CAL_TIMES;
+  CoreStateMachine_initialize();
+
+  // system initialization status
+  uint8_t system_status_now   = CoreStateMachine_Y.sys_status;
+  bool    cal_flag_output_now = CoreStateMachine_Y.detect_flag_output;
+  uint8_t detect_status_now   = CoreStateMachine_Y.detect_status;
+  uint8_t nav_status_now      = CoreStateMachine_Y.nav_status;
+
+  // transfer StateMachine type to custome defined type
+  sys_status                         = (sys_status_t)system_status_now;
+  nav_status                         = (nav_status_t)nav_status_now;
+  detect_output_status.detect_status = (detect_status_t)detect_status_now;
+  detect_output_status.cal_flag      = cal_flag_output_now;
+
+
+  uint16_t detect_count = 0;
+  bool     detect_flag  = false;
+
 
   while (ros::ok()) {
-    //
-    lidar_srv.request.sys_status  = sys_status;
-    detect_srv.request.sys_status = sys_status;
-    nav_srv.request.sys_status    = sys_status;
-    driver_srv.request.sys_status = sys_status;
-
-    // Monitoring lidar
-    if (lidar_client.call(lidar_srv)) {
-      uint8_t lidar_status_now = lidar_srv.response.node_status;
-      lidar_status = (lidar_status_t)lidar_status_now;
-    }
-    else {
-      lidar_status = lidar_disconn;
-    }
-
-    // Monitoring detect node
-    if (detect_client.call(detect_srv)) {
-      uint8_t detect_status_now = lidar_srv.response.node_status;
-      detect_status = (detect_status_t)detect_status_now;
-    }
-    else {
-      detect_status = detect_ready;
-    }
-
-    // Monitoring nav node
-    if (nav_client.call(nav_srv)) {
-      uint8_t nav_status_now = nav_srv.response.node_status;
-      nav_status = (nav_status_t)nav_status_now;
-    }
-    else {
-      nav_status = nav_ready;
-    }
+    std::cout << "------------------ Loop Start------------------" << std::endl;
 
     // Monitoring tcp & msg
-    if (driver_client.call(driver_srv)) {
-      std::vector<uint8_t> driver_status_now = driver_srv.response.driver_status;
-      tcp_status = (tcp_status_t)driver_status_now[0];
-      msg_status = (msg_status_t)driver_status_now[1];
+    // srv input parameter for tcp_driver node
+    tcp_status_srv.request.sys_status = sys_status;
+
+    if (tcp_client.call(tcp_status_srv)) {
+      bool tcp_conn_now      = tcp_status_srv.response.tcp_conn;
+      uint8_t msg_status_now = tcp_status_srv.response.msg_status;
+
+      tcp_conn_status = (tcp_status_t)tcp_conn_now;
+      msg_status      = (msg_status_t)msg_status_now;
+
+      std::cout << "TCP conn status is: " << tcp_conn_status << std::endl;
+      std::cout << "Msg status is: " << msg_status << std::endl;
     }
     else {
-      tcp_status = tcp_disconn;
-      msg_status = msg_ready;
+      tcp_conn_status = tcp_disconn;
+      msg_status      = no_msg;
+
+      std::cout << "TCP node encounters error" << std::endl;
     }
 
+
+    // Monitoring lidar
+    // srv input parameters for LMS1xx node
+    lidar_status_srv.request.sys_status = sys_status;
+
+    if (lidar_client.call(lidar_status_srv)) {
+      uint8_t lidar_status_now = lidar_status_srv.response.lidar_conn;
+      lidar_conn_status = (lidar_status_t)lidar_status_now;
+
+      std::cout << "Lidar node status is: " << lidar_conn_status << std::endl;
+    }
+    else {
+      lidar_conn_status = lidar_disconn;
+
+      std::cout << "Lidar node encounters error" << std::endl;
+    }
+
+
+    // Monitoring detect node
+    // srv input parameters for laser_detect node
+    detect_status_srv.request.sys_status     = sys_status;
+    detect_status_srv.request.detect_status  = detect_output_status.detect_status;
+    detect_status_srv.request.cal_flag_input = detect_output_status.cal_flag;
+
+    if (detect_client.call(detect_status_srv)) {
+      bool detect_conn_now         = detect_status_srv.response.detect_conn;
+      uint16_t cal_count_now       = detect_status_srv.response.cal_count;
+      bool     cal_flag_output_now = detect_status_srv.response.cal_flag_output;
+
+      detect_input_status.detect_conn_status =
+        (detect_conn_status_t)detect_conn_now;
+      detect_input_status.filter_count = (uint16_t)cal_count_now;
+      detect_input_status.cal_flag     =
+        (bool)cal_flag_output_now;
+
+      std::cout << "Detect conn status is: " << detect_conn_now << std::endl;
+      std::cout << "Calculation count is: " << cal_count_now << std::endl;
+      std::cout << "Calculation flag is: " << cal_flag_output_now << std::endl;
+    }
+    else {
+      detect_input_status.detect_conn_status = detect_disconn;
+      detect_input_status.filter_count       = (uint16_t)0;
+      detect_input_status.cal_flag           = false;
+
+      // ROS_INFO("Detect node encounters error");
+      std::cout << "Detect node encounters error" << std::endl;
+    }
+
+
+    // laser_match_nav node
+    nav_status_srv.request.sys_status = sys_status;
+    nav_status_srv.request.nav_status = nav_status;
+
+    // Monitoring nav node
+    if (nav_client.call(nav_status_srv)) {
+      uint8_t nav_status_now = nav_status_srv.response.nav_conn;
+
+      nav_conn_status = (nav_conn_status_t)nav_status_now;
+
+      std::cout << "Nav node conn status is: " << nav_conn_status << std::endl;
+    }
+    else {
+      nav_conn_status = nav_disconn;
+
+      std::cout << "Nav node encounters error" << std::endl;
+    }
+
+
     // Update node status for StateMachine
-    StateMachine_U.lidar_state       = lidar_status;
-    StateMachine_U.tcp_state         = tcp_status;
-    StateMachine_U.detect_node_state = detect_status;
-    StateMachine_U.nav_node_state    = nav_status;
-    StateMachine_U.recv_msg_state    = msg_status;
+    CoreStateMachine_U.detect_flag_input = detect_input_status.cal_flag;
+    CoreStateMachine_U.filter_count      = detect_input_status.filter_count;
+    CoreStateMachine_U.detect_conn       = detect_input_status.detect_conn_status;
+    CoreStateMachine_U.nav_conn          = nav_conn_status;
+    CoreStateMachine_U.lidar_conn        = lidar_conn_status;
+    CoreStateMachine_U.tcp_conn          = tcp_conn_status;
+    CoreStateMachine_U.recv_msg          = msg_status;
+
 
     // Update StateMachine
-    StateMachine_step();
+    CoreStateMachine_step();
 
     // Output of StateMachine
-    uint8_t system_status_now = StateMachine_Y.sys_state;
-    sys_status = (sys_status_t)system_status_now;
-    ROS_INFO("system state is: %d", system_status_now);
+    system_status_now   = CoreStateMachine_Y.sys_status;
+    cal_flag_output_now = CoreStateMachine_Y.detect_flag_output;
+    detect_status_now   = CoreStateMachine_Y.detect_status;
+    nav_status_now      = CoreStateMachine_Y.nav_status;
 
+    //
+    sys_status                         = (sys_status_t)system_status_now;
+    nav_status                         = (nav_status_t)nav_status_now;
+    detect_output_status.detect_status = (detect_status_t)detect_status_now;
+    detect_output_status.cal_flag      = cal_flag_output_now;
+
+    std::cout << "System status is: " << sys_status << std::endl;
+    std::cout << "Nav node status is: " << nav_status << std::endl;
+    std::cout << "Detect node status is: " << (uint16_t)detect_status_now <<
+      std::endl;
+    std::cout << "Cal flag output is: " << (bool)cal_flag_output_now << std::endl;
+
+    std::cout << "------------------ Loop End ------------------" << std::endl;
+    std::cout << std::endl;
     ros::spinOnce();
     loop_rate.sleep();
   }
 
-  StateMachine_terminate();
+  CoreStateMachine_terminate();
 
   return 0;
 }

@@ -1,3 +1,7 @@
-bool flag
+uint8 sys_status
+uint8 detect_status
+bool cal_flag_input
 ---
-geometry_msgs/Pose2D pose
+bool detect_conn
+uint16 cal_count
+bool cal_flag_output

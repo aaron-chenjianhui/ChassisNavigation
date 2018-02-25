@@ -54,9 +54,10 @@ add_message_files(
 ## Generate services in the 'srv' folder
 add_service_files(
   FILES
-  status_srv.srv
+  lidar_srv.srv
+  tcp_srv.srv
   laser_detect_srv.srv
-  driver_srv.srv
+  nav_srv.srv
 )
 
 ## Generate actions in the 'action' folder

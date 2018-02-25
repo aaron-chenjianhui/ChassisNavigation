@@ -52,6 +52,9 @@ void LMS1xx::connect(std::string host, int port)
     socket_fd_ = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (socket_fd_)
     {
+        int flags = fcntl(socket_fd_,F_GETFL,0);//获取建立的sockfd的当前状态（非阻塞）
+        fcntl(socket_fd_,F_SETFL,flags|O_NONBLOCK);//将当前sockfd设置为非阻塞
+
       struct sockaddr_in stSockAddr;
       stSockAddr.sin_family = PF_INET;
       stSockAddr.sin_port = htons(port);

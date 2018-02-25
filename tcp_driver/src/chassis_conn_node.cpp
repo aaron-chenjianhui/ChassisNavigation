@@ -1,102 +1,54 @@
 #include "ros/ros.h"
 
-// StateMachine headers
-#include "tcp_driver/chassis_conn.h"
-#include "tcp_driver/StateMachine.h"
+#include "SysStateTypes.h"
 
 // Service headers
-#include "laser_msgs/status_srv.h"
+#include <geometry_msgs/Pose2D.h>
+#include "laser_msgs/tcp_srv.h"
+
+#include "chassis_conn.h"
 
 #define _TCP_BUF_DEBUG 0
 
-int test_count = 0;
 
-typedef enum {
-  lidar_conn    = 1,
-  lidar_disconn = 0
-} lidar_status_t;
-typedef enum {
-  tcp_conn    = 1,
-  tcp_disconn = 0
-} tcp_status_t;
-typedef enum {
-  detect_ready   = 0,
-  detect_cal_ing = 1,
-  detect_cal_ok  = 2
-} detect_status_t;
-typedef enum {
-  nav_ready = 0,
-  nav_calib = 1,
-  nav_ok    = 2
-} nav_status_t;
-typedef enum {
-  msg_ready  = 0,
-  msg_global = 1,
-  msg_track  = 2
-} msg_status_t;
-typedef enum {
-  sys_init       = 0,
-  sys_ready      = 1,
-  sys_global_ing = 2,
-  sys_global_ok  = 3,
-  sys_track      = 4
-} sys_status_t;
+// State information
+tcp_status_t tcp_status = tcp_disconn;
+msg_status_t msg_status = no_msg;
+sys_status_t sys_status = sys_init;
 
-void QueryNodeStatus();
+double pose_x, pose_y, pose_theta;
 
+// status callback function
+bool statusCallback(laser_msgs::tcp_srv::Request & req,
+                    laser_msgs::tcp_srv::Response& res);
+void simuCallback(const geometry_msgs::Pose2D& laser_pose);
 
 int  main(int argc, char *argv[]) {
   // ROS related parameter
   ros::init(argc, argv, "chassis_conn");
-  ros::NodeHandle n("~");
+  ros::NodeHandle n;
+
+  ros::ServiceServer tcp_server =
+    n.advertiseService("tcp_status", statusCallback);
+  ros::Subscriber simu_server = n.subscribe("laser_pose", 1000, simuCallback);
 
   //  ros::Rate loop(20);
-  ros::Rate loop(10);
-
-
-  StateMachine_initialize();
-
+  ros::Rate loop_rate(10);
 
   // PLC related parameters
   conn::ChassisConn chassis;
 
+  // Socket parameter
   std::string host;
   int port;
 
-
   //  n.param<std::string>("chassis_host", host, "127.0.0.1");
   //  n.param<int>(        "chassis_port", port, 2000);
-
   n.param<std::string>("chassis_host", host, "192.168.10.30");
   n.param<int>(        "chassis_port", port, 4097);
 
-  // Socket parameter
-
 
   while (ros::ok()) {
-    // status Parameters
-    lidar_status_t  lidar_status  = lidar_conn;
-    tcp_status_t    tcp_status    = tcp_disconn;
-    detect_status_t detect_status = detect_ready;
-    nav_status_t    nav_status    = nav_ready;
-    msg_status_t    msg_status    = msg_ready;
-
-    sys_status_t sys_status = sys_init;
-
-    int detect_tick = 0;
-
-    // Statemachine update
-    StateMachine_U.lidar_state       = lidar_status;
-    StateMachine_U.tcp_state         = tcp_status;
-    StateMachine_U.detect_node_state = detect_status;
-    StateMachine_U.nav_node_state    = nav_status;
-    StateMachine_U.recv_msg_state    = msg_status;
-    StateMachine_step();
-
-    uint8_t output = (uint8_t)StateMachine_Y.sys_state;
-    sys_status = (sys_status_t)output;
-
-
     // Connecting
     ROS_INFO_STREAM("Connecting to PLC at " << host);
     std::cout << "Connecting to PLC at " << host << std::endl;
@@ -108,7 +60,11 @@ int  main(int argc, char *argv[]) {
       ROS_WARN("Unable to connect, retrying.");
       std::cout << "Unable to connect, retrying." << std::endl;
 
-      ros::Duration(1).sleep();
+      tcp_status = tcp_disconn;
+      msg_status = no_msg;
+
+      ros::spinOnce();
+      loop_rate.sleep();
       continue;
     }
     ROS_INFO("Connected");
@@ -124,40 +80,12 @@ int  main(int argc, char *argv[]) {
         "--------------------------- Loop Start ---------------------------" <<
         std::endl;
 
-      // system status
-      std::cout << "In this loop, system status is: " << sys_status << std::endl;
-
-      // Update node status
-      lidar_status = lidar_conn;
-
-      // Detect node simu
-      detect_status = detect_ready;
-      nav_status    = nav_ready;
-
-      if (sys_status == sys_global_ok) {
-        detect_status = detect_cal_ok;
-        nav_status    = nav_ok;
-      }
-
-      if (sys_status == sys_global_ing) {
-        detect_status = detect_cal_ing;
-        nav_status    = nav_calib;
-        detect_tick++;
-
-        if (detect_tick > 15) {
-          detect_status = detect_cal_ok;
-          nav_status    = nav_ok;
-          detect_tick   = 0;
-        }
-      }
-
-
       // Communication status
       u_char send_buf[100];
       u_char recv_buf[100];
 
-      int recv_ret = 1;
-      int send_ret = 1;
+      int recv_ret = -1;
+      int send_ret = -1;
 
       // char send_buf[] = {0x02, 0x11, 0x22, 0xAB, 0xCD, 0xEF};
       bool sendOK = false;
@@ -236,21 +164,25 @@ int  main(int argc, char *argv[]) {
               std::cout << "Recv track msg" << std::endl;
             }
             else {
+              msg_status = no_msg;
+
               std::cout << "Recv other msg" << std::endl;
             }
           }
           else {
+            msg_status = no_msg;
+
             std::cout << "Recv buffer number is: 0" << std::endl;
           }
         }
 
         // If send to socket is OK
         if (sendOK) {
-          double x             = 988.234 + test_count * 0.5;
-          double y             = 50.681 + test_count * 0.5;
-          double theta         = 15.391 + test_count * 0.5;
+          int test_count       = 0;
+          double x             = pose_x;
+          double y             = pose_y;
+          double theta         = pose_theta;
           double container_len = 12000.810 + test_count * 0.5;
-
 
           pc_status_t pc_status;
 
@@ -265,9 +197,7 @@ int  main(int argc, char *argv[]) {
 
           if (sys_status == sys_ready) {
             pc_status = pc_ready;
-
-            //              pc_status = global_cal;
-            send_ret = chassis.SendMsg(pc_status);
+            send_ret  = chassis.SendMsg(pc_status);
 
             std::cout << "Send PC ready buffer success" << std::endl;
           }
@@ -279,10 +209,7 @@ int  main(int argc, char *argv[]) {
           }
           else if (sys_status == sys_global_ok) {
             pc_status = global_ready;
-
-            send_ret = chassis.SendMsg(pc_status, location_data, container_data);
-
-            test_count++;
+            send_ret  = chassis.SendMsg(pc_status, location_data, container_data);
 
             std::cout << "Send PC global ready success" << std::endl;
             std::cout << "X is: " << location_data.x << "    "
@@ -294,8 +221,6 @@ int  main(int argc, char *argv[]) {
           else if (sys_status == sys_track) {
             pc_status = track_ready;
             send_ret  = chassis.SendMsg(pc_status, location_data);
-
-            test_count++;
 
             std::cout << "Send PC track ready success" << std::endl;
             std::cout << "X is: " << location_data.x << "    "
@@ -314,49 +239,35 @@ int  main(int argc, char *argv[]) {
       }
       else {
         if (0 == re) {
+          tcp_status = tcp_conn;
+          msg_status = no_msg;
+
           ROS_WARN("Data transfer failure: Timeout\r\n");
           std::cout << "Data transfer failure: Timeout" << std::endl;
         }
         else {
+          tcp_status = tcp_conn;
+          msg_status = no_msg;
+
           ROS_WARN("Data transfer failure: Error\r\n");
           std::cout << "Data transfer failure: Error" << std::endl;
         }
-
-        tcp_status = tcp_disconn;
-
-        // chassis.disconnect();
-        // break;
       }
-
       #endif // ifndef _TCP_BUF_DEBUG
 
       // Disconnected, need reconnect
       if ((-1 == recv_ret) || (-1 == send_ret)) {
         tcp_status = tcp_disconn;
+        msg_status = no_msg;
 
-        // chassis.disconnect();
-        // break;
-      }
-
-      // Statemachine update
-      StateMachine_U.lidar_state       = lidar_status;
-      StateMachine_U.tcp_state         = tcp_status;
-      StateMachine_U.detect_node_state = detect_status;
-      StateMachine_U.nav_node_state    = nav_status;
-      StateMachine_U.recv_msg_state    = msg_status;
-      StateMachine_step();
-
-      // OUTPUT
-      uint8_t output = (uint8_t)StateMachine_Y.sys_state;
-      sys_status = (sys_status_t)output;
-
-      std::cout << "Now, system status updates to " << sys_status << std::endl;
-
-      if (sys_status == sys_init) {
-        std::cout << "Socket disconnected" << std::endl;
         chassis.disconnect();
+
+        //
+        ros::spinOnce();
+        loop_rate.sleep();
         break;
       }
+
 
       std::cout <<
         "--------------------------- Loop End ---------------------------" <<
@@ -364,11 +275,33 @@ int  main(int argc, char *argv[]) {
       std::cout << std::endl;
 
       //
-      loop.sleep();
+      ros::spinOnce();
+      loop_rate.sleep();
     }
   }
 
   chassis.disconnect();
-  StateMachine_terminate();
   return 0;
+}
+
+bool statusCallback(laser_msgs::tcp_srv::Request & req,
+                    laser_msgs::tcp_srv::Response& res) {
+  std::cout << "in" << std::endl;
+  uint16_t sys_status_now = req.sys_status;
+
+  sys_status = (sys_status_t)sys_status_now;
+
+  bool tcp_conn_now      = tcp_status;
+  uint8_t msg_status_now = msg_status;
+
+  res.tcp_conn   = tcp_conn_now;
+  res.msg_status = msg_status_now;
+
+  return true;
+}
+
+void simuCallback(const geometry_msgs::Pose2D& laser_pose) {
+  pose_x     = laser_pose.x;
+  pose_y     = laser_pose.y;
+  pose_theta = laser_pose.theta;
 }

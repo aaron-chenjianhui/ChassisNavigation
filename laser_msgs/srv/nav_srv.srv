@@ -1,0 +1,4 @@
+uint8 sys_status
+uint8 nav_status
+---
+bool nav_conn

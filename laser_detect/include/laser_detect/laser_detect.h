@@ -8,8 +8,6 @@
 #include <geometry_msgs/Point32.h>
 #include <geometry_msgs/Pose2D.h>
 #include <tf/transform_broadcaster.h>
-#include <laser_detect/laser_detect_srv.h>
-#include <laser_detect/detect_msg.h>
 
 #include <Eigen/Eigen>
 #include <boost/thread/mutex.hpp>
@@ -21,6 +19,10 @@
 
 #include "LineParamEstimator.h"
 #include "RANSAC.h"
+
+#include "laser_msgs/detect_msg.h"
+#include "laser_msgs/laser_detect_srv.h"
+#include "SysStateTypes.h"
 
 #define DEG2RAD(X) X * 3.1415926 / 180
 #define RAD2DEG(X) X * 180 / 3.1415926
@@ -41,6 +43,7 @@ typedef std::deque<lidar_data_type>::reverse_iterator filter_riter_type;
 typedef Eigen::Matrix<double, 2, 2>mat2x2;
 typedef Eigen::Matrix<double, 2, 1>mat2x1;
 typedef Eigen::Matrix<double, 3, 3>mat3x3;
+
 
 namespace lms {
 class LaserDetect {
@@ -74,9 +77,9 @@ public:
 
   //    void
 
-  bool LaserSrvCallback(laser_detect::laser_detect_srv::Request & req,
-                        laser_detect::laser_detect_srv::Response& res);
   void LaserDetectCallback(const sensor_msgs::LaserScan& laser_data);
+  bool LaserCal(lidar_data_type& lidar_data_cal);
+
   bool ResultCheck(vec_data_type& l_param,
                    vec_data_type& r_param,
                    vec_data_type& f_param);
@@ -169,10 +172,26 @@ private:
   vec_data_type Az;
   vec_data_type Bz;
 
+  // ori pose
+  double m_ori_pose_x;
+  double m_ori_pose_y;
+  double m_ori_pose_theta;
+
   // The order of low-pass filter
   int m_filter_order;
 
   // The number of  Moving Average Filter
   int m_ave_num;
+
+  // Node status
+  detect_status_t m_detect_status;
+  sys_status_t m_sys_status;
+  ros::ServiceServer m_detect_server;
+  uint16_t m_filter_count;
+  bool m_detect_flag;
+
+  // status callback function
+  bool statusCallback(laser_msgs::laser_detect_srv::Request & req,
+                      laser_msgs::laser_detect_srv::Response& res);
 };
 }

@@ -4,7 +4,7 @@
 #include "laser_detect.h"
 
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
   ros::init(argc, argv, "laser_detect");
 
   ROS_INFO("Start Laser Detect node\r\n");
@@ -14,6 +14,6 @@ int main(int argc, char *argv[]){
   ros::MultiThreadedSpinner spinner(2);
   spinner.spin();
 
-//  ros::spin();
+  //  ros::spin();
   return 0;
 }
