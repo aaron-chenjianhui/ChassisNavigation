@@ -152,7 +152,7 @@ add_executable(${PROJECT_NAME}_node ${SRC_LISTS})
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(${PROJECT_NAME}_node
-  ${catkin_LIBRARIES}
+ ${catkin_LIBRARIES}
 )
 
 #############

@@ -1,0 +1,55 @@
+<launch>
+
+<arg name="use_rviz" default="false" />
+
+
+#### publish an example base_link -> laser transform ###########
+
+<include file="$(find lms1xx)/launch/LMS1xx.launch" />
+<node
+  pkg="tf" type="static_transform_publisher" name="base_link_to_laser"
+  args="0.0 0.0 0.0 0.0 0.0 0.0 /base_link /laser 40"
+/>
+
+<node
+  pkg="laser_match_nav" type="sensor_handle_node" name="sensor_handle"
+  output="screen" launch-prefix="gnome-terminal -e"
+/>
+
+<node
+  pkg="laser_match_nav" type="chassis_plan_node" name="simu_location"
+  output="screen" launch-prefix="gnome-terminal -e"
+/>
+
+<node
+  pkg="laser_detect" type="laser_detect_node" name="laser_detect"
+  output="screen"
+/>
+
+<node
+  pkg="tcp_driver" type="tcp_driver_node" name="tcp_driver"
+  output="screen"
+/>
+
+<node
+  pkg="state" type="state_node" name="state_machine"
+  output="screen"
+/>
+
+
+
+#### start the laser scan_matcher ##############################
+
+<node
+  pkg="laser_scan_matcher" type="laser_scan_matcher_node" name="laser_scan_matcher_node"
+  output="screen">
+  <param name="max_iterations" value="10"/>
+</node>
+
+<group if="$(arg use_rviz)">
+  <node pkg="rviz" type="rviz" name="rviz"
+        args="-d $(find laser_match_test)/launch/laser_match.rviz"/>
+</group>
+
+
+</launch>

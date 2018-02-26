@@ -1,5 +1,3 @@
-#include "LineParamEstimator.h"
-#include "RANSAC.h"
 #include <unistd.h>
 
 #include <ros/ros.h>
@@ -8,6 +6,7 @@
 #include <geometry_msgs/Point32.h>
 #include <geometry_msgs/Pose2D.h>
 #include <tf/transform_broadcaster.h>
+#include <std_msgs/Float32.h>
 
 #include <Eigen/Eigen>
 #include <boost/thread/mutex.hpp>
@@ -29,12 +28,14 @@
 #define M2MM(X) X * 1000
 #define MM2M(X) X / 1000
 
-typedef std::vector<double>           vec_data_type;
-typedef std::vector<double>::iterator vec_iter_type;
+typedef std::vector<double>                 vec_data_type;
+typedef std::vector<double>::iterator       vec_iter_type;
+typedef std::vector<double>::const_iterator const_vec_iter_type;
 
 // <angle_seq, lidar_data>
 typedef std::map<double, double>                      lidar_data_type;
 typedef std::map<double, double>::iterator            lidar_iter_type;
+typedef std::map<double, double>::const_iterator      const_lidar_iter_type;
 typedef std::deque<lidar_data_type>                   lidar_filter_type;
 typedef std::deque<lidar_data_type>::iterator         filter_iter_type;
 typedef std::deque<lidar_data_type>::reverse_iterator filter_riter_type;
@@ -43,6 +44,7 @@ typedef std::deque<lidar_data_type>::reverse_iterator filter_riter_type;
 typedef Eigen::Matrix<double, 2, 2>mat2x2;
 typedef Eigen::Matrix<double, 2, 1>mat2x1;
 typedef Eigen::Matrix<double, 3, 3>mat3x3;
+typedef Eigen::Matrix<double, 3, 1>mat3x1;
 
 
 namespace lms {
@@ -64,16 +66,46 @@ public:
                lidar_data_type& lidar_data_in,
                lidar_data_type& lidar_data_out);
 
+
+  void FindUltiData(const lidar_data_type  & lidar_data,
+                    const std::vector<bool>& vote_index,
+                    double                 & min_angle,
+                    double                 & min_data,
+                    double                 & max_angle,
+                    double                 & max_data);
+
   // path_param: (nx, ny, ax, ay);        dest_pose: (dest_x, dest_y,
   // dest_theta)
+
+  /**
+   * [WallDetect description]
+   * @param  lidar_data [description]
+   * @param  l_param    [description]
+   * @param  r_param    [description]
+   * @param  f_param    [description]
+   * @return            [description]
+   */
   bool WallDetect(lidar_data_type& lidar_data,
                   vec_data_type  & l_param,
                   vec_data_type  & r_param,
-                  vec_data_type  & f_param);
-  void DataProcess(vec_data_type& l_param,
+                  vec_data_type  & f_param,
+                  vec_data_type  & enter_param);
+
+  /**
+   * Find origin pose in current laser coordinate
+   * @param l_param
+   * @param r_param  [description]
+   * @param f_param  [description]
+   * @param ori_pose [description]
+   */
+  void FindOriPose(vec_data_type& l_param,
                    vec_data_type& r_param,
                    vec_data_type& f_param,
                    vec_data_type& ori_pose);
+  void FindWallLen(const vec_data_type& ori_pose,
+                   const vec_data_type& enter_param,
+                   double             & l_len,
+                   double             & r_len);
 
   //    void
 
@@ -158,6 +190,7 @@ private:
   ros::Publisher m_filter_lidar_puber;
   ros::Publisher m_line_param_puber;
   ros::Publisher m_laser_pose_puber;
+  ros::Publisher m_container_len_puber;
 
   // tf broadcast
   tf::TransformBroadcaster m_br;
@@ -176,6 +209,10 @@ private:
   double m_ori_pose_x;
   double m_ori_pose_y;
   double m_ori_pose_theta;
+
+  // wall length
+  double m_right_length;
+  double m_left_length;
 
   // The order of low-pass filter
   int m_filter_order;

@@ -20,25 +20,25 @@ target_link_libraries(LMS1xx_node LMS1xx ${catkin_LIBRARIES})
 
 
 install(TARGETS LMS1xx LMS1xx_node
-  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+ ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+ LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+ RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
 install(DIRECTORY meshes launch urdf
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+ DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
 install(PROGRAMS scripts/find_sick scripts/set_sick_ip
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+ DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
 if (CATKIN_ENABLE_TESTING)
-  catkin_add_gtest(test_buffer test/test_buffer.cpp)
-  target_link_libraries(test_buffer ${catkin_LIBRARIES})
+ catkin_add_gtest(test_buffer test/test_buffer.cpp)
+ target_link_libraries(test_buffer ${catkin_LIBRARIES})
 
-  find_package(roslint REQUIRED)
-  roslint_cpp()
-  #roslint_add_test()
+ find_package(roslint REQUIRED)
+ roslint_cpp()
+ #roslint_add_test()
 
-  find_package(roslaunch REQUIRED)
-  roslaunch_add_file_check(launch/LMS1xx.launch)
+ find_package(roslaunch REQUIRED)
+ roslaunch_add_file_check(launch/LMS1xx.launch)
 endif()

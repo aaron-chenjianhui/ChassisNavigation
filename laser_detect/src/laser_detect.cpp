@@ -1,7 +1,7 @@
 #include "laser_detect.h"
 
 // Used for detect debug
-#define DETECT_DEBUG 0
+#define DETECT_DEBUG 1
 
 namespace lms {
 LaserDetect::LaserDetect() {
@@ -12,7 +12,8 @@ LaserDetect::LaserDetect() {
   m_suber = m_nh.subscribe("scan", 1000, &LaserDetect::LaserDetectCallback, this);
   m_puber = m_nh.advertise<sensor_msgs::PointCloud>("point", 1000);
 
-  m_pose_puber = m_nh.advertise<geometry_msgs::Pose2D>("ori_pose", 1000);
+  m_pose_puber          = m_nh.advertise<geometry_msgs::Pose2D>("ori_pose", 1000);
+  m_container_len_puber = m_nh.advertise<std_msgs::Float32>("container_len", 1000);
 
   // For checkout error
   m_filter_lidar_puber = m_nh.advertise<sensor_msgs::LaserScan>("custom_scan",
@@ -44,6 +45,15 @@ void LaserDetect::ParamInit() {
   m_front_dist = 1000;
   m_front_thre = m_front_dist * 1.2;
 
+  // ori pose
+  m_ori_pose_x     = 0;
+  m_ori_pose_y     = 0;
+  m_ori_pose_theta = 0;
+
+  // wall length
+  m_right_length = 0;
+  m_left_length  = 0;
+
   //
   lidar_filter_in.erase(lidar_filter_in.begin(), lidar_filter_in.end());
   lidar_filter_out.erase(lidar_filter_out.begin(), lidar_filter_out.end());
@@ -71,10 +81,13 @@ void LaserDetect::ParamInit() {
   m_sys_status    = sys_init;
   m_filter_count  = 0;
   m_detect_flag   = 0;
-
-  // State Machine
 }
 
+/**
+ * Obtain necessary
+ * @param  lidar_data_cal [description]
+ * @return                [description]
+ */
 bool LaserDetect::LaserCal(lidar_data_type& lidar_data_cal)
 {
   //
@@ -84,14 +97,21 @@ bool LaserDetect::LaserCal(lidar_data_type& lidar_data_cal)
   vec_data_type path_param;
   vec_data_type ori_pose;
   vec_data_type l_line_param, r_line_param, f_line_param;
+  vec_data_type enter_param;
+  double left_len, right_len;
 
   //
-  if (WallDetect(lidar_data_cal, l_line_param, r_line_param, f_line_param)) {
-    DataProcess(l_line_param, r_line_param, f_line_param, ori_pose);
+  if (WallDetect(lidar_data_cal, l_line_param, r_line_param, f_line_param,
+                 enter_param)) {
+    FindOriPose(l_line_param, r_line_param, f_line_param, ori_pose);
+    FindWallLen(ori_pose, enter_param, left_len, right_len);
 
     m_ori_pose_x     = ori_pose[0];
     m_ori_pose_y     = ori_pose[1];
     m_ori_pose_theta = ori_pose[2];
+
+    m_left_length  = left_len;
+    m_right_length = right_len;
 
     tf::Transform transform;
     transform.setOrigin(tf::Vector3(m_ori_pose_x / 1000.0, m_ori_pose_y / 1000.0,
@@ -178,17 +198,18 @@ void LaserDetect::LaserDetectCallback(const sensor_msgs::LaserScan& laser_data) 
     ori_pose_msg.y     = m_ori_pose_y;
     ori_pose_msg.theta = m_ori_pose_theta;
     m_pose_puber.publish(ori_pose_msg);
+
+    std_msgs::Float32 container_len;
+    container_len.data = (m_left_length + m_right_length) / 2.0;
+    m_container_len_puber.publish(container_len);
   }
 
 #if DETECT_DEBUG
 
   // For Display
   lidar_data_type lidar_data_disp = lidar_data_filter;
-  vec_data_type   path_param;
-  vec_data_type   ori_pose;
-  vec_data_type   l_line_param, r_line_param, f_line_param;
 
-  // Save custom data
+  // publish custom data, here it is the lidar data after filted
   sensor_msgs::LaserScan custom_msgs;
   std::vector<float> custom_data;
   lidar_iter_type    custom_iter;
@@ -213,18 +234,24 @@ void LaserDetect::LaserDetectCallback(const sensor_msgs::LaserScan& laser_data) 
   m_filter_lidar_puber.publish(custom_msgs);
 
 
-  if (WallDetect(lidar_data_disp, l_line_param, r_line_param, f_line_param)) {
-    DataProcess(l_line_param, r_line_param, f_line_param, ori_pose);
+  // detection for custom data
+  vec_data_type path_param;
+  vec_data_type ori_pose;
+  vec_data_type l_line_param, r_line_param, f_line_param;
+  vec_data_type enter_param;
+
+  if (WallDetect(lidar_data_disp, l_line_param, r_line_param, f_line_param,
+                 enter_param)) {
+    FindOriPose(l_line_param, r_line_param, f_line_param, ori_pose);
     ResultDisp(lidar_data_disp, ori_pose, l_line_param, r_line_param,
                f_line_param);
 
-    // Publish pose data
+    // Publish original pose
     geometry_msgs::Pose2D ori_pose_msg;
     ori_pose_msg.x     = ori_pose[0];
     ori_pose_msg.y     = ori_pose[1];
     ori_pose_msg.theta = ori_pose[2];
     m_pose_puber.publish(ori_pose_msg);
-
 
     // Publish laser pose in original coordinate
     geometry_msgs::Pose2D laser_pose_msg;
@@ -244,24 +271,59 @@ void LaserDetect::LaserDetectCallback(const sensor_msgs::LaserScan& laser_data) 
     laser_pose_msg.theta = pose_Laser_in_Ori[2];
     m_laser_pose_puber.publish(laser_pose_msg);
 
-
     // Publish line parameter
-    laser_detect::detect_msg line_msg;
+    laser_msgs::detect_msg line_msg;
     line_msg.right_line_param = r_line_param;
     line_msg.left_line_param  = l_line_param;
     line_msg.front_line_param = f_line_param;
     m_line_param_puber.publish(line_msg);
 
 
-    // Broadcast tf tree
-    tf::Transform transform;
-    transform.setOrigin(tf::Vector3(ori_pose[0] / 1000.0, ori_pose[1] / 1000.0,
-                                    0.0));
+    // Broadcast original tf tree
+    tf::Transform ori_transform;
+    ori_transform.setOrigin(tf::Vector3(ori_pose[0] / 1000.0,
+                                        ori_pose[1] / 1000.0,
+                                        0.0));
     tf::Quaternion q;
     q.setRPY(0, 0, ori_pose[2]);
-    transform.setRotation(q);
-    m_br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "laser",
-                                            "test"));
+    ori_transform.setRotation(q);
+    m_br.sendTransform(tf::StampedTransform(ori_transform, ros::Time::now(),
+                                            "laser",
+                                            "ori_debug"));
+
+    // Broadcast enter tf tree
+    double l_ang  = enter_param[0];
+    double l_data = enter_param[1];
+    double r_ang  = enter_param[2];
+    double r_data = enter_param[3];
+    double l_x    = l_data * cos(l_ang);
+    double l_y    = l_data * sin(l_ang);
+    double r_x    = r_data * cos(r_ang);
+    double r_y    = r_data * sin(r_ang);
+
+    //    std::cout << "l_data is: " << l_data << std::endl;
+    //    std::cout << "l_ang is: " << l_ang << std::endl;
+
+    // std::cout << "r_x is: " << r_x << std::endl;
+    // std::cout << "r_x is: " << r_x << std::endl;
+
+    tf::Transform r_enter_transform;
+    r_enter_transform.setOrigin(tf::Vector3(r_x, r_y, 0.0));
+    tf::Quaternion r_enter_q;
+    r_enter_q.setRPY(0, 0, ori_pose[2]);
+    r_enter_transform.setRotation(r_enter_q);
+    m_br.sendTransform(tf::StampedTransform(r_enter_transform, ros::Time::now(),
+                                            "laser",
+                                            "r_enter_debug"));
+
+    tf::Transform l_enter_transform;
+    l_enter_transform.setOrigin(tf::Vector3(l_x, l_y, 0.0));
+    tf::Quaternion l_enter_q;
+    l_enter_q.setRPY(0, 0, ori_pose[2]);
+    l_enter_transform.setRotation(r_enter_q);
+    m_br.sendTransform(tf::StampedTransform(l_enter_transform, ros::Time::now(),
+                                            "laser",
+                                            "l_enter_debug"));
   }
   else {
     ROS_INFO("Detect Error\r\n");
@@ -269,6 +331,13 @@ void LaserDetect::LaserDetectCallback(const sensor_msgs::LaserScan& laser_data) 
 #endif // if DETECT_DEBUG
 }
 
+/**
+ * [LaserDetect::BWFilter description]
+ * @param filter_data_in  [description]
+ * @param filter_data_out [description]
+ * @param Az              [description]
+ * @param Bz              [description]
+ */
 void LaserDetect::BWFilter(lidar_filter_type& filter_data_in,
                            lidar_filter_type& filter_data_out,
                            vec_data_type    & Az,
@@ -517,6 +586,40 @@ void LaserDetect::DataIgn(vec_data_type  & ign_angle,
   }
 }
 
+void LaserDetect::FindUltiData(const lidar_data_type  & lidar_data,
+                               const std::vector<bool>& vote_index,
+                               double                 & min_angle,
+                               double                 & min_data,
+                               double                 & max_angle,
+                               double                 & max_data) {
+  //
+  vec_data_type vote_angle;
+  vec_data_type vote_lidar_data;
+
+  // Voted Angle
+  const_lidar_iter_type iter                  = lidar_data.begin();
+  std::vector<bool>::const_iterator vote_iter = vote_index.begin();
+
+  for (; iter != lidar_data.end(); ++iter) {
+    if (true == *vote_iter) {
+      vote_angle.push_back(iter->first);
+      vote_lidar_data.push_back(iter->second);
+    }
+    ++vote_iter;
+  }
+
+  min_angle = vote_angle.front();
+  max_angle = vote_angle.back();
+  min_data  = vote_lidar_data.front();
+  max_data  = vote_lidar_data.back();
+
+
+  // f_angle_max = *(std::max_element(f_vote_angle.begin(),
+  // f_vote_angle.end()));
+  // f_angle_min = *(std::min_element(f_vote_angle.begin(),
+  // f_vote_angle.end()));
+}
+
 //
 bool LaserDetect::ResultCheck(vec_data_type& left_line_param,
                               vec_data_type& right_line_param,
@@ -552,7 +655,49 @@ bool LaserDetect::ResultCheck(vec_data_type& left_line_param,
   return l_r_flag & l_f_flag & r_f_flag;
 }
 
-void LaserDetect::DataProcess(vec_data_type& l_line_param,
+void LaserDetect::FindWallLen(const vec_data_type& ori_pose,
+                              const vec_data_type& enter_param,
+                              double             & l_len,
+                              double             & r_len) {
+  double ori_x     = ori_pose[0];
+  double ori_y     = ori_pose[1];
+  double ori_theta = ori_pose[2];
+  double l_ang     = enter_param[0];
+  double l_data    = enter_param[1];
+  double r_ang     = enter_param[2];
+  double r_data    = enter_param[3];
+
+  mat3x3 T_Ori_in_Laser;
+  mat3x1 T_L_in_Laser;
+  mat3x1 T_R_in_Laser;
+  mat3x1 T_L_in_Ori;
+  mat3x1 T_R_in_Ori;
+
+  T_Ori_in_Laser(0, 0) = cos(ori_theta);
+  T_Ori_in_Laser(0, 1) = -sin(ori_theta);
+  T_Ori_in_Laser(0, 2) = ori_x;
+  T_Ori_in_Laser(1, 0) = sin(ori_theta);
+  T_Ori_in_Laser(1, 1) = cos(ori_theta);
+  T_Ori_in_Laser(1, 2) = ori_y;
+  T_Ori_in_Laser(2, 0) = T_Ori_in_Laser(2, 1) = 0;
+  T_Ori_in_Laser(2, 2) = 1;
+
+  T_L_in_Laser(0) = l_data * cos(l_ang);
+  T_L_in_Laser(1) = l_data * sin(l_ang);
+  T_L_in_Laser(2) = 1;
+
+  T_R_in_Laser(0) = r_data * cos(r_ang);
+  T_R_in_Laser(1) = r_data * sin(r_ang);
+  T_R_in_Laser(2) = 1;
+
+  T_L_in_Ori = T_Ori_in_Laser * T_L_in_Laser;
+  T_R_in_Ori = T_Ori_in_Laser * T_R_in_Laser;
+
+  l_len = abs(T_L_in_Ori(0));
+  r_len = abs(T_R_in_Ori(0));
+}
+
+void LaserDetect::FindOriPose(vec_data_type& l_line_param,
                               vec_data_type& r_line_param,
                               vec_data_type& f_line_param,
                               vec_data_type& ori_pose) {
@@ -598,8 +743,21 @@ void LaserDetect::DataProcess(vec_data_type& l_line_param,
 }
 
 // path_param: (nx, ny, ax, ay);        dest_pose: (dest_x, dest_y, dest_theta)
-bool LaserDetect::WallDetect(lidar_data_type& lidar_data, vec_data_type& l_param,
-                             vec_data_type& r_param, vec_data_type& f_param) {
+
+/**
+ * Detect walls
+ * @param  lidar_data  [description]
+ * @param  l_param     [description]
+ * @param  r_param     [description]
+ * @param  f_param     [description]
+ * @param  enter_param (l_ang, l_data, r_ang, r_data)
+ * @return             [description]
+ */
+bool LaserDetect::WallDetect(lidar_data_type& lidar_data,
+                             vec_data_type  & l_param,
+                             vec_data_type  & r_param,
+                             vec_data_type  & f_param,
+                             vec_data_type  & enter_param) {
   // Lidar Data
   lidar_data_type lidar_filter;
   lidar_data_type lidar_left;
@@ -660,6 +818,10 @@ bool LaserDetect::WallDetect(lidar_data_type& lidar_data, vec_data_type& l_param
   double l_n_x, l_n_y, l_a_x, l_a_y;
   double f_n_x, f_n_y, f_a_x, f_a_y;
 
+  // Left & Right "enter-point"
+  double r_select_angle, r_select_data;
+  double l_select_angle, l_select_data;
+
   // 0:left, right    1:left(right), front    2:front    3:error
   unsigned int chassis_pos_mode = 0;
 
@@ -693,6 +855,7 @@ bool LaserDetect::WallDetect(lidar_data_type& lidar_data, vec_data_type& l_param
 
   // Find Lines
   if (2 == chassis_pos_mode) {
+    front_select_lidar = lidar_front;
     double f_usedData = RANSAC<Point2D, double>::compute(front_line_param,
                                                          &lpEstimator,
                                                          front_points,
@@ -737,6 +900,8 @@ bool LaserDetect::WallDetect(lidar_data_type& lidar_data, vec_data_type& l_param
                                                          l_vote_index);
   }
   else {
+    right_select_lidar = lidar_right;
+    left_select_lidar  = lidar_left;
     double r_usedData = RANSAC<Point2D, double>::compute(right_line_param,
                                                          &lpEstimator,
                                                          right_points,
@@ -907,6 +1072,31 @@ bool LaserDetect::WallDetect(lidar_data_type& lidar_data, vec_data_type& l_param
   bool re = ResultCheck(left_line_param, right_line_param, front_line_param);
 
   if (true == re) {
+    //
+    double r_min_angle, r_max_angle, l_min_angle, l_max_angle;
+    double r_min_data, r_max_data, l_min_data, l_max_data;
+
+    FindUltiData(right_select_lidar,
+                 r_vote_index,
+                 r_min_angle,
+                 r_min_data,
+                 r_max_angle,
+                 r_max_data);
+    FindUltiData(left_select_lidar,
+                 l_vote_index,
+                 l_min_angle,
+                 l_min_data,
+                 l_max_angle,
+                 l_max_data);
+    r_select_angle = r_min_angle;
+    r_select_data  = r_min_data;
+    l_select_angle = l_max_angle;
+    l_select_data  = l_max_data;
+    enter_param.push_back(l_select_angle);
+    enter_param.push_back(l_select_data);
+    enter_param.push_back(r_select_angle);
+    enter_param.push_back(r_select_data);
+
     l_param = left_line_param;
     r_param = right_line_param;
     f_param = front_line_param;

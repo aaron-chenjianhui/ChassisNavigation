@@ -4,6 +4,7 @@
 
 // Service headers
 #include <geometry_msgs/Pose2D.h>
+#include <std_msgs/Float32.h>
 #include "laser_msgs/tcp_srv.h"
 
 #include "chassis_conn.h"
@@ -17,11 +18,13 @@ msg_status_t msg_status = no_msg;
 sys_status_t sys_status = sys_init;
 
 double pose_x, pose_y, pose_theta;
+double container_len;
 
 // status callback function
 bool statusCallback(laser_msgs::tcp_srv::Request & req,
                     laser_msgs::tcp_srv::Response& res);
 void simuCallback(const geometry_msgs::Pose2D& laser_pose);
+void containerCallback(const std_msgs::Float32& container_len);
 
 int  main(int argc, char *argv[]) {
   // ROS related parameter
@@ -178,11 +181,11 @@ int  main(int argc, char *argv[]) {
 
         // If send to socket is OK
         if (sendOK) {
-          int test_count       = 0;
-          double x             = pose_x;
-          double y             = pose_y;
-          double theta         = pose_theta;
-          double container_len = 12000.810 + test_count * 0.5;
+          int test_count = 0;
+          double x       = pose_x;
+          double y       = pose_y;
+          double theta   = pose_theta;
+          double len     = container_len;
 
           pc_status_t pc_status;
 
@@ -192,7 +195,7 @@ int  main(int argc, char *argv[]) {
           location_data.theta = (int)(theta * 1000);
 
           ContainerData container_data;
-          container_data.container_length = (int)(container_len * 1000);
+          container_data.container_length = (int)(len * 1000);
 
 
           if (sys_status == sys_ready) {
@@ -304,4 +307,8 @@ void simuCallback(const geometry_msgs::Pose2D& laser_pose) {
   pose_x     = laser_pose.x;
   pose_y     = laser_pose.y;
   pose_theta = laser_pose.theta;
+}
+
+void containerCallback(const std_msgs::Float32& container_length) {
+  container_len = container_length.data;
 }
