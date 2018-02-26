@@ -49,8 +49,9 @@ ChassisPlanner::ChassisPlanner() {
                                     &ChassisPlanner::OriUpdateCallback,
                                     this);
   m_vel_puber = m_nh.advertise<geometry_msgs::Twist>("cmd_vel", 1000);
-  m_client    =
-    m_nh.serviceClient<laser_detect::laser_detect_srv>("global_calib");
+
+  // m_client    =
+  //   m_nh.serviceClient<laser_detect::laser_detect_srv>("global_calib");
 
   m_nav_server = m_nh.advertiseService("nav_status",
                                        &ChassisPlanner::statusCallback,
@@ -102,7 +103,7 @@ void ChassisPlanner::PoseUpdateCallback(const geometry_msgs::Pose2D& chassis_pos
     boost::mutex::scoped_lock lock(m_mutex);
 
     // 成功启动的标志
-    if ((true == m_b_pose_init) && (true == m_b_ori_init)) {
+    if (true == m_b_pose_init) {
       double pose_Laser_in_Ref[3], pose_Laser_in_Ori[3];
       pose_Laser_in_Ref[0] = chassis_pose_x;
       pose_Laser_in_Ref[1] = chassis_pose_y;
@@ -142,7 +143,7 @@ void ChassisPlanner::PoseUpdateCallback(const geometry_msgs::Pose2D& chassis_pos
       ROS_INFO("pose x is %f, pose y is %f, pose theta is %f\r\n",
                pose_x, pose_y, pose_theta);
     }
-    else {
+    else if (true == m_b_ori_init) {
       //
       mat3x3 T_Ori_in_Laser;
       double pose_Ori_in_Laser[3];

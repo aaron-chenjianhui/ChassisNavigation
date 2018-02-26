@@ -30,26 +30,40 @@ int  main(int argc, char *argv[]) {
   // ROS related parameter
   ros::init(argc, argv, "chassis_conn");
   ros::NodeHandle n;
+  ros::NodeHandle n_param("~");
 
   ros::ServiceServer tcp_server =
     n.advertiseService("tcp_status", statusCallback);
-  ros::Subscriber simu_server = n.subscribe("laser_pose", 1000, simuCallback);
+  ros::Subscriber simu_server =
+    n.subscribe("laser_pose", 1000, simuCallback);
+  ros::Subscriber container_server = n.subscribe("container_len",
+                                                 1000,
+                                                 containerCallback);
 
-  //  ros::Rate loop(20);
-  ros::Rate loop_rate(10);
-
-  // PLC related parameters
-  conn::ChassisConn chassis;
+  int sys_freq;
 
   // Socket parameter
   std::string host;
   int port;
 
-  //  n.param<std::string>("chassis_host", host, "127.0.0.1");
-  //  n.param<int>(        "chassis_port", port, 2000);
-  n.param<std::string>("chassis_host", host, "192.168.10.30");
-  n.param<int>(        "chassis_port", port, 4097);
 
+  n_param.param<std::string>("chassis_host", host, "127.0.0.1");
+  n_param.param<int>(        "chassis_port", port, 2000);
+
+  // n_param.param<int>(        "sys_freq",     sys_freq, 10);
+
+
+  ros::param::param<int>("/state_machine/sys_freq",
+                         sys_freq,
+                         1);
+
+  // n_param.param<std::string>("chassis_host", host, "192.168.10.30");
+  // n_param.param<int>(        "chassis_port", port, 4097);
+
+  //  ros::Rate loop(20);
+  ros::Rate loop_rate(sys_freq);
+
+  conn::ChassisConn chassis;
 
   while (ros::ok()) {
     // Connecting
@@ -57,6 +71,9 @@ int  main(int argc, char *argv[]) {
     std::cout << "Connecting to PLC at " << host << std::endl;
 
     chassis.connect(host, port);
+
+
+    // sleep(0.5);
 
     if (!chassis.isConnected())
     {
@@ -76,6 +93,7 @@ int  main(int argc, char *argv[]) {
     //
     tcp_status = tcp_conn;
 
+
     // Send & Recv Data
     while (ros::ok()) {
       //
@@ -87,8 +105,8 @@ int  main(int argc, char *argv[]) {
       u_char send_buf[100];
       u_char recv_buf[100];
 
-      int recv_ret = -1;
-      int send_ret = -1;
+      int recv_ret = 1;
+      int send_ret = 1;
 
       // char send_buf[] = {0x02, 0x11, 0x22, 0xAB, 0xCD, 0xEF};
       bool sendOK = false;
@@ -181,14 +199,14 @@ int  main(int argc, char *argv[]) {
 
         // If send to socket is OK
         if (sendOK) {
-          int test_count = 0;
-          double x       = pose_x;
-          double y       = pose_y;
-          double theta   = pose_theta;
-          double len     = container_len;
+          double x     = pose_x;
+          double y     = pose_y;
+          double theta = pose_theta;
+          double len   = container_len;
 
           pc_status_t pc_status;
 
+          // send int data type
           LocationData location_data;
           location_data.x     = (int)(x * 1000);
           location_data.y     = (int)(y * 1000);
@@ -229,6 +247,10 @@ int  main(int argc, char *argv[]) {
             std::cout << "X is: " << location_data.x << "    "
                       << "Y is: " << location_data.y << "    "
                       << "Theta is: " << location_data.theta << std::endl;
+          }
+          else { // sys_status == sys_init
+            send_ret = 1;
+            std::cout << "System status is sys_init" << std::endl;
           }
 
           // return check

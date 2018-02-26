@@ -13,7 +13,8 @@ LaserDetect::LaserDetect() {
   m_puber = m_nh.advertise<sensor_msgs::PointCloud>("point", 1000);
 
   m_pose_puber          = m_nh.advertise<geometry_msgs::Pose2D>("ori_pose", 1000);
-  m_container_len_puber = m_nh.advertise<std_msgs::Float32>("container_len", 1000);
+  m_container_len_puber =
+    m_nh.advertise<std_msgs::Float32>("container_len", 1000);
 
   // For checkout error
   m_filter_lidar_puber = m_nh.advertise<sensor_msgs::LaserScan>("custom_scan",
@@ -239,10 +240,12 @@ void LaserDetect::LaserDetectCallback(const sensor_msgs::LaserScan& laser_data) 
   vec_data_type ori_pose;
   vec_data_type l_line_param, r_line_param, f_line_param;
   vec_data_type enter_param;
+  double left_len, right_len;
 
   if (WallDetect(lidar_data_disp, l_line_param, r_line_param, f_line_param,
                  enter_param)) {
     FindOriPose(l_line_param, r_line_param, f_line_param, ori_pose);
+    FindWallLen(ori_pose, enter_param, left_len, right_len);
     ResultDisp(lidar_data_disp, ori_pose, l_line_param, r_line_param,
                f_line_param);
 
@@ -290,6 +293,10 @@ void LaserDetect::LaserDetectCallback(const sensor_msgs::LaserScan& laser_data) 
     m_br.sendTransform(tf::StampedTransform(ori_transform, ros::Time::now(),
                                             "laser",
                                             "ori_debug"));
+
+    // container length
+    double container_len = (left_len+right_len)/2;
+    std::cout << "Container length is: " << container_len << std::endl;
 
     // Broadcast enter tf tree
     double l_ang  = enter_param[0];
@@ -644,15 +651,24 @@ bool LaserDetect::ResultCheck(vec_data_type& left_line_param,
   double f_a_y = front_line_param[3];
 
   // Left & Right Check
-  bool l_r_flag = (fabs(r_n_x * l_n_y - r_n_y * l_n_x) < 0.05) & (l_a_y > r_a_y);
+  double l_r_parrel_thre = 0.05;
+  double l_r_parrel_err  = fabs(r_n_x * l_n_y - r_n_y * l_n_x);
+  bool   l_r_pos_check   = l_a_y > r_a_y;
+  bool   l_r_flag        = (l_r_parrel_err < l_r_parrel_thre) && (l_r_pos_check);
 
-  // Left
-  bool l_f_flag = fabs(f_n_x * l_n_x + f_n_y * l_n_y) < 0.1;
+  // Left & front check
+  double l_f_vert_thre = 0.1;
+  double l_f_vert_err  = fabs(f_n_x * l_n_x + f_n_y * l_n_y);
+  bool   l_f_flag      = l_f_vert_err < l_f_vert_thre;
 
-  // Right
-  bool r_f_flag = fabs(r_n_x * f_n_x + r_n_y * f_n_y) < 0.1;
+  // Right & front check
+  double r_f_vert_thre = 0.1;
+  double r_f_vert_err  = fabs(r_n_x * f_n_x + r_n_y * f_n_y);
+  bool   r_f_flag      = r_f_vert_err < r_f_vert_thre;
 
-  return l_r_flag & l_f_flag & r_f_flag;
+  return true;
+
+  //  return l_r_flag & l_f_flag & r_f_flag;
 }
 
 void LaserDetect::FindWallLen(const vec_data_type& ori_pose,
@@ -663,9 +679,9 @@ void LaserDetect::FindWallLen(const vec_data_type& ori_pose,
   double ori_y     = ori_pose[1];
   double ori_theta = ori_pose[2];
   double l_ang     = enter_param[0];
-  double l_data    = enter_param[1];
+  double l_data    = enter_param[1]*1000;
   double r_ang     = enter_param[2];
-  double r_data    = enter_param[3];
+  double r_data    = enter_param[3]*1000;
 
   mat3x3 T_Ori_in_Laser;
   mat3x1 T_L_in_Laser;
@@ -690,8 +706,8 @@ void LaserDetect::FindWallLen(const vec_data_type& ori_pose,
   T_R_in_Laser(1) = r_data * sin(r_ang);
   T_R_in_Laser(2) = 1;
 
-  T_L_in_Ori = T_Ori_in_Laser * T_L_in_Laser;
-  T_R_in_Ori = T_Ori_in_Laser * T_R_in_Laser;
+  T_L_in_Ori = T_Ori_in_Laser.inverse() * T_L_in_Laser;
+  T_R_in_Ori = T_Ori_in_Laser.inverse() * T_R_in_Laser;
 
   l_len = abs(T_L_in_Ori(0));
   r_len = abs(T_R_in_Ori(0));
@@ -774,9 +790,13 @@ bool LaserDetect::WallDetect(lidar_data_type& lidar_data,
   lidar_data_type right_select_lidar;
 
   // Left, Right, Front Range
-  double left_min  = DEG2RAD(0);
-  double left_max  = DEG2RAD(134);
-  double right_min = DEG2RAD(-134);
+  double left_min = DEG2RAD(0);
+
+  //  double left_max  = DEG2RAD(134);
+  double left_max = DEG2RAD(60);
+
+  //  double right_min = DEG2RAD(-134);
+  double right_min = DEG2RAD(-60);
   double right_max = DEG2RAD(0);
   double front_min = DEG2RAD(-90);
   double front_max = DEG2RAD(90);

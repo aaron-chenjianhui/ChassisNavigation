@@ -34,8 +34,8 @@ void ChassisConn::connect(std::string host, int port) {
 
     if (m_socket_fd)
     {
-      int flags = fcntl(m_socket_fd, F_GETFL, 0);
-      fcntl(m_socket_fd, F_SETFL, flags | O_NONBLOCK);
+      // int flags = fcntl(m_socket_fd, F_GETFL, 0);
+      // fcntl(m_socket_fd, F_SETFL, flags | O_NONBLOCK);
 
       struct sockaddr_in stSockAddr;
       stSockAddr.sin_family = PF_INET;

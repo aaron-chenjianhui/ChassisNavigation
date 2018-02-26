@@ -37,12 +37,10 @@
 #include "console_bridge/console.h"
 
 LMS1xx::LMS1xx() : connected_(false)
-{
-}
+{}
 
 LMS1xx::~LMS1xx()
-{
-}
+{}
 
 void LMS1xx::connect(std::string host, int port)
 {
@@ -50,18 +48,20 @@ void LMS1xx::connect(std::string host, int port)
   {
     logDebug("Creating non-blocking socket.");
     socket_fd_ = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
+
     if (socket_fd_)
     {
-        int flags = fcntl(socket_fd_,F_GETFL,0);//获取建立的sockfd的当前状态（非阻塞）
-        fcntl(socket_fd_,F_SETFL,flags|O_NONBLOCK);//将当前sockfd设置为非阻塞
+      // int flags = fcntl(socket_fd_, F_GETFL, 0);      // 获取建立的sockfd的当前状态（非阻塞）
+      // fcntl(socket_fd_, F_SETFL, flags | O_NONBLOCK); // 将当前sockfd设置为非阻塞
 
       struct sockaddr_in stSockAddr;
       stSockAddr.sin_family = PF_INET;
-      stSockAddr.sin_port = htons(port);
+      stSockAddr.sin_port   = htons(port);
       inet_pton(AF_INET, host.c_str(), &stSockAddr.sin_addr);
 
       logDebug("Connecting socket to laser.");
-      int ret = ::connect(socket_fd_, (struct sockaddr *) &stSockAddr, sizeof(stSockAddr));
+      int ret =
+        ::connect(socket_fd_, (struct sockaddr *)&stSockAddr, sizeof(stSockAddr));
 
       if (ret == 0)
       {
@@ -89,13 +89,14 @@ bool LMS1xx::isConnected()
 void LMS1xx::startMeas()
 {
   char buf[100];
+
   sprintf(buf, "%c%s%c", 0x02, "sMN LMCstartmeas", 0x03);
 
   write(socket_fd_, buf, strlen(buf));
 
   int len = read(socket_fd_, buf, 100);
-  if (buf[0] != 0x02)
-    logWarn("invalid packet recieved");
+
+  if (buf[0] != 0x02) logWarn("invalid packet recieved");
   buf[len] = 0;
   logDebug("RX: %s", buf);
 }
@@ -103,13 +104,14 @@ void LMS1xx::startMeas()
 void LMS1xx::stopMeas()
 {
   char buf[100];
+
   sprintf(buf, "%c%s%c", 0x02, "sMN LMCstopmeas", 0x03);
 
   write(socket_fd_, buf, strlen(buf));
 
   int len = read(socket_fd_, buf, 100);
-  if (buf[0] != 0x02)
-    logWarn("invalid packet recieved");
+
+  if (buf[0] != 0x02) logWarn("invalid packet recieved");
   buf[len] = 0;
   logDebug("RX: %s", buf);
 }
@@ -117,35 +119,37 @@ void LMS1xx::stopMeas()
 status_t LMS1xx::queryStatus()
 {
   char buf[100];
+
   sprintf(buf, "%c%s%c", 0x02, "sRN STlms", 0x03);
 
   write(socket_fd_, buf, strlen(buf));
 
   int len = read(socket_fd_, buf, 100);
-  if (buf[0] != 0x02)
-    logWarn("invalid packet recieved");
+
+  if (buf[0] != 0x02) logWarn("invalid packet recieved");
   buf[len] = 0;
   logDebug("RX: %s", buf);
 
   int ret;
   sscanf((buf + 10), "%d", &ret);
 
-  return (status_t) ret;
+  return (status_t)ret;
 }
 
 void LMS1xx::login()
 {
   char buf[100];
-  int result;
+  int  result;
+
   sprintf(buf, "%c%s%c", 0x02, "sMN SetAccessMode 03 F4724744", 0x03);
 
   fd_set readset;
   struct timeval timeout;
 
 
-  do   //loop until data is available to read
+  do // loop until data is available to read
   {
-    timeout.tv_sec = 1;
+    timeout.tv_sec  = 1;
     timeout.tv_usec = 0;
 
     write(socket_fd_, buf, strlen(buf));
@@ -153,13 +157,12 @@ void LMS1xx::login()
     FD_ZERO(&readset);
     FD_SET(socket_fd_, &readset);
     result = select(socket_fd_ + 1, &readset, NULL, NULL, &timeout);
-
   }
   while (result <= 0);
 
   int len = read(socket_fd_, buf, 100);
-  if (buf[0] != 0x02)
-    logWarn("invalid packet recieved");
+
+  if (buf[0] != 0x02) logWarn("invalid packet recieved");
   buf[len] = 0;
   logDebug("RX: %s", buf);
 }
@@ -167,14 +170,15 @@ void LMS1xx::login()
 scanCfg LMS1xx::getScanCfg() const
 {
   scanCfg cfg;
-  char buf[100];
+  char    buf[100];
+
   sprintf(buf, "%c%s%c", 0x02, "sRN LMPscancfg", 0x03);
 
   write(socket_fd_, buf, strlen(buf));
 
   int len = read(socket_fd_, buf, 100);
-  if (buf[0] != 0x02)
-    logWarn("invalid packet recieved");
+
+  if (buf[0] != 0x02) logWarn("invalid packet recieved");
   buf[len] = 0;
   logDebug("RX: %s", buf);
 
@@ -183,9 +187,10 @@ scanCfg LMS1xx::getScanCfg() const
   return cfg;
 }
 
-void LMS1xx::setScanCfg(const scanCfg &cfg)
+void LMS1xx::setScanCfg(const scanCfg& cfg)
 {
   char buf[100];
+
   sprintf(buf, "%c%s %X +1 %X %X %X%c", 0x02, "sMN mLMPsetscancfg",
           cfg.scaningFrequency, cfg.angleResolution, cfg.startAngle,
           cfg.stopAngle, 0x03);
@@ -197,13 +202,15 @@ void LMS1xx::setScanCfg(const scanCfg &cfg)
   buf[len - 1] = 0;
 }
 
-void LMS1xx::setScanDataCfg(const scanDataCfg &cfg)
+void LMS1xx::setScanDataCfg(const scanDataCfg& cfg)
 {
   char buf[100];
+
   sprintf(buf, "%c%s %02X 00 %d %d 0 %02X 00 %d %d 0 %d +%d%c", 0x02,
           "sWN LMDscandatacfg", cfg.outputChannel, cfg.remission ? 1 : 0,
           cfg.resolution, cfg.encoder, cfg.position ? 1 : 0,
-          cfg.deviceName ? 1 : 0, cfg.timestamp ? 1 : 0, cfg.outputInterval, 0x03);
+          cfg.deviceName ? 1 : 0, cfg.timestamp ? 1 : 0, cfg.outputInterval,
+          0x03);
   logDebug("TX: %s", buf);
   write(socket_fd_, buf, strlen(buf));
 
@@ -215,6 +222,7 @@ scanOutputRange LMS1xx::getScanOutputRange() const
 {
   scanOutputRange outputRange;
   char buf[100];
+
   sprintf(buf, "%c%s%c", 0x02, "sRN LMPoutputRange", 0x03);
 
   write(socket_fd_, buf, strlen(buf));
@@ -229,44 +237,47 @@ scanOutputRange LMS1xx::getScanOutputRange() const
 void LMS1xx::scanContinous(int start)
 {
   char buf[100];
+
   sprintf(buf, "%c%s %d%c", 0x02, "sEN LMDscandata", start, 0x03);
 
   write(socket_fd_, buf, strlen(buf));
 
   int len = read(socket_fd_, buf, 100);
 
-  if (buf[0] != 0x02)
-    logError("invalid packet recieved");
+  if (buf[0] != 0x02) logError("invalid packet recieved");
 
   buf[len] = 0;
   logDebug("RX: %s", buf);
 }
 
-bool LMS1xx::getScanData(scanData* scan_data)
+bool LMS1xx::getScanData(scanData *scan_data)
 {
   fd_set rfds;
+
   FD_ZERO(&rfds);
   FD_SET(socket_fd_, &rfds);
 
   // Block a total of up to 100ms waiting for more data from the laser.
   while (1)
   {
-    // Would be great to depend on linux's behaviour of updating the timeval, but unfortunately
+    // Would be great to depend on linux's behaviour of updating the timeval,
+    // but unfortunately
     // that's non-POSIX (doesn't work on OS X, for example).
     struct timeval tv;
-    tv.tv_sec = 0;
+    tv.tv_sec  = 0;
     tv.tv_usec = 100000;
 
-    logDebug("entering select()", tv.tv_usec);
+    logDebug("entering select()",         tv.tv_usec);
     int retval = select(socket_fd_ + 1, &rfds, NULL, NULL, &tv);
     logDebug("returned %d from select()", retval);
+
     if (retval)
     {
       buffer_.readFrom(socket_fd_);
 
       // Will return pointer if a complete message exists in the buffer,
       // otherwise will return null.
-      char* buffer_data = buffer_.getNextBuffer();
+      char *buffer_data = buffer_.getNextBuffer();
 
       if (buffer_data)
       {
@@ -283,47 +294,49 @@ bool LMS1xx::getScanData(scanData* scan_data)
   }
 }
 
-
-void LMS1xx::parseScanData(char* buffer, scanData* data)
+void LMS1xx::parseScanData(char *buffer, scanData *data)
 {
-  char* tok = strtok(buffer, " "); //Type of command
-  tok = strtok(NULL, " "); //Command
-  tok = strtok(NULL, " "); //VersionNumber
-  tok = strtok(NULL, " "); //DeviceNumber
-  tok = strtok(NULL, " "); //Serial number
-  tok = strtok(NULL, " "); //DeviceStatus
-  tok = strtok(NULL, " "); //MessageCounter
-  tok = strtok(NULL, " "); //ScanCounter
-  tok = strtok(NULL, " "); //PowerUpDuration
-  tok = strtok(NULL, " "); //TransmissionDuration
-  tok = strtok(NULL, " "); //InputStatus
-  tok = strtok(NULL, " "); //OutputStatus
-  tok = strtok(NULL, " "); //ReservedByteA
-  tok = strtok(NULL, " "); //ScanningFrequency
-  tok = strtok(NULL, " "); //MeasurementFrequency
+  char *tok = strtok(buffer, " "); // Type of command
+
+  tok = strtok(NULL, " ");         // Command
+  tok = strtok(NULL, " ");         // VersionNumber
+  tok = strtok(NULL, " ");         // DeviceNumber
+  tok = strtok(NULL, " ");         // Serial number
+  tok = strtok(NULL, " ");         // DeviceStatus
+  tok = strtok(NULL, " ");         // MessageCounter
+  tok = strtok(NULL, " ");         // ScanCounter
+  tok = strtok(NULL, " ");         // PowerUpDuration
+  tok = strtok(NULL, " ");         // TransmissionDuration
+  tok = strtok(NULL, " ");         // InputStatus
+  tok = strtok(NULL, " ");         // OutputStatus
+  tok = strtok(NULL, " ");         // ReservedByteA
+  tok = strtok(NULL, " ");         // ScanningFrequency
+  tok = strtok(NULL, " ");         // MeasurementFrequency
   tok = strtok(NULL, " ");
   tok = strtok(NULL, " ");
   tok = strtok(NULL, " ");
-  tok = strtok(NULL, " "); //NumberEncoders
+  tok = strtok(NULL, " "); // NumberEncoders
   int NumberEncoders;
   sscanf(tok, "%d", &NumberEncoders);
+
   for (int i = 0; i < NumberEncoders; i++)
   {
-    tok = strtok(NULL, " "); //EncoderPosition
-    tok = strtok(NULL, " "); //EncoderSpeed
+    tok = strtok(NULL, " "); // EncoderPosition
+    tok = strtok(NULL, " "); // EncoderSpeed
   }
 
-  tok = strtok(NULL, " "); //NumberChannels16Bit
+  tok = strtok(NULL, " ");   // NumberChannels16Bit
   int NumberChannels16Bit;
   sscanf(tok, "%d", &NumberChannels16Bit);
   logDebug("NumberChannels16Bit : %d", NumberChannels16Bit);
 
   for (int i = 0; i < NumberChannels16Bit; i++)
   {
-    int type = -1; // 0 DIST1 1 DIST2 2 RSSI1 3 RSSI2
+    int  type = -1;          // 0 DIST1 1 DIST2 2 RSSI1 3 RSSI2
     char content[6];
-    tok = strtok(NULL, " "); //MeasuredDataContent
+    tok = strtok(NULL, " "); // MeasuredDataContent
     sscanf(tok, "%s", content);
+
     if (!strcmp(content, "DIST1"))
     {
       type = 0;
@@ -340,11 +353,11 @@ void LMS1xx::parseScanData(char* buffer, scanData* data)
     {
       type = 3;
     }
-    tok = strtok(NULL, " "); //ScalingFactor
-    tok = strtok(NULL, " "); //ScalingOffset
-    tok = strtok(NULL, " "); //Starting angle
-    tok = strtok(NULL, " "); //Angular step width
-    tok = strtok(NULL, " "); //NumberData
+    tok = strtok(NULL, " "); // ScalingFactor
+    tok = strtok(NULL, " "); // ScalingOffset
+    tok = strtok(NULL, " "); // Starting angle
+    tok = strtok(NULL, " "); // Angular step width
+    tok = strtok(NULL, " "); // NumberData
     int NumberData;
     sscanf(tok, "%X", &NumberData);
     logDebug("NumberData : %d", NumberData);
@@ -369,7 +382,7 @@ void LMS1xx::parseScanData(char* buffer, scanData* data)
     for (int i = 0; i < NumberData; i++)
     {
       int dat;
-      tok = strtok(NULL, " "); //data
+      tok = strtok(NULL, " "); // data
       sscanf(tok, "%X", &dat);
 
       if (type == 0)
@@ -388,21 +401,21 @@ void LMS1xx::parseScanData(char* buffer, scanData* data)
       {
         data->rssi2[i] = dat;
       }
-
     }
   }
 
-  tok = strtok(NULL, " "); //NumberChannels8Bit
+  tok = strtok(NULL, " "); // NumberChannels8Bit
   int NumberChannels8Bit;
   sscanf(tok, "%d", &NumberChannels8Bit);
   logDebug("NumberChannels8Bit : %d\n", NumberChannels8Bit);
 
   for (int i = 0; i < NumberChannels8Bit; i++)
   {
-    int type = -1;
+    int  type = -1;
     char content[6];
-    tok = strtok(NULL, " "); //MeasuredDataContent
+    tok = strtok(NULL, " "); // MeasuredDataContent
     sscanf(tok, "%s", content);
+
     if (!strcmp(content, "DIST1"))
     {
       type = 0;
@@ -419,11 +432,11 @@ void LMS1xx::parseScanData(char* buffer, scanData* data)
     {
       type = 3;
     }
-    tok = strtok(NULL, " "); //ScalingFactor
-    tok = strtok(NULL, " "); //ScalingOffset
-    tok = strtok(NULL, " "); //Starting angle
-    tok = strtok(NULL, " "); //Angular step width
-    tok = strtok(NULL, " "); //NumberData
+    tok = strtok(NULL, " "); // ScalingFactor
+    tok = strtok(NULL, " "); // ScalingOffset
+    tok = strtok(NULL, " "); // Starting angle
+    tok = strtok(NULL, " "); // Angular step width
+    tok = strtok(NULL, " "); // NumberData
     int NumberData;
     sscanf(tok, "%X", &NumberData);
     logDebug("NumberData : %d\n", NumberData);
@@ -444,10 +457,11 @@ void LMS1xx::parseScanData(char* buffer, scanData* data)
     {
       data->rssi_len2 = NumberData;
     }
+
     for (int i = 0; i < NumberData; i++)
     {
       int dat;
-      tok = strtok(NULL, " "); //data
+      tok = strtok(NULL, " "); // data
       sscanf(tok, "%X", &dat);
 
       if (type == 0)
@@ -473,14 +487,14 @@ void LMS1xx::parseScanData(char* buffer, scanData* data)
 void LMS1xx::saveConfig()
 {
   char buf[100];
+
   sprintf(buf, "%c%s%c", 0x02, "sMN mEEwriteall", 0x03);
 
   write(socket_fd_, buf, strlen(buf));
 
   int len = read(socket_fd_, buf, 100);
 
-  if (buf[0] != 0x02)
-    logWarn("invalid packet recieved");
+  if (buf[0] != 0x02) logWarn("invalid packet recieved");
   buf[len] = 0;
   logDebug("RX: %s", buf);
 }
@@ -488,14 +502,14 @@ void LMS1xx::saveConfig()
 void LMS1xx::startDevice()
 {
   char buf[100];
+
   sprintf(buf, "%c%s%c", 0x02, "sMN Run", 0x03);
 
   write(socket_fd_, buf, strlen(buf));
 
   int len = read(socket_fd_, buf, 100);
 
-  if (buf[0] != 0x02)
-    logWarn("invalid packet recieved");
+  if (buf[0] != 0x02) logWarn("invalid packet recieved");
   buf[len] = 0;
   logDebug("RX: %s", buf);
 }

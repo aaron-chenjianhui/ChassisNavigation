@@ -18,8 +18,15 @@ int main(int argc, char *argv[]) {
   ros::init(argc, argv, "state_machine");
   ros::NodeHandle nh;
 
-  int rate_hz = 1;
-  ros::Rate loop_rate(rate_hz);
+  int sys_freq;
+
+  // nh.param<int>("sys_freq", sys_freq, 10);
+
+  ros::param::param<int>("/state_machine/sys_freq",
+                         sys_freq,
+                         10);
+
+  ros::Rate loop_rate(sys_freq);
 
   // create client for service
   ros::ServiceClient lidar_client =
@@ -106,11 +113,13 @@ int main(int argc, char *argv[]) {
     // srv input parameters for LMS1xx node
     lidar_status_srv.request.sys_status = sys_status;
 
+    std::cout << "--------------------------" << std::endl;
+
     if (lidar_client.call(lidar_status_srv)) {
       uint8_t lidar_status_now = lidar_status_srv.response.lidar_conn;
       lidar_conn_status = (lidar_status_t)lidar_status_now;
 
-      std::cout << "Lidar node status is: " << lidar_conn_status << std::endl;
+      std::cout << "Lidar conn status is: " << lidar_conn_status << std::endl;
     }
     else {
       lidar_conn_status = lidar_disconn;
@@ -124,6 +133,8 @@ int main(int argc, char *argv[]) {
     detect_status_srv.request.sys_status     = sys_status;
     detect_status_srv.request.detect_status  = detect_output_status.detect_status;
     detect_status_srv.request.cal_flag_input = detect_output_status.cal_flag;
+
+    std::cout << "--------------------------" << std::endl;
 
     if (detect_client.call(detect_status_srv)) {
       bool detect_conn_now         = detect_status_srv.response.detect_conn;
@@ -153,6 +164,8 @@ int main(int argc, char *argv[]) {
     // laser_match_nav node
     nav_status_srv.request.sys_status = sys_status;
     nav_status_srv.request.nav_status = nav_status;
+
+    std::cout << "--------------------------" << std::endl;
 
     // Monitoring nav node
     if (nav_client.call(nav_status_srv)) {
@@ -194,9 +207,11 @@ int main(int argc, char *argv[]) {
     detect_output_status.detect_status = (detect_status_t)detect_status_now;
     detect_output_status.cal_flag      = cal_flag_output_now;
 
-    std::cout << "System status is: " << sys_status << std::endl;
-    std::cout << "Nav node status is: " << nav_status << std::endl;
-    std::cout << "Detect node status is: " << (uint16_t)detect_status_now <<
+    std::cout << "--------------------------" << std::endl;
+    std::cout << "System output status is: " << sys_status << std::endl;
+    std::cout << "Nav node output status is: " << nav_status << std::endl;
+    std::cout << "Detect node output status is: " <<
+    (uint16_t)detect_status_now <<
       std::endl;
     std::cout << "Cal flag output is: " << (bool)cal_flag_output_now << std::endl;
 

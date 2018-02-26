@@ -2,7 +2,6 @@
 #include <geometry_msgs/Pose2D.h>
 #include <geometry_msgs/Twist.h>
 #include <tf/transform_broadcaster.h>
-#include <laser_detect/laser_detect_srv.h>
 
 #include <Eigen/Eigen>
 #include <boost/thread/mutex.hpp>

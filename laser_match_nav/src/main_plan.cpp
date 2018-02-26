@@ -4,9 +4,12 @@ int main(int argc, char *argv[])
 {
   ros::init(argc, argv, "lidar_plan");
 
+  ROS_INFO("Start chassis_planner_node\r\n");
+
   // 获取小车参数
   double separation = 0, radius = 0;
   double max_speed, accel_dist, accel_time, ctrl_period;
+  int    sys_freq;
   ros::param::param<double>("~wheel_separation",
                             separation,
                             0.37);
@@ -26,6 +29,10 @@ int main(int argc, char *argv[])
                             ctrl_period,
                             40);  // 控制周期，单位ms
 
+  ros::param::param<int>("/state_machine/sys_freq",
+                         sys_freq,
+                         10);
+
   plan::ChassisPlanner chassis_planner(separation,
                                        radius,
                                        max_speed,
@@ -34,7 +41,7 @@ int main(int argc, char *argv[])
                                        ctrl_period);
 
   int rate_hz = 1000 / ctrl_period;
-  ros::Rate loop_rate(rate_hz);
+  ros::Rate loop_rate(sys_freq);
 
 
   ros::MultiThreadedSpinner spinner(3);
