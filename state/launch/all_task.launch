@@ -1,78 +1,56 @@
 <launch>
-<arg name="use_rviz" default="false" />
-<arg name="sys_freq" default="1"/>
-
-  <!-- Lidar host -->
-  <arg name="host" default="192.168.2.5" />
+  ################## system control frequency ##################
+  <arg name="use_rviz" default="false"/>
+  ################## system control frequency ##################
+  <arg name="sys_freq" default="1"/>
+  ################## lidar IP address ##################
+  <arg name="host" default="192.168.2.5"/>
+  ################## PLC IP address ##################
   <!-- use this host and port for debugging -->
-  <arg name="chassis_host" default="127.0.0.1" />
-  <arg name="chassis_port" default="2000" />
+  <arg name="chassis_host" default="127.0.0.1"/>
+  <arg name="chassis_port" default="2000"/>
   <!-- use this host and port for plc connection -->
-  <!-- <arg name="host" default="192.168.10.30" />
-  <arg name="port" default="4097"/> -->
+  <!-- <arg name="host" default="192.168.10.30" /> <arg name="port" default="4097"/> -->
 
-#### publish an example base_link -> laser transform ###########
-<node
-  pkg="tf" type="static_transform_publisher" name="base_link_to_laser"
-  args="0.0 0.0 0.0 0.0 0.0 0.0 /base_link /laser 40"
-/>
+  #### publish an example base_link -> laser transform ###########
+  <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0.0 0.0 0.0 0.0 0.0 0.0 /base_link /laser 40"/>
 
-######### Lidar node ###########
-  <arg name="publish_min_range_as_inf" default="false" />
+  ######### Lidar node ###########
+  <arg name="publish_min_range_as_inf" default="false"/>
 
-  <node pkg="lms1xx" name="lms1xx" type="LMS1xx_node"
-    output="screen">
-    <param name="host" value="$(arg host)" />
-    <param name="publish_min_range_as_inf" value="$(arg publish_min_range_as_inf)" />
+  <node pkg="lms1xx" name="lms1xx" type="LMS1xx_node" output="screen">
+    <param name="host" value="$(arg host)"/>
+    <param name="publish_min_range_as_inf" value="$(arg publish_min_range_as_inf)"/>
   </node>
 
-######### TCP node ###########
-    <!-- output="screen" launch-prefix="gnome-terminal -e"> -->
-  <node pkg="tcp_driver" name="tcp_driver_node" type="tcp_driver_node"
-    output="screen" launch-prefix="gnome-terminal -e">
-    <param name="chassis_host" value="$(arg chassis_host)" />
-    <param name="chassis_port" value="$(arg chassis_port)" />
-    <param name="sys_freq" value="$(arg sys_freq)" />
+  ######### TCP node ###########
+  <!-- output="screen" launch-prefix="gnome-terminal -e"> -->
+  <node pkg="tcp_driver" name="tcp_driver_node" type="tcp_driver_node" output="screen" launch-prefix="gnome-terminal -e">
+    <param name="chassis_host" value="$(arg chassis_host)"/>
+    <param name="chassis_port" value="$(arg chassis_port)"/>
+    <param name="sys_freq" value="$(arg sys_freq)"/>
   </node>
 
+  <node pkg="laser_match_nav" type="sensor_handle_node" name="sensor_handle" output="screen"></node>
 
-<node
-  pkg="laser_match_nav" type="sensor_handle_node" name="sensor_handle"
-  output="screen">
-</node>
+  <node pkg="laser_match_nav" type="chassis_plan_node" name="simu_location" output="screen" launch-prefix="gnome-terminal -e">
+    <param name="sys_freq" value="$(arg sys_freq)"/>
+  </node>
 
-<node
-  pkg="laser_match_nav" type="chassis_plan_node" name="simu_location"
-  output="screen" launch-prefix="gnome-terminal -e">
-  <param name="sys_freq" value="$(arg sys_freq)" />
-</node>
+  <node pkg="laser_detect" type="laser_detect_node" name="laser_detect" output="screen" launch-prefix="gnome-terminal -e"></node>
 
-<node
-  pkg="laser_detect" type="laser_detect_node" name="laser_detect"
-  output="screen" launch-prefix="gnome-terminal -e">
-</node>
+  <node pkg="state" type="state_node" name="state_machine" output="screen" launch-prefix="gnome-terminal -e">
+    <param name="sys_freq" value="$(arg sys_freq)"/>
+  </node>
 
+  #### start the laser scan_matcher ##############################
 
-<node
-  pkg="state" type="state_node" name="state_machine"
-  output="screen" launch-prefix="gnome-terminal -e">
-  <param name="sys_freq" value="$(arg sys_freq)" />
-</node>
+  <node pkg="laser_scan_matcher" type="laser_scan_matcher_node" name="laser_scan_matcher_node" output="screen">
+    <param name="max_iterations" value="10"/>
+  </node>
 
-
-
-#### start the laser scan_matcher ##############################
-
-<node
-  pkg="laser_scan_matcher" type="laser_scan_matcher_node" name="laser_scan_matcher_node"
-  output="screen">
-  <param name="max_iterations" value="10"/>
-</node>
-
-<group if="$(arg use_rviz)">
-  <node pkg="rviz" type="rviz" name="rviz"
-        args="-d $(find laser_match_test)/launch/laser_match.rviz"/>
-</group>
-
+  <group if="$(arg use_rviz)">
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find laser_match_test)/launch/laser_match.rviz"/>
+  </group>
 
 </launch>

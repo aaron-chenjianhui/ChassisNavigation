@@ -3,6 +3,9 @@
 // Used for detect debug
 #define DETECT_DEBUG 1
 
+#define X_COMP 5.5
+#define Y_COMP -16
+
 namespace lms {
 LaserDetect::LaserDetect() {
   //
@@ -295,7 +298,7 @@ void LaserDetect::LaserDetectCallback(const sensor_msgs::LaserScan& laser_data) 
                                             "ori_debug"));
 
     // container length
-    double container_len = (left_len+right_len)/2;
+    double container_len = (left_len + right_len) / 2;
     std::cout << "Container length is: " << container_len << std::endl;
 
     // Broadcast enter tf tree
@@ -679,9 +682,9 @@ void LaserDetect::FindWallLen(const vec_data_type& ori_pose,
   double ori_y     = ori_pose[1];
   double ori_theta = ori_pose[2];
   double l_ang     = enter_param[0];
-  double l_data    = enter_param[1]*1000;
+  double l_data    = enter_param[1] * 1000;
   double r_ang     = enter_param[2];
-  double r_data    = enter_param[3]*1000;
+  double r_data    = enter_param[3] * 1000;
 
   mat3x3 T_Ori_in_Laser;
   mat3x1 T_L_in_Laser;
@@ -748,8 +751,14 @@ void LaserDetect::FindOriPose(vec_data_type& l_line_param,
   ori_B(0, 0) = f_n_x * f_a_x + f_n_y * f_a_y;
   ori_B(1, 0) = l_n_x * l_a_x + l_n_y * l_a_y;
   ori_pos     = ori_A.inverse() * ori_B;
-  ori_pose.push_back(ori_pos(0, 0));
-  ori_pose.push_back(ori_pos(1, 0));
+
+  double raw_x  = ori_pos(0, 0);
+  double raw_y  = ori_pos(1, 0);
+  double real_x = raw_x + X_COMP;
+  double real_y = raw_y + Y_COMP;
+
+  ori_pose.push_back(real_x);
+  ori_pose.push_back(real_y);
 
   // Original Orientation
   r_theta   = -atan(r_n_x / r_n_y);

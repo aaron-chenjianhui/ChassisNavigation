@@ -35,6 +35,10 @@
 #define DEG2RAD M_PI / 180.0
 #define RAD2DEG 180.0 / M_PI
 
+#define M2MM(X) X * 1000
+#define MM2M(X) X / 1000
+
+#define DATACOMP 32.5
 
 lidar_status_t lidar_status  = lidar_disconn;
 sys_status_t   system_status = sys_init;
@@ -79,7 +83,7 @@ int  main(int argc, char **argv)
   ros::Rate loop_rate(25);
 
   // Compensating value for lidar detect, obtained from calibration
-  double dist_comp = 32.5 / 1000.0;
+  double dist_comp = MM2M(DATACOMP);
 
   while (ros::ok())
   {

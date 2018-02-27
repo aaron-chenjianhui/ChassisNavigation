@@ -11,7 +11,10 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   laser_msgs
   geometry_msgs
+  cmake_modules
 )
+
+find_package(Eigen REQUIRED)
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -119,6 +122,9 @@ include
 include/tcp_driver
 ${catkin_INCLUDE_DIRS}
 )
+
+## Eigen
+include_directories(${Eigen_INCLUDE_DIRS})
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}

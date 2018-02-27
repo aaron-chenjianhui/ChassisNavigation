@@ -8,6 +8,7 @@
 #include "laser_msgs/tcp_srv.h"
 
 #include "chassis_conn.h"
+#include "PcPlcConvert.hpp"
 
 #define _TCP_BUF_DEBUG 0
 
@@ -46,6 +47,12 @@ int  main(int argc, char *argv[]) {
   std::string host;
   int port;
 
+  // calibration parameter
+  double container_width = 1000;
+  double x_off           = 350;
+  double y_off           = 0;
+  double theta_off       = 0;
+
 
   n_param.param<std::string>("chassis_host", host, "127.0.0.1");
   n_param.param<int>(        "chassis_port", port, 2000);
@@ -64,6 +71,7 @@ int  main(int argc, char *argv[]) {
   ros::Rate loop_rate(sys_freq);
 
   conn::ChassisConn chassis;
+  data_convert::PcPlcConvert converter(container_width, x_off, y_off, theta_off);
 
   while (ros::ok()) {
     // Connecting
@@ -199,10 +207,11 @@ int  main(int argc, char *argv[]) {
 
         // If send to socket is OK
         if (sendOK) {
-          double x     = pose_x;
-          double y     = pose_y;
-          double theta = pose_theta;
-          double len   = container_len;
+          double x, y, theta;
+          double len;
+
+          converter.PcToPlc(pose_x, pose_y, pose_theta, x, y, theta);
+          len = container_len;
 
           pc_status_t pc_status;
 

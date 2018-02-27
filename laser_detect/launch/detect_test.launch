@@ -1,6 +1,8 @@
 <launch>
 
 <arg name="use_rviz" default="false" />
+<arg name="x_comp" default="5.5" />
+<arg name="y_comp" default="-16" />
 
 
 #### publish an example base_link -> laser transform ###########
