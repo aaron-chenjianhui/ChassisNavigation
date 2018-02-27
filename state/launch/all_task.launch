@@ -25,21 +25,25 @@
 
   ######### TCP node ###########
   <!-- output="screen" launch-prefix="gnome-terminal -e"> -->
-  <node pkg="tcp_driver" name="tcp_driver_node" type="tcp_driver_node" output="screen" launch-prefix="gnome-terminal -e">
+  <!-- <node pkg="tcp_driver" name="tcp_driver_node" type="tcp_driver_node" output="screen" launch-prefix="gnome-terminal -e"> -->
+  <node pkg="tcp_driver" name="tcp_driver_node" type="tcp_driver_node">
     <param name="chassis_host" value="$(arg chassis_host)"/>
     <param name="chassis_port" value="$(arg chassis_port)"/>
     <param name="sys_freq" value="$(arg sys_freq)"/>
   </node>
 
-  <node pkg="laser_match_nav" type="sensor_handle_node" name="sensor_handle" output="screen"></node>
+  <node pkg="laser_match_nav" type="sensor_handle_node" name="sensor_handle"></node>
 
-  <node pkg="laser_match_nav" type="chassis_plan_node" name="simu_location" output="screen" launch-prefix="gnome-terminal -e">
+  <!-- <node pkg="laser_match_nav" type="chassis_plan_node" name="simu_location" output="screen" launch-prefix="gnome-terminal -e"> -->
+  <node pkg="laser_match_nav" type="chassis_plan_node" name="simu_location">
     <param name="sys_freq" value="$(arg sys_freq)"/>
   </node>
 
-  <node pkg="laser_detect" type="laser_detect_node" name="laser_detect" output="screen" launch-prefix="gnome-terminal -e"></node>
+  <!-- <node pkg="laser_detect" type="laser_detect_node" name="laser_detect" output="screen" launch-prefix="gnome-terminal -e"></node> -->
+  <node pkg="laser_detect" type="laser_detect_node" name="laser_detect"></node>
 
-  <node pkg="state" type="state_node" name="state_machine" output="screen" launch-prefix="gnome-terminal -e">
+  <!-- <node pkg="state" type="state_node" name="state_machine" output="screen" launch-prefix="gnome-terminal -e"> -->
+  <node pkg="state" type="state_node" name="state_machine" output="screen">
     <param name="sys_freq" value="$(arg sys_freq)"/>
   </node>
 

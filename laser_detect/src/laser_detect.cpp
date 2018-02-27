@@ -630,6 +630,38 @@ void LaserDetect::FindUltiData(const lidar_data_type  & lidar_data,
   // f_vote_angle.end()));
 }
 
+bool LaserDetect::FindCorner(const lidar_data_type& lidar_data,
+                             double min_angle, double max_angle) {
+  double diff_thre = 800;
+  const_lidar_iter_type lidar_iter;
+  vec_data_type diff_vec;
+  vec_iter_type diff_iter;
+
+  vec_data_type angle_vec;
+
+  lidar_iter = lidar_data.begin();
+  double last_val = M2MM(lidar_iter->second);
+
+  for (++lidar_iter; lidar_iter != lidar_data.end(); ++lidar_iter) {
+    double val      = M2MM(lidar_iter->second);
+    double diff_val = val - last_val;
+
+    if (diff_val > diff_thre) {
+      angle_vec.push_back(lidar_iter->first);
+    }
+
+    last_val = val;
+  }
+
+  if (angle_vec.size() >= 2) {}
+  else {
+    return false;
+  }
+
+  // f_angle_max = *(std::max_element(f_vote_angle.begin(),
+  // f_vote_angle.end()));
+}
+
 //
 bool LaserDetect::ResultCheck(vec_data_type& left_line_param,
                               vec_data_type& right_line_param,

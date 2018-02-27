@@ -107,6 +107,16 @@ public:
                    double             & l_len,
                    double             & r_len);
 
+  /**
+   * Find container corner
+   * @param lidar_data
+   * @param min_angle [description]
+   * @param max_angle [description]
+   */
+  bool FindCorner(const lidar_data_type& lidar_data,
+                  double                 min_angle,
+                  double                 max_angle);
+
   //    void
 
   void LaserDetectCallback(const sensor_msgs::LaserScan& laser_data);

@@ -53,8 +53,8 @@ public:
     TransToEuler(T_Base_in_Ref, x_base_in_ref, y_base_in_ref, theta_base_in_ref);
 
     //
-    x_plc     = -y_base_in_ref;
-    y_plc     = -x_base_in_ref;
+    x_plc     = -y_base_in_ref / cos(abs(theta_base_in_ref));
+    y_plc     = -x_base_in_ref / cos(abs(theta_base_in_ref));
     theta_plc = -theta_base_in_ref;
   }
 
@@ -89,8 +89,8 @@ public:
     TransToEuler(T_Base_in_Ref, x_base_in_ref, y_base_in_ref, theta_base_in_ref);
 
     //
-    x_plc     = -y_base_in_ref;
-    y_plc     = -x_base_in_ref;
+    x_plc     = -y_base_in_ref / cos(abs(theta_base_in_ref));
+    y_plc     = -x_base_in_ref / cos(abs(theta_base_in_ref));
     theta_plc = -theta_base_in_ref;
   }
 
