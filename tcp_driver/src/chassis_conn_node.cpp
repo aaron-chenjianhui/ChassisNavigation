@@ -71,7 +71,7 @@ int  main(int argc, char *argv[]) {
   ros::Rate loop_rate(sys_freq);
 
   conn::ChassisConn chassis;
-  data_convert::PcPlcConvert converter(container_width, x_off, y_off, theta_off);
+  data_convert::PcPlcConvert converter;
 
   while (ros::ok()) {
     // Connecting

@@ -6,6 +6,8 @@
 #define X_COMP 5.5
 #define Y_COMP -16
 
+#define DIFF_THRE 180000
+
 namespace lms {
 LaserDetect::LaserDetect() {
   //
@@ -26,6 +28,7 @@ LaserDetect::LaserDetect() {
                                                               1000);
   m_laser_pose_puber =
     m_nh.advertise<geometry_msgs::Pose2D>("debug_laser_pose", 1000);
+  m_plc_pose_puber = m_nh.advertise<geometry_msgs::Pose2D>("plc_pose", 1000);
 
   // For node status
   m_detect_server = m_nh.advertiseService("detect_status",
@@ -276,6 +279,15 @@ void LaserDetect::LaserDetectCallback(const sensor_msgs::LaserScan& laser_data) 
     laser_pose_msg.y     = pose_Laser_in_Ori[1];
     laser_pose_msg.theta = pose_Laser_in_Ori[2];
     m_laser_pose_puber.publish(laser_pose_msg);
+
+    // publish plc pose data
+    double plc_x, plc_y, plc_theta;
+    converter.PcToPlc(T_Laser_in_Ori, plc_x, plc_y, plc_theta);
+    geometry_msgs::Pose2D plc_pose_msg;
+    plc_pose_msg.x     = plc_x;
+    plc_pose_msg.y     = plc_y;
+    plc_pose_msg.theta = plc_theta;
+    m_plc_pose_puber.publish(plc_pose_msg);
 
     // Publish line parameter
     laser_msgs::detect_msg line_msg;
@@ -631,8 +643,9 @@ void LaserDetect::FindUltiData(const lidar_data_type  & lidar_data,
 }
 
 bool LaserDetect::FindCorner(const lidar_data_type& lidar_data,
-                             double min_angle, double max_angle) {
-  double diff_thre = 800;
+                             double& min_angle, double& max_angle) {
+  double diff_thre = DIFF_THRE;
+  std::cout << "diff_thre is: " << diff_thre << std::endl;
   const_lidar_iter_type lidar_iter;
   vec_data_type diff_vec;
   vec_iter_type diff_iter;
@@ -641,19 +654,29 @@ bool LaserDetect::FindCorner(const lidar_data_type& lidar_data,
 
   lidar_iter = lidar_data.begin();
   double last_val = M2MM(lidar_iter->second);
+  double last_ang = lidar_iter->first;
 
   for (++lidar_iter; lidar_iter != lidar_data.end(); ++lidar_iter) {
     double val      = M2MM(lidar_iter->second);
-    double diff_val = val - last_val;
+    double ang      = lidar_iter->first;
+    double diff_val = (val - last_val) / (ang - last_ang);
 
-    if (diff_val > diff_thre) {
-      angle_vec.push_back(lidar_iter->first);
+    if (abs(diff_val) > diff_thre) {
+      angle_vec.push_back(last_ang);
+      std::cout << "find corner, angle is: " << last_ang << ", diff_val is: " <<
+        diff_val << std::endl;
     }
 
     last_val = val;
+    last_ang = ang;
   }
 
-  if (angle_vec.size() >= 2) {}
+  if (angle_vec.size() >= 2) {
+    min_angle = *(std::min_element(angle_vec.begin(), angle_vec.end()));
+    max_angle = *(std::max_element(angle_vec.begin(), angle_vec.end()));
+
+    return true;
+  }
   else {
     return false;
   }
@@ -830,19 +853,9 @@ bool LaserDetect::WallDetect(lidar_data_type& lidar_data,
   lidar_data_type left_select_lidar;
   lidar_data_type right_select_lidar;
 
-  // Left, Right, Front Range
-  double left_min = DEG2RAD(0);
+  double left_min, left_max, right_min, right_max;
+  double front_min, front_max, judge_min, judge_max;
 
-  //  double left_max  = DEG2RAD(134);
-  double left_max = DEG2RAD(60);
-
-  //  double right_min = DEG2RAD(-134);
-  double right_min = DEG2RAD(-60);
-  double right_max = DEG2RAD(0);
-  double front_min = DEG2RAD(-90);
-  double front_max = DEG2RAD(90);
-  double judge_min = DEG2RAD(-45);
-  double judge_max = DEG2RAD(45);
 
   // First Ransac Angle
   double r_angle_min, r_angle_max;
@@ -893,6 +906,30 @@ bool LaserDetect::WallDetect(lidar_data_type& lidar_data,
 
   // Data Pre-Processing
   DataFilter(lidar_data, lidar_filter);
+
+  // find corner
+  double left_corner;  // max_angle
+  double right_corner; // min_angle
+
+  if (FindCorner(lidar_filter, right_corner, left_corner)) {
+    left_min = DEG2RAD(0);
+    left_max = std::min(left_corner, DEG2RAD(134));
+
+    right_min = std::max(right_corner, DEG2RAD(-134));
+    right_max = DEG2RAD(0);
+  }
+  else {
+    left_min = DEG2RAD(0);
+    left_max = DEG2RAD(134);
+
+    right_min = DEG2RAD(-134);
+    right_max = DEG2RAD(0);
+  }
+
+  front_min = DEG2RAD(-90);
+  front_max = DEG2RAD(90);
+  judge_min = DEG2RAD(-45);
+  judge_max = DEG2RAD(45);
 
   DataSelect(left_min,  left_max,  lidar_filter, lidar_left);
   DataSelect(right_min, right_max, lidar_filter, lidar_right);
@@ -984,6 +1021,9 @@ bool LaserDetect::WallDetect(lidar_data_type& lidar_data,
       }
       ++r_vote_iter;
     }
+
+    // TODO(CJH)
+    // this place will lead to a fault
     r_angle_max = *(std::max_element(r_vote_angle.begin(), r_vote_angle.end()));
     r_angle_min = *(std::min_element(r_vote_angle.begin(), r_vote_angle.end()));
 

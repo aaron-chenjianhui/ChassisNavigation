@@ -22,6 +22,7 @@
 #include "laser_msgs/detect_msg.h"
 #include "laser_msgs/laser_detect_srv.h"
 #include "SysStateTypes.h"
+#include "PcPlcConvert.hpp"
 
 #define DEG2RAD(X) X * 3.1415926 / 180
 #define RAD2DEG(X) X * 180 / 3.1415926
@@ -114,8 +115,8 @@ public:
    * @param max_angle [description]
    */
   bool FindCorner(const lidar_data_type& lidar_data,
-                  double                 min_angle,
-                  double                 max_angle);
+                  double               & min_angle,
+                  double               & max_angle);
 
   //    void
 
@@ -201,6 +202,7 @@ private:
   ros::Publisher m_line_param_puber;
   ros::Publisher m_laser_pose_puber;
   ros::Publisher m_container_len_puber;
+  ros::Publisher m_plc_pose_puber;
 
   // tf broadcast
   tf::TransformBroadcaster m_br;
@@ -236,6 +238,8 @@ private:
   ros::ServiceServer m_detect_server;
   uint16_t m_filter_count;
   bool m_detect_flag;
+
+  data_convert::PcPlcConvert converter;
 
   // status callback function
   bool statusCallback(laser_msgs::laser_detect_srv::Request & req,
