@@ -40,6 +40,8 @@
 
 #define DATACOMP 32.5
 
+// #define DATACOMP 0
+
 lidar_status_t lidar_status  = lidar_disconn;
 sys_status_t   system_status = sys_init;
 

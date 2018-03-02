@@ -2,15 +2,15 @@
   ################## system control frequency ##################
   <arg name="use_rviz" default="false"/>
   ################## system control frequency ##################
-  <arg name="sys_freq" default="1"/>
+  <arg name="sys_freq" default="10"/>
   ################## lidar IP address ##################
   <arg name="host" default="192.168.2.5"/>
   ################## PLC IP address ##################
   <!-- use this host and port for debugging -->
-  <arg name="chassis_host" default="127.0.0.1"/>
-  <arg name="chassis_port" default="2000"/>
+  <!-- <arg name="chassis_host" default="127.0.0.1"/> <arg name="chassis_port" default="2000"/> -->
   <!-- use this host and port for plc connection -->
-  <!-- <arg name="host" default="192.168.10.30" /> <arg name="port" default="4097"/> -->
+  <arg name="chassis_host" default="192.168.10.11"/>
+  <arg name="chassis_port" default="4097"/>
 
   #### publish an example base_link -> laser transform ###########
   <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0.0 0.0 0.0 0.0 0.0 0.0 /base_link /laser 40"/>

@@ -1,7 +1,7 @@
 #include "laser_detect.h"
 
 // Used for detect debug
-#define DETECT_DEBUG 1
+#define DETECT_DEBUG 0
 
 #define X_COMP 5.5
 #define Y_COMP -16

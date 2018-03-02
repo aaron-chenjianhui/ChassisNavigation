@@ -3,6 +3,11 @@
 
 #include "MatTypes.h"
 
+#define DEG2RAD(X) X * 3.1415926 / 180
+#define RAD2DEG(X) X * 180 / 3.1415926
+#define M2MM(X) X * 1000
+#define MM2M(X) X / 1000
+
 namespace data_convert {
 class PcPlcConvert {
 public:
@@ -50,11 +55,11 @@ public:
 
     //
     theta_plc = -theta_base_in_ori;
-    double x_plc_tmp = -y_base_in_ori;
-    double y_plc_tmp = -x_base_in_ori / cos(abs(theta_base_in_ori));
+    double y_plc_tmp = -y_base_in_ori;
+    double x_plc_tmp = -x_base_in_ori / cos(abs(theta_base_in_ori));
 
-    x_plc = x_plc_tmp - m_container_width / 2;
-    y_plc = y_plc_tmp - m_chassis_length / 2;
+    y_plc = y_plc_tmp - m_container_width / 2;
+    x_plc = x_plc_tmp - m_chassis_length / 2;
   }
 
   /**
@@ -88,11 +93,11 @@ public:
 
     //
     theta_plc = -theta_base_in_ori;
-    double x_plc_tmp = -y_base_in_ori;
-    double y_plc_tmp = -x_base_in_ori / cos(abs(theta_base_in_ori));
+    double y_plc_tmp = -y_base_in_ori;
+    double x_plc_tmp = -x_base_in_ori / cos(abs(theta_base_in_ori));
 
-    x_plc = x_plc_tmp - m_container_width / 2;
-    y_plc = y_plc_tmp - m_chassis_length / 2;
+    y_plc = y_plc_tmp - m_container_width / 2;
+    x_plc = x_plc_tmp - m_chassis_length / 2;
   }
 
   // euler representation to transform matrix

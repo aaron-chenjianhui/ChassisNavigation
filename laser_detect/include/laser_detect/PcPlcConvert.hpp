@@ -50,11 +50,11 @@ public:
 
     //
     theta_plc = -theta_base_in_ori;
-    double x_plc_tmp = -y_base_in_ori;
-    double y_plc_tmp = -x_base_in_ori / cos(abs(theta_base_in_ori));
+    double y_plc_tmp = -y_base_in_ori;
+    double x_plc_tmp = -x_base_in_ori / cos(abs(theta_base_in_ori));
 
-    x_plc = x_plc_tmp - m_container_width / 2;
-    y_plc = y_plc_tmp - m_chassis_length / 2;
+    y_plc = y_plc_tmp - m_container_width / 2;
+    x_plc = x_plc_tmp - m_chassis_length / 2;
   }
 
   /**
@@ -88,11 +88,11 @@ public:
 
     //
     theta_plc = -theta_base_in_ori;
-    double x_plc_tmp = -y_base_in_ori;
-    double y_plc_tmp = -x_base_in_ori / cos(abs(theta_base_in_ori));
+    double y_plc_tmp = -y_base_in_ori;
+    double x_plc_tmp = -x_base_in_ori / cos(abs(theta_base_in_ori));
 
-    x_plc = x_plc_tmp - m_container_width / 2;
-    y_plc = y_plc_tmp - m_chassis_length / 2;
+    y_plc = y_plc_tmp - m_container_width / 2;
+    x_plc = x_plc_tmp - m_chassis_length / 2;
   }
 
   // euler representation to transform matrix
