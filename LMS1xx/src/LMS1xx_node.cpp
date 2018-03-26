@@ -56,6 +56,7 @@ int  main(int argc, char **argv)
   scanOutputRange outputRange;
   scanDataCfg     dataCfg;
   sensor_msgs::LaserScan scan_msg;
+  sensor_msgs::LaserScan scan_msg_comp;
 
   // parameters
   std::string host;
@@ -67,7 +68,10 @@ int  main(int argc, char **argv)
   ros::init(argc, argv, "lms1xx");
   ros::NodeHandle nh;
   ros::NodeHandle n("~");
-  ros::Publisher  scan_pub = nh.advertise<sensor_msgs::LaserScan>("scan", 1);
+  ros::Publisher  scan_pub      = nh.advertise<sensor_msgs::LaserScan>("scan", 1);
+  ros::Publisher  scan_comp_pub = nh.advertise<sensor_msgs::LaserScan>(
+    "scan_comp",
+    1);
 
   //
   ros::ServiceServer lidar_server =
@@ -150,6 +154,17 @@ int  main(int argc, char **argv)
     scan_msg.angle_max =
       static_cast<double>(outputRange.stopAngle / 10000.0 * DEG2RAD - M_PI / 2);
 
+    scan_msg_comp.header.frame_id = frame_id;
+    scan_msg_comp.range_min       = 0.01;
+    scan_msg_comp.range_max       = 20.0;
+    scan_msg_comp.scan_time       = 100.0 / cfg.scaningFrequency;
+    scan_msg_comp.angle_increment =
+      static_cast<double>(outputRange.angleResolution / 10000.0 * DEG2RAD);
+    scan_msg_comp.angle_min =
+      static_cast<double>(outputRange.startAngle / 10000.0 * DEG2RAD - M_PI / 2);
+    scan_msg_comp.angle_max =
+      static_cast<double>(outputRange.stopAngle / 10000.0 * DEG2RAD - M_PI / 2);
+
     ROS_DEBUG_STREAM(
       "Device resolution is " << (double)outputRange.angleResolution / 10000.0 <<
         " degrees.");
@@ -168,6 +183,15 @@ int  main(int argc, char **argv)
     scan_msg.intensities.resize(num_values);
 
     scan_msg.time_increment =
+      (outputRange.angleResolution / 10000.0)
+      / 360.0
+      / (cfg.scaningFrequency / 100.0);
+
+
+    scan_msg_comp.ranges.resize(num_values);
+    scan_msg_comp.intensities.resize(num_values);
+
+    scan_msg_comp.time_increment =
       (outputRange.angleResolution / 10000.0)
       / 360.0
       / (cfg.scaningFrequency / 100.0);
@@ -244,6 +268,9 @@ int  main(int argc, char **argv)
       scan_msg.header.stamp = start;
       ++scan_msg.header.seq;
 
+      scan_msg_comp.header.stamp = start;
+      ++scan_msg_comp.header.seq;
+
       scanData data;
       ROS_DEBUG("Reading scan data.");
 
@@ -253,7 +280,8 @@ int  main(int argc, char **argv)
         {
           // float range_data = data.dist1[i] * 0.001;
           // Add lidar detection compensation
-          float range_data = data.dist1[i] * 0.001 + dist_comp;
+          float range_data_comp = data.dist1[i] * 0.001 + dist_comp;
+          float range_data      = data.dist1[i] * 0.001;
 
           if (inf_range && (range_data < scan_msg.range_min))
           {
@@ -261,17 +289,20 @@ int  main(int argc, char **argv)
           }
           else
           {
-            scan_msg.ranges[i] = range_data;
+            scan_msg.ranges[i]      = range_data;
+            scan_msg_comp.ranges[i] = range_data_comp;
           }
         }
 
         for (int i = 0; i < data.rssi_len1; i++)
         {
-          scan_msg.intensities[i] = data.rssi1[i];
+          scan_msg.intensities[i]      = data.rssi1[i];
+          scan_msg_comp.intensities[i] = data.rssi1[i];
         }
 
         ROS_DEBUG("Publishing scan data.");
         scan_pub.publish(scan_msg);
+        scan_comp_pub.publish(scan_msg_comp);
       }
       else
       {

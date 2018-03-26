@@ -14,7 +14,10 @@ LaserDetect::LaserDetect() {
   ParamInit();
 
   //
-  m_suber = m_nh.subscribe("scan", 1000, &LaserDetect::LaserDetectCallback, this);
+  m_suber = m_nh.subscribe("scan_comp",
+                           1000,
+                           &LaserDetect::LaserDetectCallback,
+                           this);
   m_puber = m_nh.advertise<sensor_msgs::PointCloud>("point", 1000);
 
   m_pose_puber          = m_nh.advertise<geometry_msgs::Pose2D>("ori_pose", 1000);

@@ -5,6 +5,7 @@
 #include <geometry_msgs/Pose2D.h>
 #include <laser_msgs/detect_msg.h>
 
+// typedef (unsigned int) uint32_t;
 
 typedef std::vector<double>           vec_data_type;
 typedef std::vector<double>::iterator vec_iter_type;
@@ -14,9 +15,29 @@ void LmsSaveCallback(const sensor_msgs::LaserScan& laser_data);
 void CustomSaveCallback(const sensor_msgs::LaserScan& custom_data);
 void DetectLineCallback(const laser_msgs::detect_msg& line_data);
 void OriPoseCallback(const geometry_msgs::Pose2D& ori_pose);
+void LaserPoseCallback(const geometry_msgs::Pose2D& laser_pose);
+void LogSaveCallback(const sensor_msgs::LaserScan& laser_data);
 
 
-int  main(int argc, char *argv[]) {
+template<typename S, typename P>
+void DownSample(const S& s, const uint32_t interval, P& p) {
+  p.clear();
+
+  uint32_t s_size = s.size();
+
+  if ((s_size % 2) == 1) {
+    for (typename S::const_iterator it = s.begin(); it != s.end();) {
+      p.push_back(*it);
+
+      for (uint32_t i = 0; i < interval; ++i) {
+        ++it;
+      }
+    }
+  }
+  else if ((s_size % 2) == 0) {}
+}
+
+int main(int argc, char *argv[]) {
   ros::init(argc, argv, "lms_saver");
   ROS_INFO("Start Lidar data saving\r\n");
 
@@ -25,14 +46,19 @@ int  main(int argc, char *argv[]) {
   ros::Subscriber custom_suber;
   ros::Subscriber pose_suber;
   ros::Subscriber line_suber;
+  ros::Subscriber laser_pose_suber;
+  ros::Subscriber log_pose_suber;
 
 
   lidar_suber  = nh.subscribe("scan", 1000, LmsSaveCallback);
   custom_suber = nh.subscribe("custom_scan", 1000, CustomSaveCallback);
 
+  // log_pose_suber = nh.subscribe("scan", 1000, LogSaveCallback);
+
   // pose_suber   = nh.subscribe("laser_pose", 1000, OriPoseCallback);
-  pose_suber = nh.subscribe("debug_laser_pose", 1000, OriPoseCallback);
-  line_suber = nh.subscribe("line_param", 1000, DetectLineCallback);
+  pose_suber       = nh.subscribe("debug_laser_pose", 1000, OriPoseCallback);
+  line_suber       = nh.subscribe("line_param", 1000, DetectLineCallback);
+  laser_pose_suber = nh.subscribe("laser_pose", 1000, LaserPoseCallback);
 
 
   ros::MultiThreadedSpinner spinner(4);
@@ -40,6 +66,60 @@ int  main(int argc, char *argv[]) {
 
 
   return 0;
+}
+
+void LogSaveCallback(const sensor_msgs::LaserScan& laser_data) {
+  unsigned int seq               = laser_data.header.seq;
+  double angle_min               = laser_data.angle_min;
+  double angle_max               = laser_data.angle_max;
+  double angle_increment         = laser_data.angle_increment;
+  double time_increment          = laser_data.time_increment;
+  double scan_time               = laser_data.scan_time;
+  double range_min               = laser_data.range_min;
+  double range_max               = laser_data.range_max;
+  std::vector<float> ranges      = laser_data.ranges;
+  std::vector<float> intensities = laser_data.intensities;
+
+  uint32_t interval        = 2;
+  double   angle_range     = angle_max - angle_min;
+  double   range_increment = 0.001;
+  int num                  = (int)((angle_max - angle_min) / angle_increment) + 1;
+
+  std::vector<float> ranges_sample;
+
+  DownSample(ranges, interval, ranges_sample);
+
+  std::ofstream out_file;
+
+  out_file.open("./data/custom.log", std::ofstream::out | std::ofstream::app);
+
+  if (out_file.is_open()) {
+    ROS_INFO("Writing laser data!!!\r\n");
+
+    //
+    out_file << "ROBOTLASER1 " << "0 ";
+    out_file << angle_min << " " << angle_range << " ";
+    out_file << angle_increment << " " << range_max << " ";
+    out_file << range_increment << " " << num << " ";
+
+
+    // 写入ranges
+    std::vector<float>::iterator it;
+
+    for (it = ranges_sample.begin(); it != ranges_sample.end() - 1; ++it) {
+      out_file << *it << " ";
+    }
+
+    // remissionNumber
+    out_file << "0 ";
+
+    for (int i = 0; i < 11; ++i) {
+      out_file << "0 ";
+    }
+
+    // timestamp
+    out_file << seq << " " << "x" << std::endl;
+  }
 }
 
 void LmsSaveCallback(const sensor_msgs::LaserScan& laser_data) {
@@ -189,6 +269,29 @@ void OriPoseCallback(const geometry_msgs::Pose2D& ori_pose) {
 
   if (out_file.is_open()) {
     ROS_INFO("Writing pose data!!!\r\n");
+
+    //
+    out_file << "[X Y Theta]" << std::endl;
+    out_file << x << " " << y << " " << " " << theta << std::endl;
+
+    // 关闭文件
+    out_file.close();
+  }
+}
+
+void LaserPoseCallback(const geometry_msgs::Pose2D& laser_pose) {
+  double x, y, theta;
+
+  x     = laser_pose.x;
+  y     = laser_pose.y;
+  theta = laser_pose.theta;
+
+  std::ofstream out_file;
+  out_file.open("./data/laser_pose_data.txt",
+                std::ofstream::out | std::ofstream::app);
+
+  if (out_file.is_open()) {
+    ROS_INFO("Writing laser pose data!!!\r\n");
 
     //
     out_file << "[X Y Theta]" << std::endl;

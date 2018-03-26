@@ -54,7 +54,7 @@ public:
     TransToEuler(T_Base_in_Ori, x_base_in_ori, y_base_in_ori, theta_base_in_ori);
 
     //
-    theta_plc = -theta_base_in_ori;
+    theta_plc = -RAD2DEG(theta_base_in_ori);
     double y_plc_tmp = -y_base_in_ori;
     double x_plc_tmp = -x_base_in_ori / cos(abs(theta_base_in_ori));
 
@@ -92,7 +92,7 @@ public:
     TransToEuler(T_Base_in_Ori, x_base_in_ori, y_base_in_ori, theta_base_in_ori);
 
     //
-    theta_plc = -theta_base_in_ori;
+    theta_plc = -RAD2DEG(theta_base_in_ori);
     double y_plc_tmp = -y_base_in_ori;
     double x_plc_tmp = -x_base_in_ori / cos(abs(theta_base_in_ori));
 
