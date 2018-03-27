@@ -90,7 +90,7 @@ void LaserDetect::ParamInit() {
   m_detect_status = detect_ready;
   m_sys_status    = sys_init;
   m_filter_count  = 0;
-  m_detect_flag   = 0;
+  m_is_calcd      = 0;
 }
 
 /**
@@ -1357,39 +1357,41 @@ bool LaserDetect::statusCallback(laser_msgs::laser_detect_srv::Request & req,
   // transfer system status to node
   uint8_t system_status_now = req.sys_status;
   uint8_t detect_status_now = req.detect_status;
-  bool    cal_flag_input    = req.cal_flag_input;
+  bool    calc_request      = req.calc_request;
 
   m_sys_status    = (sys_status_t)system_status_now;
   m_detect_status = (detect_status_t)detect_status_now;
 
-  //
-  if (cal_flag_input && (m_detect_status == detect_cal_ing)) {
+  // if request a calc, call LaserCal function
+  if (calc_request && (m_detect_status == detect_cal_ing)) {
     bool ret = LaserCal(lidar_data_filter);
 
     if (ret) {
-      m_detect_flag = true;
+      m_is_calcd = true;
     }
     else {
-      m_detect_flag = false;
+      m_is_calcd = false;
     }
   }
 
-  // cal_flag for res
+  // reset m_is_calcd after calcd
   if (detect_cal_ing != m_detect_status) {
-    m_detect_flag = false;
+    m_is_calcd = false;
   }
-  bool cal_flag_output = cal_flag_input & (!m_detect_flag);
+
+  // update is_calcd parameter
+  bool is_calcd_now = m_is_calcd;
 
   // detect_conn for res
   bool detect_conn = true;
 
   // cal_count for res
-  uint16_t cal_count = m_filter_count;
+  uint16_t filter_count_now = m_filter_count;
 
   // service return
-  res.detect_conn     = detect_conn;
-  res.cal_count       = m_filter_count;
-  res.cal_flag_output = cal_flag_output;
+  res.detect_conn  = detect_conn;
+  res.filter_count = filter_count_now;
+  res.is_calcd     = is_calcd_now;
 
   return true;
 }

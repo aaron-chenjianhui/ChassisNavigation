@@ -1,7 +1,7 @@
 uint8 sys_status
 uint8 detect_status
-bool cal_flag_input
+bool calc_request
 ---
 bool detect_conn
-uint16 cal_count
-bool cal_flag_output
+uint16 filter_count
+bool is_calcd

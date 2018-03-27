@@ -4,9 +4,9 @@
 //
 // Code generated for Simulink model 'CoreStateMachine'.
 //
-// Model version                  : 1.37
+// Model version                  : 1.64
 // Simulink Coder version         : 8.11 (R2016b) 25-Aug-2016
-// C/C++ source code generated on : Thu Feb 08 13:43:24 2018
+// C/C++ source code generated on : Mon Mar 26 17:46:56 2018
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -16,12 +16,20 @@
 #include "state/CoreStateMachine.h"
 #include "state/CoreStateMachine_private.h"
 
-// Named constants for Chart: '<S1>/DetectState'
+// Named constants for Chart: '<S2>/AMCL_Interface'
+#define CoreStateM_IN_SendToughLocation ((uint8_T)5U)
 #define CoreStateMac_IN_NO_ACTIVE_CHILD ((uint8_T)0U)
-#define CoreStateMachi_IN_DetectDisconn ((uint8_T)3U)
-#define CoreStateMachin_IN_DetectFilter ((uint8_T)4U)
-#define CoreStateMachine_IN_DetectCal  ((uint8_T)1U)
-#define CoreStateMachine_IN_DetectCalOK ((uint8_T)2U)
+#define CoreStateMachin_IN_SendInitPose ((uint8_T)4U)
+#define CoreStateMachine_IN_AMCLDisconn ((uint8_T)1U)
+#define CoreStateMachine_IN_AMCLReady  ((uint8_T)2U)
+#define CoreStateMachine_IN_Error      ((uint8_T)3U)
+#define CoreStateMachine_IN_UpdatePose ((uint8_T)6U)
+
+// Named constants for Chart: '<S2>/DetectState'
+#define CoreStateMac_IN_DataPreparation ((uint8_T)1U)
+#define CoreStateMachi_IN_DetectDisconn ((uint8_T)4U)
+#define CoreStateMachine_IN_DetectCal  ((uint8_T)2U)
+#define CoreStateMachine_IN_DetectCalOK ((uint8_T)3U)
 #define CoreStateMachine_IN_DetectReady ((uint8_T)5U)
 
 // Named constants for Chart: '<S1>/NavState'
@@ -56,46 +64,218 @@ void CoreStateMachine_step(void)
 {
   int32_T tmp;
 
-  // Chart: '<S1>/DetectState' incorporates:
-  //   Inport: '<Root>/detect_conn'
-  //   Inport: '<Root>/detect_flag_input'
-  //   Inport: '<Root>/filter_count'
+  // Chart: '<S2>/AMCL_Interface' incorporates:
+  //   Inport: '<Root>/amcl_conn'
+  //   Inport: '<Root>/cov_is_small'
   //   Memory: '<S1>/Memory2'
 
-  // Gateway: CoreStateMachine/DetectState
-  // During: CoreStateMachine/DetectState
+  // Gateway: CoreStateMachine/Global Location/AMCL_Interface
+  // During: CoreStateMachine/Global Location/AMCL_Interface
+  if (CoreStateMachine_DW.is_active_c4_CoreStateMachine == 0U) {
+    // Entry: CoreStateMachine/Global Location/AMCL_Interface
+    CoreStateMachine_DW.is_active_c4_CoreStateMachine = 1U;
+
+    // Entry Internal: CoreStateMachine/Global Location/AMCL_Interface
+    // Transition: '<S5>:5'
+    CoreStateMachine_DW.is_c4_CoreStateMachine = CoreStateMachine_IN_AMCLDisconn;
+  } else {
+    switch (CoreStateMachine_DW.is_c4_CoreStateMachine) {
+    case CoreStateMachine_IN_AMCLDisconn:
+
+      // During 'AMCLDisconn': '<S5>:4'
+      if (CoreStateMachine_U.amcl_conn) {
+        // Transition: '<S5>:15'
+        CoreStateMachine_DW.is_c4_CoreStateMachine =
+          CoreStateMachine_IN_AMCLReady;
+      } else {
+        // Outport: '<Root>/amcl_status'
+        CoreStateMachine_Y.amcl_status = 4U;
+      }
+      break;
+
+    case CoreStateMachine_IN_AMCLReady:
+
+      // During 'AMCLReady': '<S5>:1'
+      if (!CoreStateMachine_U.amcl_conn) {
+        // Transition: '<S5>:16'
+        CoreStateMachine_DW.is_c4_CoreStateMachine =
+          CoreStateMachine_IN_AMCLDisconn;
+      } else if (CoreStateMachine_Y.sys_status == 2) {
+        // Transition: '<S5>:21'
+        // Transition: '<S5>:22'
+        CoreStateMachine_DW.init_count             = 0U;
+        CoreStateMachine_DW.is_c4_CoreStateMachine =
+          CoreStateMachin_IN_SendInitPose;
+
+        // Entry 'SendInitPose': '<S5>:2'
+        CoreStateMachine_DW.send_count = 0U;
+      } else {
+        // Outport: '<Root>/amcl_status'
+        CoreStateMachine_Y.amcl_status = 0U;
+      }
+      break;
+
+    case CoreStateMachine_IN_Error:
+
+      // During 'Error': '<S5>:28'
+      // Transition: '<S5>:35'
+      CoreStateMachine_DW.is_c4_CoreStateMachine = CoreStateMachine_IN_AMCLReady;
+      break;
+
+    case CoreStateMachin_IN_SendInitPose:
+
+      // During 'SendInitPose': '<S5>:2'
+      if (!CoreStateMachine_U.amcl_conn) {
+        // Transition: '<S5>:19'
+        CoreStateMachine_DW.is_c4_CoreStateMachine =
+          CoreStateMachine_IN_AMCLDisconn;
+      } else if (CoreStateMachine_Y.sys_status != 2) {
+        // Transition: '<S5>:23'
+        CoreStateMachine_DW.is_c4_CoreStateMachine =
+          CoreStateMachine_IN_AMCLReady;
+      } else if (CoreStateMachine_DW.send_count >= 3) {
+        // Transition: '<S5>:25'
+        // Transition: '<S5>:26'
+        tmp = CoreStateMachine_DW.init_count + 1;
+
+        if (tmp > 65535) {
+          tmp = 65535;
+        }
+
+        CoreStateMachine_DW.init_count             = (uint16_T)tmp;
+        CoreStateMachine_DW.is_c4_CoreStateMachine =
+          CoreStateMachine_IN_UpdatePose;
+
+        // Entry 'UpdatePose': '<S5>:3'
+        CoreStateMachine_DW.update_count = 0U;
+      } else {
+        // Outport: '<Root>/amcl_status'
+        CoreStateMachine_Y.amcl_status = 1U;
+        tmp                            = CoreStateMachine_DW.send_count + 1;
+
+        if (tmp > 65535) {
+          tmp = 65535;
+        }
+
+        CoreStateMachine_DW.send_count = (uint16_T)tmp;
+      }
+      break;
+
+    case CoreStateM_IN_SendToughLocation:
+
+      // During 'SendToughLocation': '<S5>:6'
+      if (!CoreStateMachine_U.amcl_conn) {
+        // Transition: '<S5>:17'
+        CoreStateMachine_DW.is_c4_CoreStateMachine =
+          CoreStateMachine_IN_AMCLDisconn;
+      } else if (CoreStateMachine_Y.sys_status != 2) {
+        // Transition: '<S5>:32'
+        CoreStateMachine_DW.is_c4_CoreStateMachine =
+          CoreStateMachine_IN_AMCLReady;
+      } else {
+        // Outport: '<Root>/amcl_status'
+        CoreStateMachine_Y.amcl_status = 3U;
+      }
+      break;
+
+    default:
+
+      // During 'UpdatePose': '<S5>:3'
+      if (!CoreStateMachine_U.amcl_conn) {
+        // Transition: '<S5>:18'
+        CoreStateMachine_DW.is_c4_CoreStateMachine =
+          CoreStateMachine_IN_AMCLDisconn;
+      } else if (CoreStateMachine_DW.update_count > 200) {
+        // Transition: '<S5>:29'
+        CoreStateMachine_DW.is_c4_CoreStateMachine = CoreStateMachine_IN_Error;
+      } else if ((CoreStateMachine_DW.init_count >= 2) &&
+                 CoreStateMachine_U.cov_is_small) {
+        // Transition: '<S5>:31'
+        CoreStateMachine_DW.is_c4_CoreStateMachine =
+          CoreStateM_IN_SendToughLocation;
+      } else if (CoreStateMachine_U.cov_is_small) {
+        // Transition: '<S5>:27'
+        CoreStateMachine_DW.is_c4_CoreStateMachine =
+          CoreStateMachin_IN_SendInitPose;
+
+        // Entry 'SendInitPose': '<S5>:2'
+        CoreStateMachine_DW.send_count = 0U;
+      } else {
+        // Outport: '<Root>/amcl_status'
+        CoreStateMachine_Y.amcl_status = 2U;
+        tmp                            = CoreStateMachine_DW.update_count + 1;
+
+        if (tmp > 65535) {
+          tmp = 65535;
+        }
+
+        CoreStateMachine_DW.update_count = (uint16_T)tmp;
+      }
+      break;
+    }
+  }
+
+  // End of Chart: '<S2>/AMCL_Interface'
+
+  // Chart: '<S2>/DetectState' incorporates:
+  //   Inport: '<Root>/detect_conn'
+  //   Inport: '<Root>/filter_count'
+  //   Inport: '<Root>/is_calcd'
+  //   Memory: '<S1>/Memory2'
+
+  // Gateway: CoreStateMachine/Global Location/DetectState
+  // During: CoreStateMachine/Global Location/DetectState
   if (CoreStateMachine_DW.is_active_c3_CoreStateMachine == 0U) {
-    // Entry: CoreStateMachine/DetectState
+    // Entry: CoreStateMachine/Global Location/DetectState
     CoreStateMachine_DW.is_active_c3_CoreStateMachine = 1U;
 
-    // Entry Internal: CoreStateMachine/DetectState
-    // Transition: '<S2>:36'
+    // Entry Internal: CoreStateMachine/Global Location/DetectState
+    // Transition: '<S6>:36'
     CoreStateMachine_DW.is_c3_CoreStateMachine = CoreStateMachi_IN_DetectDisconn;
-
-    // Outport: '<Root>/detect_status'
-    // Entry 'DetectDisconn': '<S2>:35'
-    CoreStateMachine_Y.detect_status = 3U;
   } else {
     switch (CoreStateMachine_DW.is_c3_CoreStateMachine) {
-    case CoreStateMachine_IN_DetectCal:
+    case CoreStateMac_IN_DataPreparation:
 
-      // During 'DetectCal': '<S2>:27'
+      // During 'DataPreparation': '<S6>:4'
       if (!CoreStateMachine_U.detect_conn) {
-        // Outport: '<Root>/detect_flag_output'
-        // Transition: '<S2>:42'
-        // Exit 'DetectCal': '<S2>:27'
-        CoreStateMachine_Y.detect_flag_output      = false;
+        // Transition: '<S6>:41'
         CoreStateMachine_DW.is_c3_CoreStateMachine =
           CoreStateMachi_IN_DetectDisconn;
+      } else if (CoreStateMachine_Y.sys_status != 2) {
+        // Transition: '<S6>:10'
+        CoreStateMachine_DW.is_c3_CoreStateMachine =
+          CoreStateMachine_IN_DetectReady;
+      } else if ((CoreStateMachine_U.filter_count >=
+                  CoreStateMachine_DW.cal_count) &&
+                 (CoreStateMachine_Y.amcl_status == 3)) {
+        // Transition: '<S6>:30'
+        CoreStateMachine_DW.is_c3_CoreStateMachine =
+          CoreStateMachine_IN_DetectCal;
 
+        // Outport: '<Root>/calc_request'
+        // Entry 'DetectCal': '<S6>:27'
+        CoreStateMachine_Y.calc_request = true;
+      } else {
         // Outport: '<Root>/detect_status'
-        // Entry 'DetectDisconn': '<S2>:35'
-        CoreStateMachine_Y.detect_status = 3U;
-      } else if (!CoreStateMachine_U.detect_flag_input) {
-        // Outport: '<Root>/detect_flag_output'
-        // Transition: '<S2>:33'
-        // Exit 'DetectCal': '<S2>:27'
-        CoreStateMachine_Y.detect_flag_output      = false;
+        CoreStateMachine_Y.detect_status = 1U;
+      }
+      break;
+
+    case CoreStateMachine_IN_DetectCal:
+
+      // During 'DetectCal': '<S6>:27'
+      if (!CoreStateMachine_U.detect_conn) {
+        // Outport: '<Root>/calc_request'
+        // Transition: '<S6>:42'
+        // Exit 'DetectCal': '<S6>:27'
+        CoreStateMachine_Y.calc_request            = false;
+        CoreStateMachine_DW.is_c3_CoreStateMachine =
+          CoreStateMachi_IN_DetectDisconn;
+      } else if (CoreStateMachine_U.is_calcd) {
+        // Outport: '<Root>/calc_request'
+        // Transition: '<S6>:33'
+        // Exit 'DetectCal': '<S6>:27'
+        CoreStateMachine_Y.calc_request            = false;
         CoreStateMachine_DW.is_c3_CoreStateMachine =
           CoreStateMachine_IN_DetectCalOK;
       } else {
@@ -106,19 +286,15 @@ void CoreStateMachine_step(void)
 
     case CoreStateMachine_IN_DetectCalOK:
 
-      // During 'DetectCalOK': '<S2>:5'
+      // During 'DetectCalOK': '<S6>:5'
       if (!CoreStateMachine_U.detect_conn) {
-        // Transition: '<S2>:40'
+        // Transition: '<S6>:40'
         CoreStateMachine_DW.is_c3_CoreStateMachine =
           CoreStateMachi_IN_DetectDisconn;
-
-        // Outport: '<Root>/detect_status'
-        // Entry 'DetectDisconn': '<S2>:35'
-        CoreStateMachine_Y.detect_status = 3U;
       } else if ((CoreStateMachine_Y.sys_status == 3) ||
                  (CoreStateMachine_Y.sys_status == 0) ||
                  (CoreStateMachine_Y.sys_status == 1)) {
-        // Transition: '<S2>:14'
+        // Transition: '<S6>:14'
         CoreStateMachine_DW.is_c3_CoreStateMachine =
           CoreStateMachine_IN_DetectReady;
       } else {
@@ -129,61 +305,30 @@ void CoreStateMachine_step(void)
 
     case CoreStateMachi_IN_DetectDisconn:
 
-      // During 'DetectDisconn': '<S2>:35'
+      // During 'DetectDisconn': '<S6>:35'
       if (CoreStateMachine_U.detect_conn) {
-        // Transition: '<S2>:37'
+        // Transition: '<S6>:37'
         CoreStateMachine_DW.is_c3_CoreStateMachine =
           CoreStateMachine_IN_DetectReady;
-      }
-      break;
-
-    case CoreStateMachin_IN_DetectFilter:
-
-      // During 'DetectFilter': '<S2>:4'
-      if (!CoreStateMachine_U.detect_conn) {
-        // Transition: '<S2>:41'
-        CoreStateMachine_DW.is_c3_CoreStateMachine =
-          CoreStateMachi_IN_DetectDisconn;
-
-        // Outport: '<Root>/detect_status'
-        // Entry 'DetectDisconn': '<S2>:35'
-        CoreStateMachine_Y.detect_status = 3U;
-      } else if (CoreStateMachine_Y.sys_status != 2) {
-        // Transition: '<S2>:10'
-        CoreStateMachine_DW.is_c3_CoreStateMachine =
-          CoreStateMachine_IN_DetectReady;
-      } else if (CoreStateMachine_U.filter_count >=
-                 CoreStateMachine_DW.cal_count) {
-        // Transition: '<S2>:30'
-        CoreStateMachine_DW.is_c3_CoreStateMachine =
-          CoreStateMachine_IN_DetectCal;
-
-        // Outport: '<Root>/detect_flag_output'
-        // Entry 'DetectCal': '<S2>:27'
-        CoreStateMachine_Y.detect_flag_output = true;
       } else {
         // Outport: '<Root>/detect_status'
-        CoreStateMachine_Y.detect_status = 1U;
+        CoreStateMachine_Y.detect_status = 3U;
       }
       break;
 
     default:
 
-      // During 'DetectReady': '<S2>:1'
+      // During 'DetectReady': '<S6>:1'
       if (!CoreStateMachine_U.detect_conn) {
-        // Transition: '<S2>:38'
+        // Transition: '<S6>:38'
         CoreStateMachine_DW.is_c3_CoreStateMachine =
           CoreStateMachi_IN_DetectDisconn;
-
-        // Outport: '<Root>/detect_status'
-        // Entry 'DetectDisconn': '<S2>:35'
-        CoreStateMachine_Y.detect_status = 3U;
       } else if (CoreStateMachine_Y.sys_status == 2) {
-        // Transition: '<S2>:9'
+        // Transition: '<S6>:9'
         CoreStateMachine_DW.is_c3_CoreStateMachine =
-          CoreStateMachin_IN_DetectFilter;
+          CoreStateMac_IN_DataPreparation;
 
-        // Entry 'DetectFilter': '<S2>:4'
+        // Entry 'DataPreparation': '<S6>:4'
         tmp = CoreStateMachine_U.filter_count + CoreStateMachine_P.counter_times;
 
         if (tmp > 65535) {
@@ -199,7 +344,7 @@ void CoreStateMachine_step(void)
     }
   }
 
-  // End of Chart: '<S1>/DetectState'
+  // End of Chart: '<S2>/DetectState'
 
   // Chart: '<S1>/NavState' incorporates:
   //   Inport: '<Root>/nav_conn'
@@ -498,19 +643,32 @@ void CoreStateMachine_initialize(void)
   (void)memset((void *)&CoreStateMachine_Y, 0,
                sizeof(ExtY_CoreStateMachine_T));
 
-  // SystemInitialize for Chart: '<S1>/DetectState'
+  // SystemInitialize for Chart: '<S2>/AMCL_Interface'
+  CoreStateMachine_DW.is_active_c4_CoreStateMachine = 0U;
+  CoreStateMachine_DW.is_c4_CoreStateMachine        =
+    CoreStateMac_IN_NO_ACTIVE_CHILD;
+  CoreStateMachine_DW.init_count   = 0U;
+  CoreStateMachine_DW.send_count   = 0U;
+  CoreStateMachine_DW.update_count = 0U;
+
+  // SystemInitialize for Outport: '<Root>/amcl_status' incorporates:
+  //   SystemInitialize for Chart: '<S2>/AMCL_Interface'
+
+  CoreStateMachine_Y.amcl_status = 0U;
+
+  // SystemInitialize for Chart: '<S2>/DetectState'
   CoreStateMachine_DW.is_active_c3_CoreStateMachine = 0U;
   CoreStateMachine_DW.is_c3_CoreStateMachine        =
     CoreStateMac_IN_NO_ACTIVE_CHILD;
   CoreStateMachine_DW.cal_count = 0U;
 
-  // SystemInitialize for Outport: '<Root>/detect_flag_output' incorporates:
-  //   SystemInitialize for Chart: '<S1>/DetectState'
+  // SystemInitialize for Outport: '<Root>/calc_request' incorporates:
+  //   SystemInitialize for Chart: '<S2>/DetectState'
 
-  CoreStateMachine_Y.detect_flag_output = false;
+  CoreStateMachine_Y.calc_request = false;
 
   // SystemInitialize for Outport: '<Root>/detect_status' incorporates:
-  //   SystemInitialize for Chart: '<S1>/DetectState'
+  //   SystemInitialize for Chart: '<S2>/DetectState'
 
   CoreStateMachine_Y.detect_status = 0U;
 

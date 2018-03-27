@@ -3,9 +3,9 @@
 //
 // Code generated for Simulink model 'CoreStateMachine'.
 //
-// Model version                  : 1.37
+// Model version                  : 1.64
 // Simulink Coder version         : 8.11 (R2016b) 25-Aug-2016
-// C/C++ source code generated on : Thu Feb 08 13:43:24 2018
+// C/C++ source code generated on : Mon Mar 26 17:46:56 2018
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)

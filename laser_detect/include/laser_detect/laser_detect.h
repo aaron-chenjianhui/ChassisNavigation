@@ -237,7 +237,7 @@ private:
   sys_status_t m_sys_status;
   ros::ServiceServer m_detect_server;
   uint16_t m_filter_count;
-  bool m_detect_flag;
+  bool m_is_calcd;
 
   data_convert::PcPlcConvert converter;
 

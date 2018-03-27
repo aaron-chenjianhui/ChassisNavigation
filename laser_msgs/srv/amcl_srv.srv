@@ -1,0 +1,5 @@
+uint8 sys_status
+uint8 amcl_status
+---
+bool amcl_conn
+bool cov_is_small
