@@ -8,7 +8,6 @@
 #include <tf/transform_broadcaster.h>
 #include <std_msgs/Float32.h>
 
-#include <Eigen/Eigen>
 #include <boost/thread/mutex.hpp>
 
 #include <vector>
@@ -22,6 +21,7 @@
 #include "laser_msgs/detect_msg.h"
 #include "laser_msgs/laser_detect_srv.h"
 #include "SysStateTypes.h"
+#include "MyMatTypes.h"
 #include "PcPlcConvert.hpp"
 
 #define DEG2RAD(X) X * 3.1415926 / 180
@@ -40,12 +40,6 @@ typedef std::map<double, double>::const_iterator      const_lidar_iter_type;
 typedef std::deque<lidar_data_type>                   lidar_filter_type;
 typedef std::deque<lidar_data_type>::iterator         filter_iter_type;
 typedef std::deque<lidar_data_type>::reverse_iterator filter_riter_type;
-
-// Eigen type for least square
-typedef Eigen::Matrix<double, 2, 2>mat2x2;
-typedef Eigen::Matrix<double, 2, 1>mat2x1;
-typedef Eigen::Matrix<double, 3, 3>mat3x3;
-typedef Eigen::Matrix<double, 3, 1>mat3x1;
 
 
 namespace lms {

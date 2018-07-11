@@ -178,7 +178,11 @@ int main(int argc, char *argv[]) {
       std::cout << "Nav node conn status is: " << nav_conn_status << std::endl;
     }
     else {
-      nav_conn_status = nav_disconn;
+      // nav_conn_status = nav_disconn;
+
+      uint8_t nav_conn_now = nav_status_srv.response.nav_conn;
+
+      nav_conn_status = (nav_conn_status_t)nav_conn_now;
 
       std::cout << "Nav node encounters error" << std::endl;
     }
@@ -237,10 +241,10 @@ int main(int argc, char *argv[]) {
     amcl_status   = (amcl_status_t)amcl_status_now;
 
     std::cout << "--------------------------" << std::endl;
-    std::cout << "System output status is: " << sys_status << std::endl;
-    std::cout << "Nav node output status is: " << nav_status << std::endl;
-    std::cout << "Detect node output status is: " << detect_status << std::endl;
-    std::cout << "AMCL node output status is: " << amcl_status << std::endl;
+    std::cout << "System status is: " << sys_status << std::endl;
+    std::cout << "Nav node status is: " << nav_status << std::endl;
+    std::cout << "Detect node status is: " << detect_status << std::endl;
+    std::cout << "AMCL node status is: " << amcl_status << std::endl;
     std::cout << "Calculate request is: " << calc_request << std::endl;
 
     std::cout << "------------------ Loop End ------------------" << std::endl;

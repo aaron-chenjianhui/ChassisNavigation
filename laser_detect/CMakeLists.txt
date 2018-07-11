@@ -3,7 +3,7 @@ project(laser_detect)
 
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -144,16 +144,21 @@ include_directories(${Eigen_INCLUDE_DIRS})
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-SET(RANSAC_EXAMPLE_SRCS
-    src/LineParamEstimator.cxx
-    src/Point2D.cxx
-    # src/main.cxx
-    src/laser_main.cpp
-    src/laser_detect.cpp
-    # src/DetectState_data.cpp
-    # src/DetectState.cpp
-)
-   add_executable(${PROJECT_NAME}_node ${RANSAC_EXAMPLE_SRCS})
+# SET(RANSAC_EXAMPLE_SRCS
+#     src/LineParamEstimator.cxx
+#     src/Point2D.cxx
+#     # src/main.cxx
+#     src/laser_main.cpp
+#     src/laser_detect.cpp
+#     # src/DetectState_data.cpp
+#     # src/DetectState.cpp
+# )
+Set(TEST_SRCS
+src/new_laser_detect.cpp)
+   add_executable(test_node ${TEST_SRCS})
+   target_link_libraries(test_node
+   ${catkin_LIBRARIES})
+   # add_executable(${PROJECT_NAME}_node ${RANSAC_EXAMPLE_SRCS})
   #
   # ## Rename C++ executable without prefix
   # ## The above recommended prefix causes long target names, the following renames the
@@ -166,9 +171,9 @@ SET(RANSAC_EXAMPLE_SRCS
   # # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
   #
   # ## Specify libraries to link a library or executable target against
-   target_link_libraries(${PROJECT_NAME}_node
-     ${catkin_LIBRARIES}
-   )
+   # target_link_libraries(${PROJECT_NAME}_node
+   #   ${catkin_LIBRARIES}
+   # )
 
 #############
 ## Install ##

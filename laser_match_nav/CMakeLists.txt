@@ -142,8 +142,9 @@ include_directories(${Eigen_INCLUDE_DIRS})
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-set(PLAN_SRC src/ChassisPlanner.cpp src/main_plan.cpp)
  add_executable(sensor_handle_node src/SensorHandle.cpp)
+
+set(PLAN_SRC src/ChassisPlanner.cpp src/main_plan.cpp)
  add_executable(chassis_plan_node ${PLAN_SRC})
 
  ## Rename C++ executable without prefix

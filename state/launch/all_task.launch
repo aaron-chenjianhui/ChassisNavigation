@@ -2,18 +2,21 @@
   ################## system control frequency ##################
   <arg name="use_rviz" default="false"/>
   ################## system control frequency ##################
-  <arg name="sys_freq" default="10"/>
+  <arg name="sys_freq" default="1"/>
   ################## lidar IP address ##################
-  <arg name="host" default="192.168.2.5"/>
+  <!-- <arg name="host" default="192.168.2.5"/> -->
+  <arg name="host" default="192.168.0.8" />
   ################## PLC IP address ##################
   <!-- use this host and port for debugging -->
-  <!-- <arg name="chassis_host" default="127.0.0.1"/> <arg name="chassis_port" default="2000"/> -->
+  <arg name="chassis_host" default="127.0.0.1"/>
+  <arg name="chassis_port" default="2000"/>
   <!-- use this host and port for plc connection -->
-  <arg name="chassis_host" default="192.168.10.11"/>
-  <arg name="chassis_port" default="4097"/>
+  <!-- <arg name="chassis_host" default="192.168.10.11"/> <arg name="chassis_port" default="4097"/> -->
 
   #### publish an example base_link -> laser transform ###########
-  <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0.0 0.0 0.0 0.0 0.0 0.0 /base_link /laser 40"/>
+  <!-- <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0.0 0.0 0.0 0.0 0.0 0.0 /base_link /laser 40"/> -->
+
+  <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0.0 0.0 0.0 0.0 0.0 0.0 /base_footprint /laser 40"/>
 
   ######### Lidar node ###########
   <arg name="publish_min_range_as_inf" default="false"/>
@@ -61,4 +64,5 @@
     <node pkg="rviz" type="rviz" name="rviz" args="-d $(find laser_match_test)/launch/laser_match.rviz"/>
   </group>
 
+  <include file="$(find amcl_intfc)/launch/amcl_intfc.launch"/>
 </launch>

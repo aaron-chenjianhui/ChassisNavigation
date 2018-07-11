@@ -21,8 +21,8 @@ typedef enum {
 	detect_disconn	= 0
 } detect_conn_status_t;
 typedef enum {
-	amcl_conn	= 1,
-	amcl_disconn	= 0
+	AMCL_CONN	= 1,
+	AMCL_DISCONN	= 0
 } amcl_conn_status_t;
 
 // node status enum
@@ -56,6 +56,7 @@ typedef enum {
 	sys_track	= 4
 } sys_status_t;
 
+// AMCL node status
 typedef enum {
 	AMCL_READY		= 0,
 	AMCL_SEND_INIT		= 1,
