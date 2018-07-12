@@ -3,22 +3,22 @@
 
 // node connection status
 typedef enum {
-	lidar_conn	= 1,
-	lidar_disconn	= 0
+	LIDAR_CONN	= 1,
+	LIDAR_DISCONN	= 0
 } lidar_conn_status_t;
 typedef enum {
-	tcp_conn	= 1,
-	tcp_disconn	= 0
+	TCP_CONN	= 1,
+	TCP_DISCONN	= 0
 } tcp_conn_status_t;
 typedef enum {
-	nav_conn	= 1,
-	nav_disconn	= 0
+	NAV_CONN	= 1,
+	NAV_DISCONN	= 0
 } nav_conn_status_t;
 
 // detect node status
 typedef enum {
-	detect_conn	= 1,
-	detect_disconn	= 0
+	DETECT_CONN	= 1,
+	DETECT_DISCONN	= 0
 } detect_conn_status_t;
 typedef enum {
 	AMCL_CONN	= 1,
@@ -27,33 +27,33 @@ typedef enum {
 
 // node status enum
 typedef enum {
-	detect_ready	= 0,
-	detect_cal_ing	= 1,
-	detect_cal_ok	= 2,
-	detect_err	= 3
+	DETECT_READY	= 0,
+	DETECT_CAL_ING	= 1,
+	DETECT_CAL_OK	= 2,
+	DETECT_ERR	= 3
 } detect_status_t;
 
 typedef enum {
-	nav_ready	= 0,
-	nav_calib	= 1,
-	nav_ok		= 2,
-	nav_err		= 3
+	NAV_READY	= 0,
+	NAV_CALIB	= 1,
+	NAV_OK		= 2,
+	NAV_ERR		= 3
 } nav_status_t;
 
 typedef enum {
-	msg_ready	= 0,
-	msg_global	= 1,
-	msg_track	= 2,
-	no_msg		= 4
+	MSG_READY	= 0,
+	MSG_GLOBAL	= 1,
+	MSG_TRACK	= 2,
+	NO_MSG		= 4
 } msg_status_t;
 
 // TODO(CJH): add error status
 typedef enum {
-	sys_init	= 0,
-	sys_ready	= 1,
-	sys_global_ing	= 2,
-	sys_global_ok	= 3,
-	sys_track	= 4
+	SYS_INIT	= 0,
+	SYS_READY	= 1,
+	SYS_GLOBAL_ING	= 2,
+	SYS_GLOBAL_OK	= 3,
+	SYS_TRACK	= 4
 } sys_status_t;
 
 // AMCL node status

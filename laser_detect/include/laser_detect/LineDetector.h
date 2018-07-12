@@ -1,5 +1,5 @@
 #ifndef _LINE_DETECTOR_H
-#define _LINE_DETECTOR_H
+#define _LINE_  DETECTOR_H
 
 #include "Line2D.hpp"
 #include "Point2D.h"
@@ -65,9 +65,10 @@ void LaserFindLine(LaserData& raw_laser_data, Line2D& line, LaserData& select_la
 	LaserData::AngSeqT::iterator iter = ang_raw.begin();
 	VoteT::iterator vote_iter = vote.begin();
 
-	for (; iter != ang_raw.end(); ++iter, ++vote_iter)
+	for (; iter != ang_raw.end(); ++iter, ++vote_iter) {
 		if (*vote_iter)
 			ang_voted.push_back(*iter);
+	}
 
 	raw_laser_data.DataVoted(ang_voted, select_laser_data);
 }
