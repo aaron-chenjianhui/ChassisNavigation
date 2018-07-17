@@ -27,10 +27,11 @@ typedef enum {
 
 // node status enum
 typedef enum {
-	DETECT_READY	= 0,
-	DETECT_CAL_ING	= 1,
-	DETECT_CAL_OK	= 2,
-	DETECT_ERR	= 3
+	DETECT_ERR		= 0,
+	DETECT_READY		= 1,
+	DETECT_PREPARATION	= 2,
+	DETECT_CAL_ING		= 3,
+	DETECT_CAL_OK		= 4,
 } detect_status_t;
 
 typedef enum {
