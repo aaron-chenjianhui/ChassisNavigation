@@ -10,6 +10,7 @@ project(laser_msgs)
 find_package(catkin REQUIRED COMPONENTS
   message_generation
   geometry_msgs
+  cmake_modules
 )
 find_package(Eigen REQUIRED)
 
