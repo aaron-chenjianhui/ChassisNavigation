@@ -3,9 +3,9 @@
 //
 // Code generated for Simulink model 'CoreStateMachine'.
 //
-// Model version                  : 1.64
+// Model version                  : 1.69
 // Simulink Coder version         : 8.11 (R2016b) 25-Aug-2016
-// C/C++ source code generated on : Mon Mar 26 17:46:56 2018
+// C/C++ source code generated on : Tue Jul 17 08:14:35 2018
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -18,10 +18,10 @@
 #include <stddef.h>
 #ifndef CoreStateMachine_COMMON_INCLUDES_
 # define CoreStateMachine_COMMON_INCLUDES_
-#include "rtwtypes.h"
+#include "state/rtwtypes.h"
 #endif                                 // CoreStateMachine_COMMON_INCLUDES_
 
-#include "CoreStateMachine_types.h"
+#include "state/CoreStateMachine_types.h"
 
 // Macros for accessing real-time model data structure
 #ifndef rtmGetErrorStatus
@@ -34,71 +34,68 @@
 
 // Block states (auto storage) for system '<Root>'
 typedef struct {
-  uint16_T cal_count;                  // '<S2>/DetectState'
-  uint16_T init_count;                 // '<S2>/AMCL_Interface'
-  uint16_T send_count;                 // '<S2>/AMCL_Interface'
-  uint16_T update_count;               // '<S2>/AMCL_Interface'
-  uint8_T is_active_c1_CoreStateMachine;// '<S1>/StateMachine'
-  uint8_T is_c1_CoreStateMachine;      // '<S1>/StateMachine'
-  uint8_T is_active_c2_CoreStateMachine;// '<S1>/NavState'
-  uint8_T is_c2_CoreStateMachine;      // '<S1>/NavState'
-  uint8_T is_active_c3_CoreStateMachine;// '<S2>/DetectState'
-  uint8_T is_c3_CoreStateMachine;      // '<S2>/DetectState'
-  uint8_T is_active_c4_CoreStateMachine;// '<S2>/AMCL_Interface'
-  uint8_T is_c4_CoreStateMachine;      // '<S2>/AMCL_Interface'
+	uint16_T	cal_count;                      // '<S2>/DetectState'
+	uint16_T	init_count;                     // '<S2>/AMCL_Interface'
+	uint16_T	send_count;                     // '<S2>/AMCL_Interface'
+	uint16_T	update_count;                   // '<S2>/AMCL_Interface'
+	uint8_T		is_active_c1_CoreStateMachine;  // '<S1>/StateMachine'
+	uint8_T		is_c1_CoreStateMachine;         // '<S1>/StateMachine'
+	uint8_T		is_active_c2_CoreStateMachine;  // '<S1>/NavState'
+	uint8_T		is_c2_CoreStateMachine;         // '<S1>/NavState'
+	uint8_T		is_active_c3_CoreStateMachine;  // '<S2>/DetectState'
+	uint8_T		is_c3_CoreStateMachine;         // '<S2>/DetectState'
+	uint8_T		is_active_c4_CoreStateMachine;  // '<S2>/AMCL_Interface'
+	uint8_T		is_c4_CoreStateMachine;         // '<S2>/AMCL_Interface'
 } DW_CoreStateMachine_T;
 
 // External inputs (root inport signals with auto storage)
 typedef struct {
-  boolean_T is_calcd;                  // '<Root>/is_calcd'
-  uint16_T filter_count;               // '<Root>/filter_count'
-  boolean_T detect_conn;               // '<Root>/detect_conn'
-  boolean_T nav_conn;                  // '<Root>/nav_conn'
-  boolean_T lidar_conn;                // '<Root>/lidar_conn'
-  boolean_T tcp_conn;                  // '<Root>/tcp_conn'
-  boolean_T amcl_conn;                 // '<Root>/amcl_conn'
-  boolean_T cov_is_small;              // '<Root>/cov_is_small'
-  uint8_T recv_msg;                    // '<Root>/recv_msg'
+	boolean_T	is_calcd;       // '<Root>/is_calcd'
+	uint16_T	filter_count;   // '<Root>/filter_count'
+	boolean_T	detect_conn;    // '<Root>/detect_conn'
+	boolean_T	nav_conn;       // '<Root>/nav_conn'
+	boolean_T	lidar_conn;     // '<Root>/lidar_conn'
+	boolean_T	tcp_conn;       // '<Root>/tcp_conn'
+	boolean_T	amcl_conn;      // '<Root>/amcl_conn'
+	boolean_T	cov_is_small;   // '<Root>/cov_is_small'
+	uint8_T		recv_msg;       // '<Root>/recv_msg'
 } ExtU_CoreStateMachine_T;
 
 // External outputs (root outports fed by signals with auto storage)
 typedef struct {
-  uint8_T sys_status;                  // '<Root>/sys_status'
-  boolean_T calc_request;              // '<Root>/calc_request'
-  uint8_T detect_status;               // '<Root>/detect_status'
-  uint8_T nav_status;                  // '<Root>/nav_status'
-  uint8_T amcl_status;                 // '<Root>/amcl_status'
+	uint8_T		sys_status;     // '<Root>/sys_status'
+	boolean_T	calc_request;   // '<Root>/calc_request'
+	uint8_T		detect_status;  // '<Root>/detect_status'
+	uint8_T		nav_status;     // '<Root>/nav_status'
+	uint8_T		amcl_status;    // '<Root>/amcl_status'
 } ExtY_CoreStateMachine_T;
 
 // Parameters (auto storage)
 struct P_CoreStateMachine_T_ {
-  uint16_T counter_times;              // Variable: counter_times
-                                       //  Referenced by: '<S2>/DetectState'
+	uint16_T	counter_times;  // Variable: counter_times
+	                                //  Referenced by: '<S2>/DetectState'
 
-  uint8_T Memory2_X0;                  // Computed Parameter: Memory2_X0
-                                       //  Referenced by: '<S1>/Memory2'
+	uint8_T		Memory2_X0;     // Computed Parameter: Memory2_X0
+	                                //  Referenced by: '<S1>/Memory2'
 
-  uint8_T Memory1_X0;                  // Computed Parameter: Memory1_X0
-                                       //  Referenced by: '<S1>/Memory1'
-
+	uint8_T		Memory1_X0;     // Computed Parameter: Memory1_X0
+	                                //  Referenced by: '<S1>/Memory1'
 };
 
 // Real-time Model Data Structure
 struct tag_RTM_CoreStateMachine_T {
-  const char_T *errorStatus;
+	const char_T *errorStatus;
 };
 
 // Block parameters (auto storage)
 #ifdef __cplusplus
 
 extern "C" {
-
 #endif
 
-  extern P_CoreStateMachine_T CoreStateMachine_P;
+extern P_CoreStateMachine_T CoreStateMachine_P;
 
 #ifdef __cplusplus
-
 }
 #endif
 
@@ -108,33 +105,29 @@ extern DW_CoreStateMachine_T CoreStateMachine_DW;
 #ifdef __cplusplus
 
 extern "C" {
-
 #endif
 
-  // External inputs (root inport signals with auto storage)
-  extern ExtU_CoreStateMachine_T CoreStateMachine_U;
+// External inputs (root inport signals with auto storage)
+extern ExtU_CoreStateMachine_T CoreStateMachine_U;
 
-  // External outputs (root outports fed by signals with auto storage)
-  extern ExtY_CoreStateMachine_T CoreStateMachine_Y;
+// External outputs (root outports fed by signals with auto storage)
+extern ExtY_CoreStateMachine_T CoreStateMachine_Y;
 
 #ifdef __cplusplus
-
 }
 #endif
 
 #ifdef __cplusplus
 
 extern "C" {
-
 #endif
 
-  // Model entry point functions
-  extern void CoreStateMachine_initialize(void);
-  extern void CoreStateMachine_step(void);
-  extern void CoreStateMachine_terminate(void);
+// Model entry point functions
+extern void CoreStateMachine_initialize(void);
+extern void CoreStateMachine_step(void);
+extern void CoreStateMachine_terminate(void);
 
 #ifdef __cplusplus
-
 }
 #endif
 
@@ -142,13 +135,11 @@ extern "C" {
 #ifdef __cplusplus
 
 extern "C" {
-
 #endif
 
-  extern RT_MODEL_CoreStateMachine_T *const CoreStateMachine_M;
+extern RT_MODEL_CoreStateMachine_T *const CoreStateMachine_M;
 
 #ifdef __cplusplus
-
 }
 #endif
 

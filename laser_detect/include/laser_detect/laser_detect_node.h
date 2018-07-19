@@ -3,6 +3,7 @@
 
 #include "LaserDisp.hpp"
 #include "Pose2D.hpp"
+#include "LaserFilter.hpp"
 
 
 class LaserDetectNode {
@@ -34,6 +35,9 @@ ros::Subscriber m_coarse_pose_suber;
 // for state machine
 ros::ServiceServer m_status_server;
 
+// for initial pose publish
+ros::Publisher m_init_puber;
+
 // for result display
 LaserDisp m_disp;
 
@@ -45,6 +49,18 @@ bool m_is_calcd;
 
 // coarse pose
 Pose2D m_coarse_pose;
+
+// subclass
+LaserMAFilter m_filter;
+LaserDisp m_disp;
+ContainerDetect m_detect;
+FindSurface m_surf_finder;
+
+// data class
+LaserScanData m_laser_data;
+LaserScanData m_tmp_laser_data;
+std::vector<LaserScanData> m_laser_buf;
+Pose2D m_laser_in_ori;
 };
 
 

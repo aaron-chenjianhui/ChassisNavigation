@@ -30,6 +30,15 @@ struct ContainerParam {
 
 class ContainerDetect {
 public:
+ContainerDetect()
+{
+	double width = 2350;
+	double length = 1700;
+	Pose2D pose(-length, -width / 2.0, 0);
+
+	UpdateRange(pose, width, length, DEG2RAD(5));
+}
+
 ContainerDetect(Pose2D& pose, double container_width, double container_length)
 {
 	UpdateRange(pose, container_width, container_length, DEG2RAD(5));
@@ -60,7 +69,7 @@ void UpdateRange(const Pose2D& pose, double width, double length, double delta)
 	m_container_param.length = length;
 }
 
-void FindWallLine(const LaserData& raw_laser_data, ContainerParam& container_param)
+void FindWallLine(const LaserData& raw_laser_data, ContainerParam& param)
 {
 	LaserData left_laser_data, front_laser_data, right_laser_data;
 	bool ret = false;
@@ -82,24 +91,40 @@ void FindWallLine(const LaserData& raw_laser_data, ContainerParam& container_par
 	} else {
 		DEBUGLOG("Can not select right laser data in range");
 	}
+
+	// // Find original point
+	// Point2D pos_in_laser = Line2D::CrossPoint(m_param.left_line, m_param.front_line);
+	// double theta_in_laser = atan2(ori_in_laser.y - m_param.left_line.m_ay,
+	//                            ori_in_laser.x - m_param.left_line.m_ax);
+	// Pose2D ori_in_laser(pos_in_laser.m_x, pos_in_laser.m_y, theta_in_laser);
+	// Pose2D laser_in_ori = ori_in_laser.InvPose();
+
+	param = m_param;
+	param.left_min = left_laser_data.GetAngSeq().front();
+	param.left_max = left_laser_data.GetAngSeq().back();
+	param.front_min = front_laser_data.GetAngSeq().front();
+	param.front_max = front_laser_data.GetAngSeq().back();
+	param.right_min = right_laser_data.GetAngSeq().front();
+	param.right_max = right_laser_data.GetAngSeq().back();
 }
 
-void ChooseBetterRegion(const Line2D& line, const Pose2D& pose, const double& ref_min, const double& ref_max, double& min_range, double& max_range)
+void ChooseBetterRegion(const Line2D& line, const double& ref_min, const double& ref_max, double& min_range, double& max_range)
 {
 	Line2D v_line;
 
-	v_line.ax = pose.x;
-	v_line.ay = pose.y;
+	v_line.ax = 0;
+	v_line.ay = 0;
 	v_line.nx = -line.ny;
 	v_line.ny = line.nx;
 
 	Point2D cross_point = Line2D::CrossPoint(v_line, line);
-	double theta_in_ori = atan2(cross_point.y - pose.y, cross_point.x - pose.x);
-	double theta_in_laser = theta_in_ori - pose.theta;
+	double theta_in_laser = atan2(cross_point.y, cross_point.x);
 
 	min_range = std::min(theta_in_laser - DEG2RAD(20), ref_min);
 	max_range = std::max(theta_in_laser + DEG2RAD(20), ref_max);
 }
+
+
 
 
 private:

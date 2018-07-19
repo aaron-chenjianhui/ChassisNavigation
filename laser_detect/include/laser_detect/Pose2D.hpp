@@ -11,6 +11,17 @@ double m_y;
 double m_theta;
 
 public:
+Pose2D(double x, double y, double theta) :
+	m_x(x),
+	m_y(y),
+	m_theta(theta)
+{
+}
+
+Pose2D InvPose()
+{
+	return Pose2D(-m_x, -m_y, -m_theta);
+}
 
 // inline std::ostream& operator<<(std::ostream& output, const MyPose2D& pose)
 // {

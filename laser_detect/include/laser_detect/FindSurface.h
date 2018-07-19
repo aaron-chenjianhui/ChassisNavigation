@@ -15,12 +15,7 @@ typedef std::vector<bool> VoteT;
 typedef std::string OffsetT;
 
 public:
-LineOffset()
-{
-}
-
-LineOffset(Line2D & init_line, PointsT & init_points, OffsetT& off_type, double off_thre = 1.) :
-	m_line(init_line), m_points(init_points), m_off_type(off_type), m_off_thre(off_thre)
+LineOffset(double off_thre = 1.) : m_off_thre(off_thre)
 {
 }
 
@@ -29,25 +24,26 @@ LineOffset(Line2D & init_line, PointsT & init_points, OffsetT& off_type, double 
 }
 
 
-bool Execute(Line2D &line, int max_count = 10)
+Line2D Execute(const PointsT points, const Line2D& line, int max_count = 10)
 {
 	PointsT outer_points;
 	PointsT inner_points;
 	VoteT vote;
+	Line2D off_line;
 
 	for (int i = 0; i < max_count; ++i) {
-		SeperatePoints(m_points, m_line, inner_points, outer_points);
-		m_points = inner_points;
+		SeperatePoints(points, line, inner_points, outer_points);
+		points = inner_points;
 
-		FindLine(inner_points, m_line, vote);
+		FindLine(inner_points, line, vote);
 		if (Error() < m_off_thre) {
-			line = m_line;
-			return true;
+			off_line = line;
+			return off_line;
 		}
 	}
 
-	line = m_line;
-	return false;
+	off_line.clear()
+	return off_line;
 }
 
 
@@ -95,5 +91,22 @@ OffsetT m_off_type;
 LineDetector m_line_detector;
 double m_off_thre;
 };
+
+class FindSurface : public LineOffset {
+public:
+FindSurface()
+{
+}
+
+Line2D GetSurface(const LaserData& laser_data, const Line2D& line)
+{
+	PointsT points = laser_data.ScanToPoint();
+	Line2D surf_line = Execute(points, line);
+
+	return surf_line;
+}
+};
+
+
 
 #endif
