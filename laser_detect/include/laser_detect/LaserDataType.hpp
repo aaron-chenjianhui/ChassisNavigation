@@ -5,7 +5,9 @@
 #include <iterator>
 #include <algorithm>
 
-#include "UnitConvert.h"
+#include "laser_msgs/UnitConvert.h"
+#include "laser_msgs/DebugLog.hpp"
+
 #include "Point2D.h"
 
 class LaserRange {
@@ -115,6 +117,11 @@ PointsT ScanToPoint()
 	return points;
 }
 
+PointsT ScanToPoint() const
+{
+	return ScanToPoint();
+}
+
 bool DataInRange(double		min_angle,
 		 double		max_angle,
 		 LaserData&	lidar_data_out)
@@ -131,6 +138,12 @@ bool DataInRange(double		min_angle,
 		DEBUGLOG("min_angle is bigger than max_angle");
 		return false;
 	}
+}
+
+bool DataInRange(double min_angle, double max_angle,
+		 LaserData& lidar_data_out) const
+{
+	return DataInRange(min_angle, max_angle, lidar_data_out);
 }
 
 void DataEliminated(const AngSeqT&	angle_seq,
@@ -252,7 +265,7 @@ double range_min;
 double range_max;
 
 
-private:
+protected:
 LaserDataT m_laser_data;
 };
 

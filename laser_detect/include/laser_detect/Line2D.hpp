@@ -2,7 +2,8 @@
 #define _LINE2D_HPP
 
 #include "Point2D.h"
-#include "MatrixCal.h"
+
+#include "laser_msgs/MyMatTypes.hpp"
 
 class Line2D {
 public:
@@ -56,13 +57,13 @@ static Point2D CrossPoint(const Line2D& line1, const Line2D& line2)
 {
 	mat2x2 a;
 
-	a(0, 0) = line1.nx;
-	a(0, 1) = line1.ny;
-	a(1, 0) = line2.nx;
-	a(1, 1) = line2.ny;
+	a(0, 0) = line1.m_nx;
+	a(0, 1) = line1.m_ny;
+	a(1, 0) = line2.m_nx;
+	a(1, 1) = line2.m_ny;
 	mat2x1 b;
-	b(0) = line1.ax * line1.nx + line1.ay * line1.ny;
-	b(1) = line2.ax * line2.nx + line2.ay * line2.ny;
+	b(0) = line1.m_ax * line1.m_nx + line1.m_ay * line1.m_ny;
+	b(1) = line2.m_ax * line2.m_nx + line2.m_ay * line2.m_ny;
 
 	mat2x1 p;
 	p = a.inverse() * b;

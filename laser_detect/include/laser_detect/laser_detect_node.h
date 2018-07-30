@@ -1,10 +1,18 @@
 #ifndef _LASER_DETECT_NODE_H
 #define _LASER_DETECT_NODE_H
 
+#include <deque>
+
+#include "geometry_msgs/Pose2D.h"
+
 #include "LaserDisp.hpp"
 #include "Pose2D.hpp"
 #include "LaserFilter.hpp"
+#include "ContainerDetect.hpp"
+#include "FindSurface.hpp"
 
+#include "laser_msgs/laser_detect_srv.h"
+#include "laser_msgs/SysStateTypes.h"
 
 class LaserDetectNode {
 public:
@@ -52,15 +60,17 @@ Pose2D m_coarse_pose;
 
 // subclass
 LaserMAFilter m_filter;
-LaserDisp m_disp;
 ContainerDetect m_detect;
 FindSurface m_surf_finder;
 
 // data class
 LaserScanData m_laser_data;
 LaserScanData m_tmp_laser_data;
-std::vector<LaserScanData> m_laser_buf;
+std::deque<LaserScanData> m_laser_buf;
 Pose2D m_laser_in_ori;
+
+// for mutex
+boost::mutex m_mutex;
 };
 
 

@@ -26,23 +26,23 @@ LineOffset(double off_thre = 1.) : m_off_thre(off_thre)
 
 Line2D Execute(const PointsT points, const Line2D& line, int max_count = 10)
 {
+	PointsT all_points = points;
 	PointsT outer_points;
 	PointsT inner_points;
 	VoteT vote;
-	Line2D off_line;
+	Line2D off_line = line;
 
 	for (int i = 0; i < max_count; ++i) {
-		SeperatePoints(points, line, inner_points, outer_points);
-		points = inner_points;
+		SeperatePoints(all_points, off_line, inner_points, outer_points);
+		all_points = inner_points;
 
-		FindLine(inner_points, line, vote);
+		FindLine(inner_points, off_line, vote);
 		if (Error() < m_off_thre) {
-			off_line = line;
 			return off_line;
 		}
 	}
 
-	off_line.clear()
+	off_line = line;
 	return off_line;
 }
 
@@ -79,9 +79,11 @@ void FindLine(const PointsT& points, Line2D& line, VoteT& vote)
 	m_line_detector.FindLine(points, line, vote);
 }
 
+// TODO(CJH)
 double Error()
 {
-	return m_line_detector(m_points, m_line);
+	// return m_line_detector(m_points, m_line);
+	return 100.;
 }
 
 private:

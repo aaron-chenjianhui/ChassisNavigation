@@ -2,38 +2,54 @@
 #define _LASER_DISP_HPP
 
 #include <string>
+#include <initializer_list>
 
 #include <ros/ros.h>
 #include <tf/transform_broadcaster.h>
+#include <tf/transform_datatypes.h>
+#include <sensor_msgs/LaserScan.h>
+#include <sensor_msgs/PointCloud.h>
 
-#include "LaserDataType.hpp"
+#include "LaserScanDataType.hpp"
+#include "Pose2D.hpp"
+#include "Line2D.hpp"
+
+#include "laser_msgs/UnitConvert.h"
 
 
 
 class LaserDisp {
 public:
+typedef std::vector<Point2D> PointsT;
+
+public:
 LaserDisp(ros::NodeHandle nh) : m_nh(nh)
 {
 	m_laser_puber = m_nh.advertise<sensor_msgs::LaserScan>("custom_scan", 1);
 	m_line_puber = m_nh.advertise<sensor_msgs::PointCloud>("custom_line", 1);
-};
+}
+
+LaserDisp()
+{
+	m_laser_puber = m_nh.advertise<sensor_msgs::LaserScan>("custom_scan", 1);
+	m_line_puber = m_nh.advertise<sensor_msgs::PointCloud>("custom_line", 1);
+}
+
 ~LaserDisp()
 {
-};
-};
+}
 
-
-void DispLaserScan(const LaserData& laser_data)
+void DispLaserScan(const LaserScanData& laser_data)
 {
 	sensor_msgs::LaserScan msgs;
 
-	msgs = laser_data.GetLaserScan(frame_id);
+	msgs = laser_data.ToLaserScan();
 
 	m_laser_puber.publish(msgs);
 }
 
-void DispLine(std::initializer_list<Line2D &>	list,
-	      std::initializer_list<double>	inten_list)
+void DispLine(const std::initializer_list<Line2D> &	list,
+	      const std::initializer_list<double> &	inten_list)
 {
 	if (list.size() != inten_list.size()) {
 		return;
@@ -54,7 +70,12 @@ void DispLine(std::initializer_list<Line2D &>	list,
 		PointsT::iterator iter = points.begin();
 
 		for (; iter != points.end(); ++iter) {
-			points_ros.push_back(geometry_msgs::Point32(iter->x, iter->y, 0));
+			geometry_msgs::Point32 p;
+			p.x = iter->x;
+			p.y = iter->y;
+			p.z = 0;
+
+			points_ros.push_back(p);
 			inten.push_back(*inten_iter);
 		}
 	}
@@ -70,11 +91,11 @@ void BroadTransform(const Pose2D& pose, std::string& parent, std::string& child)
 	tf::Transform transform;
 	tf::Quaternion q;
 
-	transform.setOrigin(tf::Vector3(MM2M(pose.x), MM2M(pose.y), 0));
-	q.setRPY(0, 0, pose.theta);
+	transform.setOrigin(tf::Vector3(MM2M(pose.m_x), MM2M(pose.m_y), 0));
+	q.setRPY(0, 0, pose.m_theta);
 	transform.setRotation(q);
 
-	m_br.sendTransform(tf::StampedTransform(transform, ros::Time::now()), parent, child);
+	m_br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), parent, child));
 }
 
 
@@ -83,6 +104,12 @@ ros::NodeHandle m_nh;
 
 ros::Publisher m_laser_puber;
 ros::Publisher m_line_puber;
-ros::TransformBroadcaster m_br;
+
+tf::TransformBroadcaster m_br;
+};
+
+
+
+
 
 #endif

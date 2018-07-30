@@ -3,9 +3,9 @@
 //
 // Code generated for Simulink model 'CoreStateMachine'.
 //
-// Model version                  : 1.69
+// Model version                  : 1.71
 // Simulink Coder version         : 8.11 (R2016b) 25-Aug-2016
-// C/C++ source code generated on : Tue Jul 17 08:14:35 2018
+// C/C++ source code generated on : Wed Jul 25 08:50:57 2018
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -363,7 +363,7 @@ void CoreStateMachine_step(void)
 				// Transition: '<S3>:6'
 				CoreStateMachine_DW.is_c2_CoreStateMachine =
 					CoreStateMachine_IN_NavReady;
-			} else if (CoreStateMachine_Y.detect_status == 2) {
+			} else if (CoreStateMachine_Y.detect_status == 4) {
 				// Transition: '<S3>:7'
 				CoreStateMachine_DW.is_c2_CoreStateMachine = CoreStateMachine_IN_NavOK;
 			} else {
@@ -397,7 +397,7 @@ void CoreStateMachine_step(void)
 				CoreStateMachine_DW.is_c2_CoreStateMachine =
 					CoreStateMachine_IN_NavReady;
 			} else if ((CoreStateMachine_Y.sys_status == 2) &&
-				   (CoreStateMachine_Y.detect_status != 2)) {
+				   (CoreStateMachine_Y.detect_status != 4)) {
 				// Transition: '<S3>:9'
 				CoreStateMachine_DW.is_c2_CoreStateMachine =
 					CoreStateMachine_IN_NavCalib;

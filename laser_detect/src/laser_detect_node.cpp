@@ -3,7 +3,7 @@
 
 LaserDetectNode::LaserDetectNode() :
 	m_filter(20),
-	m_disp(m_nh),
+	m_disp(m_nh)
 {
 	m_laser_suber = m_nh.subscribe("scan_comp", 1, &LaserDetectNode::LaserCallback, this);
 	m_coarse_pose_suber = m_nh.subscribe("coarse_pose", 1, &LaserDetectNode::CoarsePoseCallback, this);
@@ -14,14 +14,19 @@ LaserDetectNode::LaserDetectNode() :
 	m_laser_buf.clear();
 }
 
-void CoarsePoseCallback(const geometry_msgs::Pose2D& pose)
+LaserDetectNode::~LaserDetectNode()
 {
-	m_coarse_pose.x = pose.x;
-	m_coarse_pose.y = pose.y;
-	m_coarse_pose.theta = pose.theta;
 }
 
-LaserDetectNode::LaserCallback(const sensor_msgs::LaserScan& laser_data){
+void LaserDetectNode::CoarsePoseCallback(const geometry_msgs::Pose2D& pose)
+{
+	m_coarse_pose.m_x = pose.x;
+	m_coarse_pose.m_y = pose.y;
+	m_coarse_pose.m_theta = pose.theta;
+}
+
+void LaserDetectNode::LaserCallback(const sensor_msgs::LaserScan& laser_data)
+{
 	//
 	boost::mutex::scoped_lock lock(m_mutex);
 
@@ -36,14 +41,15 @@ LaserDetectNode::LaserCallback(const sensor_msgs::LaserScan& laser_data){
 }
 
 
-LaserDetectNode::statusCallback(laser_msgs::laser_detect_srv::Request &req, laser_msgs::Laser_detect_srv::Response& res){
+bool LaserDetectNode::statusCallback(laser_msgs::laser_detect_srv::Request &req, laser_msgs::laser_detect_srv::Response& res)
+{
 	// retrieve status from request
 	uint8_t system_status_now = req.sys_status;
 	uint8_t detect_status_now = req.detect_status;
 	bool calc_request = req.calc_request;
 
-	m_sys_status = static_cast<sys_status_t>system_status_now;
-	m_detect_status = static_cast<detect_status_t>detect_status_now;
+	m_sys_status = static_cast<sys_status_t>(system_status_now);
+	m_detect_status = static_cast<detect_status_t>(detect_status_now);
 
 	// output parameter
 	bool detect_conn = true;
@@ -88,8 +94,8 @@ LaserDetectNode::statusCallback(laser_msgs::laser_detect_srv::Request &req, lase
 		Line2D left_revise_line = m_surf_finder.GetSurface(left_laser, param.left_line);
 		Line2D front_revise_line = m_surf_finder.GetSurface(front_laser, param.front_line);
 		Point2D pos = Line2D::CrossPoint(left_revise_line, front_revise_line);
-		double theta = atan2(pos.m_y - left_revise_line.m_ay, pos.m_x - left_revise_line.m_ax);
-		Pose2D ori_in_laser(pos.m_x, pos.m_y, theta);
+		double theta = atan2(pos.y - left_revise_line.m_ay, pos.x - left_revise_line.m_ax);
+		Pose2D ori_in_laser(pos.x, pos.y, theta);
 		m_laser_in_ori = ori_in_laser.InvPose();
 	} else if (DETECT_CAL_OK == m_detect_status) {
 		m_filter_count = 0;
@@ -111,4 +117,6 @@ LaserDetectNode::statusCallback(laser_msgs::laser_detect_srv::Request &req, lase
 	res.detect_conn = detect_conn;
 	res.filter_count = m_filter_count;
 	res.is_calcd = is_calcd;
+
+	return true;
 }

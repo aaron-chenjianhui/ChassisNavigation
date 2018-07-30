@@ -1,12 +1,9 @@
 #ifndef _PC_TO_PLC_HPP
 #define _PC_TO_PLC_HPP
 
-#include "laser_msgs/MyMatTypes.h"
+#include "laser_msgs/MyMatTypes.hpp"
+#include "laser_msgs/UnitConvert.h"
 
-#define DEG2RAD(X) X * 3.1415926 / 180
-#define RAD2DEG(X) X * 180 / 3.1415926
-#define M2MM(X) X * 1000
-#define MM2M(X) X / 1000
 
 namespace data_convert {
 class PcPlcConvert {

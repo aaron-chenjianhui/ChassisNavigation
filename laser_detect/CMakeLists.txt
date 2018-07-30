@@ -153,10 +153,15 @@ include_directories(${Eigen_INCLUDE_DIRS})
 #     # src/DetectState_data.cpp
 #     # src/DetectState.cpp
 # )
-Set(TEST_SRCS
-src/new_laser_detect.cpp)
-   add_executable(test_node ${TEST_SRCS})
-   target_link_libraries(test_node
+Set(
+  SRC_LISTS
+  src/laser_main.cpp
+  src/laser_detect_node.cpp
+  src/LineParamEstimator.cxx
+  src/Point2D.cxx
+)
+   add_executable(laser_node ${SRC_LISTS})
+   target_link_libraries(laser_node
    ${catkin_LIBRARIES})
    # add_executable(${PROJECT_NAME}_node ${RANSAC_EXAMPLE_SRCS})
   #

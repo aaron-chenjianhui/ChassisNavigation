@@ -40,7 +40,7 @@ void UpdateData(const sensor_msgs::LaserScan& laser_data)
 
 	for (iter = ranges.begin(); iter != ranges.end(); ++iter) {
 		lidar_data_now = (double)(*iter);
-		m_lidar_data.InsertData(std::pair<double, double>(angle_now, lidar_data_now));
+		InsertData(std::pair<double, double>(angle_now, lidar_data_now));
 
 		angle_now += angle_increment;
 	}
@@ -49,7 +49,7 @@ void UpdateData(const sensor_msgs::LaserScan& laser_data)
 	LimitLaserData({ m_laser_limit });
 }
 
-sensor_msgs::LaserScan GetLaserScan()
+sensor_msgs::LaserScan ToLaserScan()
 {
 	sensor_msgs::LaserScan msgs;
 
@@ -70,6 +70,13 @@ sensor_msgs::LaserScan GetLaserScan()
 
 	return msgs;
 }
+
+
+sensor_msgs::LaserScan ToLaserScan() const
+{
+	return ToLaserScan();
+}
+
 
 void ChooseBetterRange(Line2D& line, double min_range, double max_range)
 {

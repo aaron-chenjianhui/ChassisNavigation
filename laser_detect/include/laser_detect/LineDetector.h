@@ -1,5 +1,5 @@
 #ifndef _LINE_DETECTOR_H
-#define _LINE_  DETECTOR_H
+#define _LINE_DETECTOR_H
 
 #include "Line2D.hpp"
 #include "Point2D.h"
@@ -17,7 +17,7 @@ typedef std::vector<bool> VoteT;
 typedef std::vector<double> LineParamT;
 
 public:
-LineDetector(double delta = 40, double probability = 0.999) : m_estimator(delta), m_probability()
+LineDetector(double delta = 40, double probability = 0.999) : m_estimator(delta), m_probability(probability)
 {
 }
 
@@ -54,6 +54,7 @@ double m_probability;
 };
 
 class LaserLineDetector : public LineDetector {
+public:
 void LaserFindLine(LaserData& raw_laser_data, Line2D& line, LaserData& select_laser_data)
 {
 	VoteT vote;

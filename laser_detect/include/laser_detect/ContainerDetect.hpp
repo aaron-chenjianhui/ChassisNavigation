@@ -4,8 +4,6 @@
 #include "Pose2D.hpp"
 #include "LaserDataType.hpp"
 #include "Line2D.hpp"
-#include "MatrixCal.h"
-#include "MathType.h"
 #include "LineDetector.h"
 
 struct ContainerParam {
@@ -61,12 +59,12 @@ void UpdateRange(const Pose2D& pose, double width, double length, double delta)
 	double front_min_angle, front_max_angle;
 	double right_min_angle, right_max_angle;
 
-	CalRange(left_min, left_max, pose, delta, m_container_param.left_min, m_container_param.left_max);
-	CalRange(front_min, front_max, pose, delta, m_container_param.front_min, m_container_param.front_max);
-	CalRange(right_min, right_max, pose, delta, m_container_param.right_min, m_container_param.right_max);
+	CalRange(left_min, left_max, pose, delta, m_param.left_min, m_param.left_max);
+	CalRange(front_min, front_max, pose, delta, m_param.front_min, m_param.front_max);
+	CalRange(right_min, right_max, pose, delta, m_param.right_min, m_param.right_max);
 
-	m_container_param.width = width;
-	m_container_param.length = length;
+	m_param.width = width;
+	m_param.length = length;
 }
 
 void FindWallLine(const LaserData& raw_laser_data, ContainerParam& param)
@@ -108,14 +106,16 @@ void FindWallLine(const LaserData& raw_laser_data, ContainerParam& param)
 	param.right_max = right_laser_data.GetAngSeq().back();
 }
 
-void ChooseBetterRegion(const Line2D& line, const double& ref_min, const double& ref_max, double& min_range, double& max_range)
+void ChooseBetterRegion(const Line2D& line,
+			const double& ref_min, const double& ref_max,
+			double& min_range, double& max_range)
 {
 	Line2D v_line;
 
-	v_line.ax = 0;
-	v_line.ay = 0;
-	v_line.nx = -line.ny;
-	v_line.ny = line.nx;
+	v_line.m_ax = 0;
+	v_line.m_ay = 0;
+	v_line.m_nx = -line.m_ny;
+	v_line.m_ny = line.m_nx;
 
 	Point2D cross_point = Line2D::CrossPoint(v_line, line);
 	double theta_in_laser = atan2(cross_point.y, cross_point.x);
@@ -129,26 +129,27 @@ void ChooseBetterRegion(const Line2D& line, const double& ref_min, const double&
 
 private:
 
-void CalRange(const Point2D& min_p, const Point2D& max_p, const MyPose2D& pose,
-	      double delta, double &min_angle, double &max_angle)
+void CalRange(const Point2D& min_p, const Point2D& max_p,
+	      const Pose2D& pose, double delta,
+	      double &min_angle, double &max_angle)
 {
 	MatrixCal mat_cal;
 
 	mat3x3 T_laser_in_ori;
 	MatrixCal::PoseT laser_pose;
 
-	laser_pose.push_back(pose.x);
-	laser_pose.push_back(pose.y);
-	laser_pose.push_back(pose.theta);
+	laser_pose.push_back(pose.m_x);
+	laser_pose.push_back(pose.m_y);
+	laser_pose.push_back(pose.m_theta);
 	mat_cal.PoseToMat(laser_pose, T_laser_in_ori);
 
 	mat3x1 min_in_ori, min_in_laser;
 	mat3x1 max_in_ori, max_in_laser;
-	min_in_ori(1) = min_p.x - pose.x;
-	min_in_ori(2) = min_p.y - pose.y;
+	min_in_ori(1) = min_p.x - pose.m_x;
+	min_in_ori(2) = min_p.y - pose.m_y;
 	min_in_ori(3) = 1;
-	max_in_ori(1) = max_p.x - pose.x;
-	max_in_ori(2) = max_p.y - pose.y;
+	max_in_ori(1) = max_p.x - pose.m_x;
+	max_in_ori(2) = max_p.y - pose.m_y;
 	max_in_ori(3) = 1;
 
 	min_in_laser = T_laser_in_ori * max_in_laser;
@@ -163,7 +164,7 @@ void CalRange(const Point2D& min_p, const Point2D& max_p, const MyPose2D& pose,
 
 private:
 ContainerParam m_param;
-LaserLineDetector m_line_detecotr;
+LaserLineDetector m_line_detector;
 };
 
 #endif

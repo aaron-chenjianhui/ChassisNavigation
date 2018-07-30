@@ -33,8 +33,9 @@ bool UpdateDeque(const LaserData& laser_data)
 	if (m_deq_num > m_filter_data.size())
 		return false;
 
-	while (m_deq_num < m_filter_data.size())
+	while (m_deq_num < m_filter_data.size()) {
 		m_filter_data.pop_front();
+	}
 
 	return true;
 }
@@ -44,8 +45,9 @@ void AddSeq(RangeSeqT &dest_range, const RangeSeqT &src_range)
 	RangeSeqT::iterator dest_iter = dest_range.begin();
 	RangeSeqT::const_iterator src_iter = src_range.begin();
 
-	for (; dest_iter != dest_range.end(); ++dest_iter, ++src_iter)
+	for (; dest_iter != dest_range.end(); ++dest_iter, ++src_iter) {
 		*dest_iter += *src_iter;
+	}
 }
 
 virtual void Filtering(LaserData&	laser_data_in,
@@ -80,8 +82,9 @@ virtual void Filtering(LaserData&	laser_data_in,
 		AngSeqT angle_seq = laser_data_in.GetAngSeq();
 
 		LaserFilterT::iterator iter = m_filter_data.begin();
-		for (; iter != m_filter_data.end(); ++iter)
+		for (; iter != m_filter_data.end(); ++iter) {
 			AddSeq(sum_range, iter->GetRangeData());
+		}
 
 		RangeSeqT::iterator range_iter = sum_range.begin();
 		AngSeqT::iterator angle_iter = angle_seq.begin();

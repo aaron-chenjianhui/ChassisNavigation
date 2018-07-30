@@ -20,7 +20,7 @@
 #include "console_bridge/console.h"
 
 #include "laser_msgs/PcPlcConvert.hpp"
-#include "laser_msgs/MyMatTypes.h"
+#include "laser_msgs/MyMatTypes.hpp"
 #include "laser_msgs/SysStateTypes.h"
 
 

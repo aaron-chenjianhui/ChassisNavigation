@@ -32,7 +32,7 @@ AMCLIntfc::~AMCLIntfc()
 
 void AMCLIntfc::paramInit()
 {
-	m_sys_status = sys_init;
+	m_sys_status = SYS_INIT;
 	m_amcl_status = AMCL_READY;
 	m_amcl_conn_status = AMCL_CONN;
 	m_cov_is_small = false;
