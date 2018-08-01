@@ -1,7 +1,15 @@
 #ifndef _ICP_INTFC_NODE_H
 #define _ICP_INTFC_NODE_H
 
-#include "Pose2D.hpp"
+
+#include <ros/ros.h>
+#include <geometry_msgs/Pose2D.h>
+#include <tf/transform_broadcaster.h>
+
+#include "laser_msgs/Pose2D.hpp"
+#include "laser_msgs/nav_srv.h"
+#include "laser_msgs/SysStateTypes.h"
+#include "laser_msgs/UnitConvert.h"
 
 
 class ICPIntfc {
@@ -25,7 +33,7 @@ private:
 ros::NodeHandle m_nh;
 
 // state callback
-ros::ServiceClient m_icp_client;
+ros::ServiceServer m_icp_server;
 
 // subscribe laser_scan_matcher pose
 ros::Subscriber m_pose_suber;
@@ -34,7 +42,7 @@ ros::Subscriber m_init_suber;
 // publish calculated laser pose
 ros::Publisher m_pose_puber;
 // for display
-ros::TransformBroadcaster m_br;
+tf::TransformBroadcaster m_br;
 
 
 // for node status

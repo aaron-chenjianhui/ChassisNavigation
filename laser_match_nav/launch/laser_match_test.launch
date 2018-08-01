@@ -8,7 +8,7 @@
 <include file="$(find lms1xx)/launch/LMS1xx.launch" />
 <node
   pkg="tf" type="static_transform_publisher" name="base_link_to_laser"
-  args="0.0 0.0 0.0 0.0 0.0 0.0 /base_link /laser 40"
+  args="0.0 0.0 0.0 0.0 0.0 0.0 /base_footprint /laser 40"
 />
 
 <node

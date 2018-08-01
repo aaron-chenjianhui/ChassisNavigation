@@ -109,8 +109,8 @@ generate_messages(
 catkin_package(
  INCLUDE_DIRS include
 #  LIBRARIES laser_msgs
-#  CATKIN_DEPENDS other_catkin_pkg
-#  DEPENDS system_lib
+ CATKIN_DEPENDS cmake_modules
+ DEPENDS Eigen
 )
 
 ###########
@@ -125,6 +125,7 @@ ${catkin_INCLUDE_DIRS}
 )
 
 include_directories(${Eigen_INCLUDE_DIRS})
+
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}

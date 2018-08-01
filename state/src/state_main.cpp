@@ -12,7 +12,7 @@
 #include "laser_msgs/laser_detect_srv.h"
 #include "laser_msgs/amcl_srv.h"
 
-#define TCP_DEBUG 1
+#define TCP_DEBUG 0
 
 #if TCP_DEBUG
 #define DEBUGLOG(X) { std::cout << X << std::endl; }

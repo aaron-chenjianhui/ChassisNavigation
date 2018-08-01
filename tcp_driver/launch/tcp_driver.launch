@@ -1,14 +1,17 @@
 <launch>
   <!-- use this host and port for debugging -->
-  <arg name="chassis_host" default="127.0.0.1" />
+  <!-- <arg name="chassis_host" default="127.0.0.1" /> -->
+<arg name="chassis_host" default="192.168.1.109" />
   <arg name="chassis_port" default="2000" />
   <!-- use this host and port for plc connection -->
   <!-- <arg name="host" default="192.168.10.30" />
   <arg name="port" default="4097"/> -->
 
-    <!-- output="screen" launch-prefix="gnome-terminal -e"> -->
-  <node pkg="tcp_driver" name="tcp_driver_node" type="tcp_driver_node"
-    output="screen" launch-prefix="gnome-terminal -e">
+  <!-- <node pkg="tcp_driver" name="tcp_driver_node" type="tcp_driver_node"> -->
+  <!-- <node pkg="tcp_driver" name="tcp_driver_node" type="tcp_driver_node"
+    output="screen" launch-prefix="gnome-terminal -e"> -->
+    <node pkg="tcp_driver" name="tcp_driver_node" type="tcp_driver_node"
+      output="screen">
     <param name="chassis_host" value="$(arg chassis_host)" />
     <param name="chassis_port" value="$(arg chassis_port)" />
   </node>

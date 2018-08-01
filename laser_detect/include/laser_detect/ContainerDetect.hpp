@@ -145,12 +145,12 @@ void CalRange(const Point2D& min_p, const Point2D& max_p,
 
 	mat3x1 min_in_ori, min_in_laser;
 	mat3x1 max_in_ori, max_in_laser;
-	min_in_ori(1) = min_p.x - pose.m_x;
-	min_in_ori(2) = min_p.y - pose.m_y;
-	min_in_ori(3) = 1;
-	max_in_ori(1) = max_p.x - pose.m_x;
-	max_in_ori(2) = max_p.y - pose.m_y;
-	max_in_ori(3) = 1;
+	min_in_ori(0) = min_p.x - pose.m_x;
+	min_in_ori(1) = min_p.y - pose.m_y;
+	min_in_ori(2) = 1;
+	max_in_ori(0) = max_p.x - pose.m_x;
+	max_in_ori(1) = max_p.y - pose.m_y;
+	max_in_ori(2) = 1;
 
 	min_in_laser = T_laser_in_ori * max_in_laser;
 	max_in_laser = T_laser_in_ori * max_in_laser;

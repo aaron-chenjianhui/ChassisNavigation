@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
+    <generated>
+      <config projectName="catkin_ws" targetName="test_buffer" />
+      <config projectName="catkin_ws" targetName="_laser_msgs_generate_messages_check_deps_nav_srv" />
+      <config projectName="catkin_ws" targetName="actionlib_msgs_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="laser_msgs_genpy" />
+      <config projectName="catkin_ws" targetName="laser_msgs_genlisp" />
+      <config projectName="catkin_ws" targetName="run_tests_robot_upstart_roslint" />
+      <config projectName="catkin_ws" targetName="actionlib_msgs_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="download_extra_data" />
+      <config projectName="catkin_ws" targetName="laser_detect_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="doxygen" />
+      <config projectName="catkin_ws" targetName="run_tests_lms1xx_roslaunch-check_launch_LMS1xx.launch" />
+      <config projectName="catkin_ws" targetName="laser_msgs_generate_messages" />
+      <config projectName="catkin_ws" targetName="tf_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="_laser_detect_generate_messages_check_deps_detect_msg" />
+      <config projectName="catkin_ws" targetName="std_msgs_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="_run_tests_robot_upstart_nosetests_test" />
+      <config projectName="catkin_ws" targetName="laser_detect_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="std_msgs_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="run_tests_lms1xx" />
+      <config projectName="catkin_ws" targetName="_run_tests_lms1xx" />
+      <config projectName="catkin_ws" targetName="actionlib_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="geometry_msgs_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="actionlib_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="_laser_msgs_generate_messages_check_deps_lidar_srv" />
+      <config projectName="catkin_ws" targetName="rosgraph_msgs_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="sensor_msgs_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="laser_detect_gencpp" />
+      <config projectName="catkin_ws" targetName="std_msgs_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="visualization_msgs_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="_laser_msgs_generate_messages_check_deps_tcp_srv" />
+      <config projectName="catkin_ws" targetName="_run_tests_robot_upstart_nosetests" />
+      <config projectName="catkin_ws" targetName="roscpp_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="visualization_msgs_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="tf_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="_run_tests_robot_upstart_roslint_package" />
+      <config projectName="catkin_ws" targetName="std_srvs_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="tcp_driver_node" />
+      <config projectName="catkin_ws" targetName="_run_tests_lms1xx_roslaunch-check" />
+      <config projectName="catkin_ws" targetName="std_srvs_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="_run_tests_lms1xx_roslaunch-check_launch_LMS1xx.launch" />
+      <config projectName="catkin_ws" targetName="_catkin_empty_exported_target" />
+      <config projectName="catkin_ws" targetName="state_node" />
+      <config projectName="catkin_ws" targetName="laser_detect_genlisp" />
+      <config projectName="catkin_ws" targetName="tf2_msgs_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="nav_msgs_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="rosgraph_msgs_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="run_tests" />
+      <config projectName="catkin_ws" targetName="run_tests_robot_upstart_roslint_package" />
+      <config projectName="catkin_ws" targetName="laser_detect_genpy" />
+      <config projectName="catkin_ws" targetName="gtest" />
+      <config projectName="catkin_ws" targetName="laser_msgs_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="sensor_msgs_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="_run_tests_lms1xx_gtest" />
+      <config projectName="catkin_ws" targetName="geometry_msgs_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="laser_msgs_gencpp" />
+      <config projectName="catkin_ws" targetName="_laser_msgs_generate_messages_check_deps_amcl_srv" />
+      <config projectName="catkin_ws" targetName="run_tests_lms1xx_roslaunch-check" />
+      <config projectName="catkin_ws" targetName="data_saver_node" />
+      <config projectName="catkin_ws" targetName="roslint" />
+      <config projectName="catkin_ws" targetName="std_srvs_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="actionlib_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="rosgraph_msgs_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="visualization_msgs_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="roslint_robot_upstart" />
+      <config projectName="catkin_ws" targetName="_run_tests_lms1xx_gtest_test_buffer" />
+      <config projectName="catkin_ws" targetName="run_tests_robot_upstart" />
+      <config projectName="catkin_ws" targetName="_laser_detect_generate_messages_check_deps_laser_detect_srv" />
+      <config projectName="catkin_ws" targetName="run_tests_robot_upstart_nosetests_test" />
+      <config projectName="catkin_ws" targetName="clean_test_results_lms1xx" />
+      <config projectName="catkin_ws" targetName="_run_tests_robot_upstart" />
+      <config projectName="catkin_ws" targetName="sensor_msgs_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="roscpp_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="clean_test_results_robot_upstart" />
+      <config projectName="catkin_ws" targetName="nav_msgs_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="roslint_lms1xx" />
+      <config projectName="catkin_ws" targetName="_laser_msgs_generate_messages_check_deps_laser_detect_srv" />
+      <config projectName="catkin_ws" targetName="run_tests_lms1xx_gtest_test_buffer" />
+      <config projectName="catkin_ws" targetName="laser_detect_generate_messages" />
+      <config projectName="catkin_ws" targetName="LMS1xx_node" />
+      <config projectName="catkin_ws" targetName="_laser_msgs_generate_messages_check_deps_detect_msg" />
+      <config projectName="catkin_ws" targetName="laser_msgs_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="amcl_intfc_node" />
+      <config projectName="catkin_ws" targetName="laser_node" />
+      <config projectName="catkin_ws" targetName="LMS1xx" />
+      <config projectName="catkin_ws" targetName="tf2_msgs_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="tests" />
+      <config projectName="catkin_ws" targetName="tf_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="geometry_msgs_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="laser_detect_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="actionlib_msgs_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="run_tests_lms1xx_gtest" />
+      <config projectName="catkin_ws" targetName="catkin_ws_OTHER_FILES" />
+      <config projectName="catkin_ws" targetName="_run_tests_robot_upstart_roslint" />
+      <config projectName="catkin_ws" targetName="gtest_main" />
+      <config projectName="catkin_ws" targetName="run_tests_robot_upstart_nosetests" />
+      <config projectName="catkin_ws" targetName="tf2_msgs_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="roscpp_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="laser_msgs_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="clean_test_results" />
+      <config projectName="catkin_ws" targetName="nav_msgs_generate_messages_py" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ae8161e0-8940-4f69-83ea-5a0bdfeca947" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/laser_detect/include/laser_detect/ContainerDetect.hpp" afterPath="$PROJECT_DIR$/laser_detect/include/laser_detect/ContainerDetect.hpp" />
+      <change beforePath="$PROJECT_DIR$/state/launch/all_task.launch" afterPath="$PROJECT_DIR$/state/launch/all_task.launch" />
+      <change beforePath="$PROJECT_DIR$/tcp_driver/launch/tcp_driver.launch" afterPath="$PROJECT_DIR$/tcp_driver/launch/tcp_driver.launch" />
+    </list>
+    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="laser_detect_node.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laser_detect/src/laser_detect_node.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-468">
+              <caret line="13" column="23" lean-forward="false" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ContainerDetect.hpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/ContainerDetect.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="74">
+              <caret line="133" column="37" lean-forward="true" selection-start-line="133" selection-start-column="37" selection-end-line="133" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DenseCoeffsBase.h" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="393" column="0" lean-forward="false" selection-start-line="393" selection-start-column="0" selection-end-line="393" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/laser_detect/include/laser_detect/ContainerDetect.hpp" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="112" />
+    <option name="y" value="24" />
+    <option name="width" value="1855" />
+    <option name="height" value="1148" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="catkin_ws" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="src" type="47feb1d3:ProjectViewModuleNode" />
+            </path>
+            <path>
+              <item name="catkin_ws" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="src" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="catkin_ws" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="src" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="laser_detect" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="catkin_ws" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="src" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="laser_detect" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/CMakeLists.txt" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.laser_node">
+    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
+      <envs />
+    </configuration>
+    <configuration name="LMS1xx" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="LMS1xx" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="LMS1xx_node" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="LMS1xx_node" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="catkin_ws" RUN_TARGET_NAME="LMS1xx_node">
+      <envs />
+    </configuration>
+    <configuration name="_catkin_empty_exported_target" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="_catkin_empty_exported_target" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="_laser_detect_generate_messages_check_deps_detect_msg" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="_laser_detect_generate_messages_check_deps_detect_msg" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="_laser_detect_generate_messages_check_deps_laser_detect_srv" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="_laser_detect_generate_messages_check_deps_laser_detect_srv" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="_laser_msgs_generate_messages_check_deps_amcl_srv" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="_laser_msgs_generate_messages_check_deps_amcl_srv" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="_laser_msgs_generate_messages_check_deps_detect_msg" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="_laser_msgs_generate_messages_check_deps_detect_msg" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="_laser_msgs_generate_messages_check_deps_laser_detect_srv" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="_laser_msgs_generate_messages_check_deps_laser_detect_srv" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="_laser_msgs_generate_messages_check_deps_lidar_srv" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="_laser_msgs_generate_messages_check_deps_lidar_srv" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="_laser_msgs_generate_messages_check_deps_nav_srv" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="_laser_msgs_generate_messages_check_deps_nav_srv" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="_laser_msgs_generate_messages_check_deps_tcp_srv" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="_laser_msgs_generate_messages_check_deps_tcp_srv" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="_run_tests_lms1xx" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="_run_tests_lms1xx" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="_run_tests_lms1xx_gtest" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="_run_tests_lms1xx_gtest" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="_run_tests_lms1xx_gtest_test_buffer" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="_run_tests_lms1xx_gtest_test_buffer" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="_run_tests_lms1xx_roslaunch-check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="_run_tests_lms1xx_roslaunch-check" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="_run_tests_lms1xx_roslaunch-check_launch_LMS1xx.launch" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="_run_tests_lms1xx_roslaunch-check_launch_LMS1xx.launch" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="_run_tests_robot_upstart" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="_run_tests_robot_upstart" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="_run_tests_robot_upstart_nosetests" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="_run_tests_robot_upstart_nosetests" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="_run_tests_robot_upstart_nosetests_test" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="_run_tests_robot_upstart_nosetests_test" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="_run_tests_robot_upstart_roslint" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="_run_tests_robot_upstart_roslint" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="_run_tests_robot_upstart_roslint_package" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="_run_tests_robot_upstart_roslint_package" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="actionlib_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="actionlib_generate_messages_cpp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="actionlib_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="actionlib_generate_messages_lisp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="actionlib_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="actionlib_generate_messages_py" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="actionlib_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="actionlib_msgs_generate_messages_cpp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="actionlib_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="actionlib_msgs_generate_messages_lisp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="actionlib_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="actionlib_msgs_generate_messages_py" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="amcl_intfc_node" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="amcl_intfc_node" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="catkin_ws" RUN_TARGET_NAME="amcl_intfc_node">
+      <envs />
+    </configuration>
+    <configuration name="catkin_ws_OTHER_FILES" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="catkin_ws_OTHER_FILES" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="clean_test_results" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="clean_test_results" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="clean_test_results_lms1xx" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="clean_test_results_lms1xx" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="clean_test_results_robot_upstart" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="clean_test_results_robot_upstart" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="data_saver_node" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="data_saver_node" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="catkin_ws" RUN_TARGET_NAME="data_saver_node">
+      <envs />
+    </configuration>
+    <configuration name="download_extra_data" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="download_extra_data" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="doxygen" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="doxygen" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="geometry_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="geometry_msgs_generate_messages_cpp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="geometry_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="geometry_msgs_generate_messages_lisp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="geometry_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="geometry_msgs_generate_messages_py" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="gtest" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="gtest" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="gtest_main" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="gtest_main" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="laser_detect_gencpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="laser_detect_gencpp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="laser_detect_generate_messages" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="laser_detect_generate_messages" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="laser_detect_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="laser_detect_generate_messages_cpp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="laser_detect_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="laser_detect_generate_messages_lisp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="laser_detect_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="laser_detect_generate_messages_py" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="laser_detect_genlisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="laser_detect_genlisp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="laser_detect_genpy" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="laser_detect_genpy" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="laser_msgs_gencpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="laser_msgs_gencpp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="laser_msgs_generate_messages" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="laser_msgs_generate_messages" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="laser_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="laser_msgs_generate_messages_cpp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="laser_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="laser_msgs_generate_messages_lisp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="laser_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="laser_msgs_generate_messages_py" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="laser_msgs_genlisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="laser_msgs_genlisp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="laser_msgs_genpy" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="laser_msgs_genpy" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="laser_node" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="laser_node" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="catkin_ws" RUN_TARGET_NAME="laser_node">
+      <envs />
+    </configuration>
+    <configuration name="nav_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="nav_msgs_generate_messages_cpp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="nav_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="nav_msgs_generate_messages_lisp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="nav_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="nav_msgs_generate_messages_py" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="roscpp_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="roscpp_generate_messages_cpp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="roscpp_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="roscpp_generate_messages_lisp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="roscpp_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="roscpp_generate_messages_py" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="rosgraph_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="rosgraph_msgs_generate_messages_cpp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="rosgraph_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="rosgraph_msgs_generate_messages_lisp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="rosgraph_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="rosgraph_msgs_generate_messages_py" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="roslint" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="roslint" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="roslint_lms1xx" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="roslint_lms1xx" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="roslint_robot_upstart" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="roslint_robot_upstart" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="run_tests" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="run_tests" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="run_tests_lms1xx" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="run_tests_lms1xx" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="run_tests_lms1xx_gtest" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="run_tests_lms1xx_gtest" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="run_tests_lms1xx_gtest_test_buffer" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="run_tests_lms1xx_gtest_test_buffer" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="run_tests_lms1xx_roslaunch-check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="run_tests_lms1xx_roslaunch-check" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="run_tests_lms1xx_roslaunch-check_launch_LMS1xx.launch" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="run_tests_lms1xx_roslaunch-check_launch_LMS1xx.launch" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="run_tests_robot_upstart" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="run_tests_robot_upstart" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="run_tests_robot_upstart_nosetests" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="run_tests_robot_upstart_nosetests" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="run_tests_robot_upstart_nosetests_test" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="run_tests_robot_upstart_nosetests_test" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="run_tests_robot_upstart_roslint" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="run_tests_robot_upstart_roslint" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="run_tests_robot_upstart_roslint_package" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="run_tests_robot_upstart_roslint_package" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="sensor_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="sensor_msgs_generate_messages_cpp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="sensor_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="sensor_msgs_generate_messages_lisp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="sensor_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="sensor_msgs_generate_messages_py" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="state_node" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="state_node" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="catkin_ws" RUN_TARGET_NAME="state_node">
+      <envs />
+    </configuration>
+    <configuration name="std_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="std_msgs_generate_messages_cpp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="std_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="std_msgs_generate_messages_lisp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="std_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="std_msgs_generate_messages_py" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="std_srvs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="std_srvs_generate_messages_cpp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="std_srvs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="std_srvs_generate_messages_lisp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="std_srvs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="std_srvs_generate_messages_py" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="tcp_driver_node" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="tcp_driver_node" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="catkin_ws" RUN_TARGET_NAME="tcp_driver_node">
+      <envs />
+    </configuration>
+    <configuration name="test_buffer" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="test_buffer" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="catkin_ws" RUN_TARGET_NAME="test_buffer">
+      <envs />
+    </configuration>
+    <configuration name="tests" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="tests" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="tf2_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="tf2_msgs_generate_messages_cpp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="tf2_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="tf2_msgs_generate_messages_lisp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="tf2_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="tf2_msgs_generate_messages_py" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="tf_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="tf_generate_messages_cpp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="tf_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="tf_generate_messages_lisp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="tf_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="tf_generate_messages_py" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="visualization_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="visualization_msgs_generate_messages_cpp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="visualization_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="visualization_msgs_generate_messages_lisp" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="visualization_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="visualization_msgs_generate_messages_py" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <list size="101">
+      <item index="0" class="java.lang.String" itemvalue="Application.Build All" />
+      <item index="1" class="java.lang.String" itemvalue="Application.catkin_ws_OTHER_FILES" />
+      <item index="2" class="java.lang.String" itemvalue="Application.clean_test_results" />
+      <item index="3" class="java.lang.String" itemvalue="Application.download_extra_data" />
+      <item index="4" class="java.lang.String" itemvalue="Application.doxygen" />
+      <item index="5" class="java.lang.String" itemvalue="Application.run_tests" />
+      <item index="6" class="java.lang.String" itemvalue="Application.tests" />
+      <item index="7" class="java.lang.String" itemvalue="Application.amcl_intfc_node" />
+      <item index="8" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_cpp" />
+      <item index="9" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_lisp" />
+      <item index="10" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_py" />
+      <item index="11" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_cpp" />
+      <item index="12" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_lisp" />
+      <item index="13" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_py" />
+      <item index="14" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_cpp" />
+      <item index="15" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_lisp" />
+      <item index="16" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_py" />
+      <item index="17" class="java.lang.String" itemvalue="Application.std_srvs_generate_messages_cpp" />
+      <item index="18" class="java.lang.String" itemvalue="Application.std_srvs_generate_messages_lisp" />
+      <item index="19" class="java.lang.String" itemvalue="Application.std_srvs_generate_messages_py" />
+      <item index="20" class="java.lang.String" itemvalue="Application.data_saver_node" />
+      <item index="21" class="java.lang.String" itemvalue="Application._catkin_empty_exported_target" />
+      <item index="22" class="java.lang.String" itemvalue="Application._laser_detect_generate_messages_check_deps_detect_msg" />
+      <item index="23" class="java.lang.String" itemvalue="Application._laser_detect_generate_messages_check_deps_laser_detect_srv" />
+      <item index="24" class="java.lang.String" itemvalue="Application.actionlib_generate_messages_cpp" />
+      <item index="25" class="java.lang.String" itemvalue="Application.actionlib_generate_messages_lisp" />
+      <item index="26" class="java.lang.String" itemvalue="Application.actionlib_generate_messages_py" />
+      <item index="27" class="java.lang.String" itemvalue="Application.actionlib_msgs_generate_messages_cpp" />
+      <item index="28" class="java.lang.String" itemvalue="Application.actionlib_msgs_generate_messages_lisp" />
+      <item index="29" class="java.lang.String" itemvalue="Application.actionlib_msgs_generate_messages_py" />
+      <item index="30" class="java.lang.String" itemvalue="Application.laser_detect_gencpp" />
+      <item index="31" class="java.lang.String" itemvalue="Application.laser_detect_generate_messages" />
+      <item index="32" class="java.lang.String" itemvalue="Application.laser_detect_generate_messages_cpp" />
+      <item index="33" class="java.lang.String" itemvalue="Application.laser_detect_generate_messages_lisp" />
+      <item index="34" class="java.lang.String" itemvalue="Application.laser_detect_generate_messages_py" />
+      <item index="35" class="java.lang.String" itemvalue="Application.laser_detect_genlisp" />
+      <item index="36" class="java.lang.String" itemvalue="Application.laser_detect_genpy" />
+      <item index="37" class="java.lang.String" itemvalue="Application.laser_node" />
+      <item index="38" class="java.lang.String" itemvalue="Application.tf2_msgs_generate_messages_cpp" />
+      <item index="39" class="java.lang.String" itemvalue="Application.tf2_msgs_generate_messages_lisp" />
+      <item index="40" class="java.lang.String" itemvalue="Application.tf2_msgs_generate_messages_py" />
+      <item index="41" class="java.lang.String" itemvalue="Application.tf_generate_messages_cpp" />
+      <item index="42" class="java.lang.String" itemvalue="Application.tf_generate_messages_lisp" />
+      <item index="43" class="java.lang.String" itemvalue="Application.tf_generate_messages_py" />
+      <item index="44" class="java.lang.String" itemvalue="Application.visualization_msgs_generate_messages_cpp" />
+      <item index="45" class="java.lang.String" itemvalue="Application.visualization_msgs_generate_messages_lisp" />
+      <item index="46" class="java.lang.String" itemvalue="Application.visualization_msgs_generate_messages_py" />
+      <item index="47" class="java.lang.String" itemvalue="Application.nav_msgs_generate_messages_cpp" />
+      <item index="48" class="java.lang.String" itemvalue="Application.nav_msgs_generate_messages_lisp" />
+      <item index="49" class="java.lang.String" itemvalue="Application.nav_msgs_generate_messages_py" />
+      <item index="50" class="java.lang.String" itemvalue="Application._laser_msgs_generate_messages_check_deps_amcl_srv" />
+      <item index="51" class="java.lang.String" itemvalue="Application._laser_msgs_generate_messages_check_deps_detect_msg" />
+      <item index="52" class="java.lang.String" itemvalue="Application._laser_msgs_generate_messages_check_deps_laser_detect_srv" />
+      <item index="53" class="java.lang.String" itemvalue="Application._laser_msgs_generate_messages_check_deps_lidar_srv" />
+      <item index="54" class="java.lang.String" itemvalue="Application._laser_msgs_generate_messages_check_deps_nav_srv" />
+      <item index="55" class="java.lang.String" itemvalue="Application._laser_msgs_generate_messages_check_deps_tcp_srv" />
+      <item index="56" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_cpp" />
+      <item index="57" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_lisp" />
+      <item index="58" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_py" />
+      <item index="59" class="java.lang.String" itemvalue="Application.laser_msgs_gencpp" />
+      <item index="60" class="java.lang.String" itemvalue="Application.laser_msgs_generate_messages" />
+      <item index="61" class="java.lang.String" itemvalue="Application.laser_msgs_generate_messages_cpp" />
+      <item index="62" class="java.lang.String" itemvalue="Application.laser_msgs_generate_messages_lisp" />
+      <item index="63" class="java.lang.String" itemvalue="Application.laser_msgs_generate_messages_py" />
+      <item index="64" class="java.lang.String" itemvalue="Application.laser_msgs_genlisp" />
+      <item index="65" class="java.lang.String" itemvalue="Application.laser_msgs_genpy" />
+      <item index="66" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_cpp" />
+      <item index="67" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_lisp" />
+      <item index="68" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_py" />
+      <item index="69" class="java.lang.String" itemvalue="Application._run_tests_lms1xx" />
+      <item index="70" class="java.lang.String" itemvalue="Application._run_tests_lms1xx_gtest" />
+      <item index="71" class="java.lang.String" itemvalue="Application._run_tests_lms1xx_gtest_test_buffer" />
+      <item index="72" class="java.lang.String" itemvalue="Application._run_tests_lms1xx_roslaunch-check" />
+      <item index="73" class="java.lang.String" itemvalue="Application._run_tests_lms1xx_roslaunch-check_launch_LMS1xx.launch" />
+      <item index="74" class="java.lang.String" itemvalue="Application.clean_test_results_lms1xx" />
+      <item index="75" class="java.lang.String" itemvalue="Application.LMS1xx" />
+      <item index="76" class="java.lang.String" itemvalue="Application.LMS1xx_node" />
+      <item index="77" class="java.lang.String" itemvalue="Application.roslint_lms1xx" />
+      <item index="78" class="java.lang.String" itemvalue="Application.run_tests_lms1xx" />
+      <item index="79" class="java.lang.String" itemvalue="Application.run_tests_lms1xx_gtest" />
+      <item index="80" class="java.lang.String" itemvalue="Application.run_tests_lms1xx_gtest_test_buffer" />
+      <item index="81" class="java.lang.String" itemvalue="Application.run_tests_lms1xx_roslaunch-check" />
+      <item index="82" class="java.lang.String" itemvalue="Application.run_tests_lms1xx_roslaunch-check_launch_LMS1xx.launch" />
+      <item index="83" class="java.lang.String" itemvalue="Application.test_buffer" />
+      <item index="84" class="java.lang.String" itemvalue="Application._run_tests_robot_upstart" />
+      <item index="85" class="java.lang.String" itemvalue="Application._run_tests_robot_upstart_nosetests" />
+      <item index="86" class="java.lang.String" itemvalue="Application._run_tests_robot_upstart_nosetests_test" />
+      <item index="87" class="java.lang.String" itemvalue="Application._run_tests_robot_upstart_roslint" />
+      <item index="88" class="java.lang.String" itemvalue="Application._run_tests_robot_upstart_roslint_package" />
+      <item index="89" class="java.lang.String" itemvalue="Application.clean_test_results_robot_upstart" />
+      <item index="90" class="java.lang.String" itemvalue="Application.roslint" />
+      <item index="91" class="java.lang.String" itemvalue="Application.roslint_robot_upstart" />
+      <item index="92" class="java.lang.String" itemvalue="Application.run_tests_robot_upstart" />
+      <item index="93" class="java.lang.String" itemvalue="Application.run_tests_robot_upstart_nosetests" />
+      <item index="94" class="java.lang.String" itemvalue="Application.run_tests_robot_upstart_nosetests_test" />
+      <item index="95" class="java.lang.String" itemvalue="Application.run_tests_robot_upstart_roslint" />
+      <item index="96" class="java.lang.String" itemvalue="Application.run_tests_robot_upstart_roslint_package" />
+      <item index="97" class="java.lang.String" itemvalue="Application.state_node" />
+      <item index="98" class="java.lang.String" itemvalue="Application.tcp_driver_node" />
+      <item index="99" class="java.lang.String" itemvalue="Application.gtest" />
+      <item index="100" class="java.lang.String" itemvalue="Application.gtest_main" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ae8161e0-8940-4f69-83ea-5a0bdfeca947" name="Default" comment="" />
+      <created>1532940659579</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1532940659579</updated>
+      <workItem from="1532940660990" duration="33000" />
+      <workItem from="1532940729028" duration="663000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="696000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="64" y="-11" width="1537" height="912" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2495114" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32957393" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32957393" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39974937" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/src/laser_detect_node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-468">
+          <caret line="13" column="23" lean-forward="false" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="393" column="0" lean-forward="false" selection-start-line="393" selection-start-column="0" selection-end-line="393" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/ContainerDetect.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="133" column="37" lean-forward="true" selection-start-line="133" selection-start-column="37" selection-end-line="133" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

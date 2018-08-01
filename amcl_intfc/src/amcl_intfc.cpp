@@ -160,12 +160,13 @@ bool AMCLIntfc::statusCallback(laser_msgs::amcl_srv::Request &	req,
 	m_sys_status = (sys_status_t)sys_status_now;
 	m_amcl_status = (amcl_status_t)amcl_status_now;
 
-	if (AMCL_SEND_INIT == amcl_status_now)
+	if (AMCL_SEND_INIT == amcl_status_now) {
 		PubInitPose();
-	else if (AMCL_SEND_UPDATE == amcl_status_now)
+	} else if (AMCL_SEND_UPDATE == amcl_status_now) {
 		ForceUpdate();
-	else if (AMCL_SEND_LOC == amcl_status_now)
+	} else if (AMCL_SEND_LOC == amcl_status_now) {
 		PubCrsPose();
+	}
 
 	bool ret = isCovSmall(m_amcl_pose);
 	m_cov_is_small = ret;

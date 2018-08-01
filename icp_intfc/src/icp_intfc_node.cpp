@@ -1,8 +1,8 @@
-#include "icp_intfc_node.h"
+#include "icp_intfc/icp_intfc_node.h"
 
 ICPIntfc::ICPIntfc()
 {
-	m_icp_client = m_nh.advertiseService("nav_status", &ICPIntfc::statusCallback, this);
+	m_icp_server = m_nh.advertiseService("nav_status", &ICPIntfc::statusCallback, this);
 
 	m_pose_suber = m_nh.subscribe("pose2D", 1, &ICPIntfc::ICPPoseCallback, this);
 
@@ -38,7 +38,7 @@ bool ICPIntfc::statusCallback(laser_msgs::nav_srv::Request &req, laser_msgs::nav
 			m_pose_buf.clear();
 		}
 
-		T_Laser_in_Ori = m_coeff_mat * m_laser_pose.ToMat();
+		mat3x3 T_Laser_in_Ori = m_coeff_mat * m_laser_pose.ToMat();
 
 		// publish pose2d message
 		geometry_msgs::Pose2D pose_msg;
@@ -84,6 +84,7 @@ void ICPIntfc::InitPoseCallback(const geometry_msgs::Pose2D& ori_pose)
 void ICPIntfc::ICPPoseCallback(const geometry_msgs::Pose2D& pose)
 {
 	boost::mutex::scoped_lock lock(m_mutex);
+
 
 	if (!m_pose_buf.empty()) {
 		m_pose_buf.push_back(Pose2D(M2MM(pose.x), M2MM(pose.y), pose.theta));

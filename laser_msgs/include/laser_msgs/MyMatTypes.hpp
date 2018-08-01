@@ -2,6 +2,8 @@
 #define _MAT_TYPES_H
 
 #include <Eigen/Eigen>
+#include <vector>
+// #include "Eigen/Eigen"
 
 #define DATATYPE double
 
