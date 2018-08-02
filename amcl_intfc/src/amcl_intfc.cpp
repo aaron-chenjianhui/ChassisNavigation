@@ -95,8 +95,9 @@ void AMCLIntfc::ForceUpdate()
 {
 	std_srvs::Empty nomotion_srv;
 
-	if (~m_update_client.call(nomotion_srv))
+	if (~m_update_client.call(nomotion_srv)) {
 		ROS_INFO("Force Update Failed\r\n");
+	}
 }
 
 void AMCLIntfc::PubCrsPose()
@@ -126,10 +127,11 @@ bool AMCLIntfc::isCovSmall(const geometry_msgs::PoseWithCovarianceStamped& pose)
 	double cov_theta = pose.pose.covariance[35];
 
 	if ((cov_x < m_pos_cov_thre) && (cov_y < m_pos_cov_thre) &&
-	    (cov_theta < m_ori_cov_thre))
+	    (cov_theta < m_ori_cov_thre)) {
 		return true;
-	else
+	} else {
 		return false;
+	}
 }
 
 void AMCLIntfc::CovPoseToPose2D(
@@ -143,7 +145,7 @@ void AMCLIntfc::CovPoseToPose2D(
 	double quat_z = cov_pose.pose.pose.orientation.z;
 	double quat_w = cov_pose.pose.pose.orientation.w;
 
-	double theta = 2 * atan2(quat_w, quat_x);
+	double theta = 2 * atan2(quat_z, quat_w);
 
 	pose_re.x = x;
 	pose_re.y = y;

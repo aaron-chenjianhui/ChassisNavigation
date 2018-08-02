@@ -30,9 +30,6 @@ bool statusCallback(laser_msgs::laser_detect_srv::Request &req, laser_msgs::lase
 
 private:
 ros::NodeHandle m_nh;
-// global status
-ContainerDetect m_container_detect;
-
 
 // subscribe LiDAR data
 ros::Subscriber m_laser_suber;

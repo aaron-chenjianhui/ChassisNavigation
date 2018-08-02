@@ -140,6 +140,8 @@ include_directories(${Boost_INCLUDE_DIRS})
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(${PROJECT_NAME}_node src/main.cpp src/amcl_intfc.cpp)
 
+add_executable(force_update_node src/update.cpp)
+
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -154,6 +156,8 @@ add_executable(${PROJECT_NAME}_node src/main.cpp src/amcl_intfc.cpp)
 target_link_libraries(${PROJECT_NAME}_node
   ${catkin_LIBRARIES}
 )
+
+target_link_libraries(force_update_node ${catkin_LIBRARIES})
 
 #############
 ## Install ##

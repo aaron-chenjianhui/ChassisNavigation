@@ -2,106 +2,108 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
-      <config projectName="catkin_ws" targetName="test_buffer" />
-      <config projectName="catkin_ws" targetName="_laser_msgs_generate_messages_check_deps_nav_srv" />
-      <config projectName="catkin_ws" targetName="actionlib_msgs_generate_messages_cpp" />
-      <config projectName="catkin_ws" targetName="laser_msgs_genpy" />
-      <config projectName="catkin_ws" targetName="laser_msgs_genlisp" />
-      <config projectName="catkin_ws" targetName="run_tests_robot_upstart_roslint" />
-      <config projectName="catkin_ws" targetName="actionlib_msgs_generate_messages_py" />
-      <config projectName="catkin_ws" targetName="download_extra_data" />
-      <config projectName="catkin_ws" targetName="laser_detect_generate_messages_py" />
-      <config projectName="catkin_ws" targetName="doxygen" />
-      <config projectName="catkin_ws" targetName="run_tests_lms1xx_roslaunch-check_launch_LMS1xx.launch" />
-      <config projectName="catkin_ws" targetName="laser_msgs_generate_messages" />
-      <config projectName="catkin_ws" targetName="tf_generate_messages_py" />
-      <config projectName="catkin_ws" targetName="_laser_detect_generate_messages_check_deps_detect_msg" />
-      <config projectName="catkin_ws" targetName="std_msgs_generate_messages_py" />
-      <config projectName="catkin_ws" targetName="_run_tests_robot_upstart_nosetests_test" />
-      <config projectName="catkin_ws" targetName="laser_detect_generate_messages_cpp" />
-      <config projectName="catkin_ws" targetName="std_msgs_generate_messages_lisp" />
-      <config projectName="catkin_ws" targetName="run_tests_lms1xx" />
-      <config projectName="catkin_ws" targetName="_run_tests_lms1xx" />
-      <config projectName="catkin_ws" targetName="actionlib_generate_messages_lisp" />
-      <config projectName="catkin_ws" targetName="geometry_msgs_generate_messages_py" />
-      <config projectName="catkin_ws" targetName="actionlib_generate_messages_cpp" />
-      <config projectName="catkin_ws" targetName="_laser_msgs_generate_messages_check_deps_lidar_srv" />
-      <config projectName="catkin_ws" targetName="rosgraph_msgs_generate_messages_lisp" />
-      <config projectName="catkin_ws" targetName="sensor_msgs_generate_messages_cpp" />
-      <config projectName="catkin_ws" targetName="laser_detect_gencpp" />
-      <config projectName="catkin_ws" targetName="std_msgs_generate_messages_cpp" />
-      <config projectName="catkin_ws" targetName="visualization_msgs_generate_messages_lisp" />
-      <config projectName="catkin_ws" targetName="_laser_msgs_generate_messages_check_deps_tcp_srv" />
       <config projectName="catkin_ws" targetName="_run_tests_robot_upstart_nosetests" />
       <config projectName="catkin_ws" targetName="roscpp_generate_messages_lisp" />
-      <config projectName="catkin_ws" targetName="visualization_msgs_generate_messages_cpp" />
-      <config projectName="catkin_ws" targetName="tf_generate_messages_lisp" />
-      <config projectName="catkin_ws" targetName="_run_tests_robot_upstart_roslint_package" />
-      <config projectName="catkin_ws" targetName="std_srvs_generate_messages_lisp" />
-      <config projectName="catkin_ws" targetName="tcp_driver_node" />
-      <config projectName="catkin_ws" targetName="_run_tests_lms1xx_roslaunch-check" />
-      <config projectName="catkin_ws" targetName="std_srvs_generate_messages_py" />
-      <config projectName="catkin_ws" targetName="_run_tests_lms1xx_roslaunch-check_launch_LMS1xx.launch" />
-      <config projectName="catkin_ws" targetName="_catkin_empty_exported_target" />
-      <config projectName="catkin_ws" targetName="state_node" />
-      <config projectName="catkin_ws" targetName="laser_detect_genlisp" />
-      <config projectName="catkin_ws" targetName="tf2_msgs_generate_messages_lisp" />
-      <config projectName="catkin_ws" targetName="nav_msgs_generate_messages_lisp" />
-      <config projectName="catkin_ws" targetName="rosgraph_msgs_generate_messages_py" />
-      <config projectName="catkin_ws" targetName="run_tests" />
-      <config projectName="catkin_ws" targetName="run_tests_robot_upstart_roslint_package" />
-      <config projectName="catkin_ws" targetName="laser_detect_genpy" />
-      <config projectName="catkin_ws" targetName="gtest" />
-      <config projectName="catkin_ws" targetName="laser_msgs_generate_messages_lisp" />
-      <config projectName="catkin_ws" targetName="sensor_msgs_generate_messages_lisp" />
-      <config projectName="catkin_ws" targetName="_run_tests_lms1xx_gtest" />
-      <config projectName="catkin_ws" targetName="geometry_msgs_generate_messages_cpp" />
-      <config projectName="catkin_ws" targetName="laser_msgs_gencpp" />
-      <config projectName="catkin_ws" targetName="_laser_msgs_generate_messages_check_deps_amcl_srv" />
-      <config projectName="catkin_ws" targetName="run_tests_lms1xx_roslaunch-check" />
-      <config projectName="catkin_ws" targetName="data_saver_node" />
-      <config projectName="catkin_ws" targetName="roslint" />
-      <config projectName="catkin_ws" targetName="std_srvs_generate_messages_cpp" />
-      <config projectName="catkin_ws" targetName="actionlib_generate_messages_py" />
-      <config projectName="catkin_ws" targetName="rosgraph_msgs_generate_messages_cpp" />
-      <config projectName="catkin_ws" targetName="visualization_msgs_generate_messages_py" />
-      <config projectName="catkin_ws" targetName="roslint_robot_upstart" />
-      <config projectName="catkin_ws" targetName="_run_tests_lms1xx_gtest_test_buffer" />
-      <config projectName="catkin_ws" targetName="run_tests_robot_upstart" />
-      <config projectName="catkin_ws" targetName="_laser_detect_generate_messages_check_deps_laser_detect_srv" />
-      <config projectName="catkin_ws" targetName="run_tests_robot_upstart_nosetests_test" />
-      <config projectName="catkin_ws" targetName="clean_test_results_lms1xx" />
-      <config projectName="catkin_ws" targetName="_run_tests_robot_upstart" />
-      <config projectName="catkin_ws" targetName="sensor_msgs_generate_messages_py" />
-      <config projectName="catkin_ws" targetName="roscpp_generate_messages_cpp" />
       <config projectName="catkin_ws" targetName="clean_test_results_robot_upstart" />
-      <config projectName="catkin_ws" targetName="nav_msgs_generate_messages_cpp" />
-      <config projectName="catkin_ws" targetName="roslint_lms1xx" />
-      <config projectName="catkin_ws" targetName="_laser_msgs_generate_messages_check_deps_laser_detect_srv" />
-      <config projectName="catkin_ws" targetName="run_tests_lms1xx_gtest_test_buffer" />
-      <config projectName="catkin_ws" targetName="laser_detect_generate_messages" />
-      <config projectName="catkin_ws" targetName="LMS1xx_node" />
-      <config projectName="catkin_ws" targetName="_laser_msgs_generate_messages_check_deps_detect_msg" />
-      <config projectName="catkin_ws" targetName="laser_msgs_generate_messages_py" />
-      <config projectName="catkin_ws" targetName="amcl_intfc_node" />
-      <config projectName="catkin_ws" targetName="laser_node" />
-      <config projectName="catkin_ws" targetName="LMS1xx" />
-      <config projectName="catkin_ws" targetName="tf2_msgs_generate_messages_cpp" />
-      <config projectName="catkin_ws" targetName="tests" />
-      <config projectName="catkin_ws" targetName="tf_generate_messages_cpp" />
-      <config projectName="catkin_ws" targetName="geometry_msgs_generate_messages_lisp" />
-      <config projectName="catkin_ws" targetName="laser_detect_generate_messages_lisp" />
-      <config projectName="catkin_ws" targetName="actionlib_msgs_generate_messages_lisp" />
-      <config projectName="catkin_ws" targetName="run_tests_lms1xx_gtest" />
-      <config projectName="catkin_ws" targetName="catkin_ws_OTHER_FILES" />
-      <config projectName="catkin_ws" targetName="_run_tests_robot_upstart_roslint" />
-      <config projectName="catkin_ws" targetName="gtest_main" />
-      <config projectName="catkin_ws" targetName="run_tests_robot_upstart_nosetests" />
+      <config projectName="catkin_ws" targetName="std_srvs_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="icp_intfc_node" />
+      <config projectName="catkin_ws" targetName="run_tests_robot_upstart_roslint" />
       <config projectName="catkin_ws" targetName="tf2_msgs_generate_messages_py" />
-      <config projectName="catkin_ws" targetName="roscpp_generate_messages_py" />
       <config projectName="catkin_ws" targetName="laser_msgs_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="force_update_node" />
+      <config projectName="catkin_ws" targetName="laser_msgs_genpy" />
+      <config projectName="catkin_ws" targetName="_run_tests_robot_upstart_nosetests_test" />
+      <config projectName="catkin_ws" targetName="geometry_msgs_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="run_tests_lms1xx_roslaunch-check" />
       <config projectName="catkin_ws" targetName="clean_test_results" />
+      <config projectName="catkin_ws" targetName="tf2_msgs_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="data_saver_node" />
+      <config projectName="catkin_ws" targetName="run_tests_robot_upstart" />
+      <config projectName="catkin_ws" targetName="_run_tests_lms1xx_roslaunch-check" />
+      <config projectName="catkin_ws" targetName="doxygen" />
+      <config projectName="catkin_ws" targetName="geometry_msgs_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="tf2_msgs_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="roslint_robot_upstart" />
+      <config projectName="catkin_ws" targetName="gtest" />
+      <config projectName="catkin_ws" targetName="laser_detect_gencpp" />
+      <config projectName="catkin_ws" targetName="_catkin_empty_exported_target" />
+      <config projectName="catkin_ws" targetName="LMS1xx_node" />
+      <config projectName="catkin_ws" targetName="std_srvs_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="laser_msgs_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="actionlib_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="_run_tests_robot_upstart" />
+      <config projectName="catkin_ws" targetName="laser_detect_generate_messages" />
+      <config projectName="catkin_ws" targetName="_laser_msgs_generate_messages_check_deps_nav_srv" />
+      <config projectName="catkin_ws" targetName="geometry_msgs_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="LMS1xx" />
+      <config projectName="catkin_ws" targetName="_run_tests_robot_upstart_roslint" />
+      <config projectName="catkin_ws" targetName="roslint" />
+      <config projectName="catkin_ws" targetName="laser_detect_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="laser_node" />
+      <config projectName="catkin_ws" targetName="std_msgs_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="laser_msgs_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="_laser_detect_generate_messages_check_deps_detect_msg" />
+      <config projectName="catkin_ws" targetName="_laser_detect_generate_messages_check_deps_laser_detect_srv" />
       <config projectName="catkin_ws" targetName="nav_msgs_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="_run_tests_lms1xx" />
+      <config projectName="catkin_ws" targetName="std_msgs_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="nav_msgs_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="_run_tests_lms1xx_gtest" />
+      <config projectName="catkin_ws" targetName="roscpp_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="test_buffer" />
+      <config projectName="catkin_ws" targetName="run_tests_lms1xx_gtest" />
+      <config projectName="catkin_ws" targetName="_laser_msgs_generate_messages_check_deps_tcp_srv" />
+      <config projectName="catkin_ws" targetName="std_srvs_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="sensor_msgs_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="run_tests_robot_upstart_roslint_package" />
+      <config projectName="catkin_ws" targetName="actionlib_msgs_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="catkin_ws_OTHER_FILES" />
+      <config projectName="catkin_ws" targetName="tf_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="_run_tests_lms1xx_gtest_test_buffer" />
+      <config projectName="catkin_ws" targetName="visualization_msgs_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="laser_detect_genpy" />
+      <config projectName="catkin_ws" targetName="run_tests" />
+      <config projectName="catkin_ws" targetName="_run_tests_lms1xx_roslaunch-check_launch_LMS1xx.launch" />
+      <config projectName="catkin_ws" targetName="laser_detect_genlisp" />
+      <config projectName="catkin_ws" targetName="rosgraph_msgs_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="laser_detect_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="roscpp_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="run_tests_lms1xx" />
+      <config projectName="catkin_ws" targetName="visualization_msgs_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="nav_msgs_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="state_node" />
+      <config projectName="catkin_ws" targetName="run_tests_robot_upstart_nosetests" />
+      <config projectName="catkin_ws" targetName="laser_detect_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="amcl_intfc_node" />
+      <config projectName="catkin_ws" targetName="laser_msgs_generate_messages" />
+      <config projectName="catkin_ws" targetName="gtest_main" />
+      <config projectName="catkin_ws" targetName="sensor_msgs_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="std_msgs_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="visualization_msgs_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="_run_tests_robot_upstart_roslint_package" />
+      <config projectName="catkin_ws" targetName="_laser_msgs_generate_messages_check_deps_lidar_srv" />
+      <config projectName="catkin_ws" targetName="rosgraph_msgs_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="tf_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="laser_msgs_gencpp" />
+      <config projectName="catkin_ws" targetName="run_tests_lms1xx_gtest_test_buffer" />
+      <config projectName="catkin_ws" targetName="tf_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="_laser_msgs_generate_messages_check_deps_amcl_srv" />
+      <config projectName="catkin_ws" targetName="_laser_msgs_generate_messages_check_deps_laser_detect_srv" />
+      <config projectName="catkin_ws" targetName="actionlib_msgs_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="clean_test_results_lms1xx" />
+      <config projectName="catkin_ws" targetName="tcp_driver_node" />
+      <config projectName="catkin_ws" targetName="rosgraph_msgs_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="actionlib_generate_messages_cpp" />
+      <config projectName="catkin_ws" targetName="roslint_lms1xx" />
+      <config projectName="catkin_ws" targetName="actionlib_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="download_extra_data" />
+      <config projectName="catkin_ws" targetName="run_tests_robot_upstart_nosetests_test" />
+      <config projectName="catkin_ws" targetName="sensor_msgs_generate_messages_lisp" />
+      <config projectName="catkin_ws" targetName="actionlib_msgs_generate_messages_py" />
+      <config projectName="catkin_ws" targetName="_laser_msgs_generate_messages_check_deps_detect_msg" />
+      <config projectName="catkin_ws" targetName="laser_msgs_genlisp" />
+      <config projectName="catkin_ws" targetName="run_tests_lms1xx_roslaunch-check_launch_LMS1xx.launch" />
+      <config projectName="catkin_ws" targetName="tests" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -111,9 +113,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae8161e0-8940-4f69-83ea-5a0bdfeca947" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/amcl_intfc/CMakeLists.txt" afterPath="$PROJECT_DIR$/amcl_intfc/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/amcl_intfc/src/amcl_intfc.cpp" afterPath="$PROJECT_DIR$/amcl_intfc/src/amcl_intfc.cpp" />
       <change beforePath="$PROJECT_DIR$/laser_detect/include/laser_detect/ContainerDetect.hpp" afterPath="$PROJECT_DIR$/laser_detect/include/laser_detect/ContainerDetect.hpp" />
-      <change beforePath="$PROJECT_DIR$/state/launch/all_task.launch" afterPath="$PROJECT_DIR$/state/launch/all_task.launch" />
-      <change beforePath="$PROJECT_DIR$/tcp_driver/launch/tcp_driver.launch" afterPath="$PROJECT_DIR$/tcp_driver/launch/tcp_driver.launch" />
+      <change beforePath="$PROJECT_DIR$/laser_detect/include/laser_detect/FindSurface.hpp" afterPath="$PROJECT_DIR$/laser_detect/include/laser_detect/FindSurface.hpp" />
+      <change beforePath="$PROJECT_DIR$/laser_detect/include/laser_detect/LaserDataType.hpp" afterPath="$PROJECT_DIR$/laser_detect/include/laser_detect/LaserDataType.hpp" />
+      <change beforePath="$PROJECT_DIR$/laser_detect/include/laser_detect/LaserScanDataType.hpp" afterPath="$PROJECT_DIR$/laser_detect/include/laser_detect/LaserScanDataType.hpp" />
+      <change beforePath="$PROJECT_DIR$/laser_detect/include/laser_detect/Line2D.hpp" afterPath="$PROJECT_DIR$/laser_detect/include/laser_detect/Line2D.hpp" />
+      <change beforePath="$PROJECT_DIR$/laser_detect/include/laser_detect/laser_detect_node.h" afterPath="$PROJECT_DIR$/laser_detect/include/laser_detect/laser_detect_node.h" />
+      <change beforePath="$PROJECT_DIR$/laser_detect/src/laser_detect_node.cpp" afterPath="$PROJECT_DIR$/laser_detect/src/laser_detect_node.cpp" />
+      <change beforePath="$PROJECT_DIR$/laser_msgs/include/laser_msgs/PcPlcConvert.hpp" afterPath="$PROJECT_DIR$/laser_msgs/include/laser_msgs/PcPlcConvert.hpp" />
+      <change beforePath="$PROJECT_DIR$/state/include/state/CoreStateMachine.h" afterPath="$PROJECT_DIR$/state/include/state/CoreStateMachine.h" />
+      <change beforePath="$PROJECT_DIR$/state/include/state/CoreStateMachine_private.h" afterPath="$PROJECT_DIR$/state/include/state/CoreStateMachine_private.h" />
+      <change beforePath="$PROJECT_DIR$/state/include/state/CoreStateMachine_types.h" afterPath="$PROJECT_DIR$/state/include/state/CoreStateMachine_types.h" />
+      <change beforePath="$PROJECT_DIR$/state/include/state/rtwtypes.h" afterPath="$PROJECT_DIR$/state/include/state/rtwtypes.h" />
+      <change beforePath="$PROJECT_DIR$/state/launch/all_task_test.launch" afterPath="$PROJECT_DIR$/state/launch/all_task_test.launch" />
+      <change beforePath="$PROJECT_DIR$/state/src/CoreStateMachine.cpp" afterPath="$PROJECT_DIR$/state/src/CoreStateMachine.cpp" />
+      <change beforePath="$PROJECT_DIR$/state/src/CoreStateMachine_data.cpp" afterPath="$PROJECT_DIR$/state/src/CoreStateMachine_data.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -125,22 +142,94 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="laser_detect_node.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laser_detect/src/laser_detect_node.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-468">
-              <caret line="13" column="23" lean-forward="false" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+            <state relative-caret-position="286">
+              <caret line="101" column="54" lean-forward="false" selection-start-line="101" selection-start-column="54" selection-end-line="101" selection-end-column="54" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ContainerDetect.hpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FindSurface.hpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/FindSurface.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="267">
+              <caret line="87" column="7" lean-forward="false" selection-start-line="87" selection-start-column="7" selection-end-line="87" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="amcl_intfc.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/amcl_intfc/src/amcl_intfc.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="294">
+              <caret line="143" column="53" lean-forward="false" selection-start-line="143" selection-start-column="53" selection-end-line="143" selection-end-column="53" />
+              <folding>
+                <element signature="e#0#34#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="laser_detect_node.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/laser_detect_node.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ContainerDetect.hpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/ContainerDetect.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="74">
-              <caret line="133" column="37" lean-forward="true" selection-start-line="133" selection-start-column="37" selection-end-line="133" selection-end-column="37" />
+            <state relative-caret-position="214">
+              <caret line="33" column="24" lean-forward="false" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PcPlcConvert.hpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laser_msgs/include/laser_msgs/PcPlcConvert.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LaserDataType.hpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/LaserDataType.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="110" column="13" lean-forward="false" selection-start-line="110" selection-start-column="13" selection-end-line="110" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LineDetector.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/LineDetector.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="178">
+              <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LaserScanDataType.hpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/LaserScanDataType.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -149,7 +238,7 @@
       <file leaf-file-name="DenseCoeffsBase.h" pinned="false" current-in-tab="false">
         <entry file="file:///usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
+            <state relative-caret-position="7074">
               <caret line="393" column="0" lean-forward="false" selection-start-line="393" selection-start-column="0" selection-end-line="393" selection-end-column="0" />
               <folding />
             </state>
@@ -158,13 +247,25 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>m_coarse_pose</find>
+      <find>m_amcl_pose</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/laser_msgs/include/laser_msgs/PcPlcConvert.hpp" />
         <option value="$PROJECT_DIR$/laser_detect/include/laser_detect/ContainerDetect.hpp" />
+        <option value="$PROJECT_DIR$/laser_detect/include/laser_detect/laser_detect_node.h" />
+        <option value="$PROJECT_DIR$/amcl_intfc/src/amcl_intfc.cpp" />
+        <option value="$PROJECT_DIR$/laser_detect/include/laser_detect/LaserDataType.hpp" />
+        <option value="$PROJECT_DIR$/laser_detect/src/laser_detect_node.cpp" />
+        <option value="$PROJECT_DIR$/laser_detect/include/laser_detect/FindSurface.hpp" />
       </list>
     </option>
   </component>
@@ -211,6 +312,34 @@
               <item name="catkin_ws" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="src" type="47feb1d3:ProjectViewModuleNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="amcl_intfc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="catkin_ws" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="src" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="amcl_intfc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="catkin_ws" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="src" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="laser_detect" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="catkin_ws" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="src" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="laser_detect" type="462c0819:PsiDirectoryNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="catkin_ws" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="src" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="laser_detect" type="462c0819:PsiDirectoryNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
               <item name="laser_detect" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -219,6 +348,27 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="laser_detect" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="catkin_ws" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="src" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="laser_msgs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="catkin_ws" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="src" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="laser_msgs" type="462c0819:PsiDirectoryNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="catkin_ws" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="src" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="laser_msgs" type="462c0819:PsiDirectoryNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+              <item name="laser_msgs" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -230,6 +380,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/CMakeLists.txt" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -352,6 +503,9 @@
     <configuration name="doxygen" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="doxygen" CONFIG_NAME="Debug">
       <envs />
     </configuration>
+    <configuration name="force_update_node" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="force_update_node" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="catkin_ws" RUN_TARGET_NAME="force_update_node">
+      <envs />
+    </configuration>
     <configuration name="geometry_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="geometry_msgs_generate_messages_cpp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
@@ -365,6 +519,9 @@
       <envs />
     </configuration>
     <configuration name="gtest_main" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="gtest_main" CONFIG_NAME="Debug">
+      <envs />
+    </configuration>
+    <configuration name="icp_intfc_node" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="icp_intfc_node" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="catkin_ws" RUN_TARGET_NAME="icp_intfc_node">
       <envs />
     </configuration>
     <configuration name="laser_detect_gencpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="laser_detect_gencpp" CONFIG_NAME="Debug">
@@ -547,7 +704,7 @@
     <configuration name="visualization_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="catkin_ws" TARGET_NAME="visualization_msgs_generate_messages_py" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <list size="101">
+    <list size="103">
       <item index="0" class="java.lang.String" itemvalue="Application.Build All" />
       <item index="1" class="java.lang.String" itemvalue="Application.catkin_ws_OTHER_FILES" />
       <item index="2" class="java.lang.String" itemvalue="Application.clean_test_results" />
@@ -556,99 +713,101 @@
       <item index="5" class="java.lang.String" itemvalue="Application.run_tests" />
       <item index="6" class="java.lang.String" itemvalue="Application.tests" />
       <item index="7" class="java.lang.String" itemvalue="Application.amcl_intfc_node" />
-      <item index="8" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_cpp" />
-      <item index="9" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_lisp" />
-      <item index="10" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_py" />
-      <item index="11" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_cpp" />
-      <item index="12" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_lisp" />
-      <item index="13" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_py" />
-      <item index="14" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_cpp" />
-      <item index="15" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_lisp" />
-      <item index="16" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_py" />
-      <item index="17" class="java.lang.String" itemvalue="Application.std_srvs_generate_messages_cpp" />
-      <item index="18" class="java.lang.String" itemvalue="Application.std_srvs_generate_messages_lisp" />
-      <item index="19" class="java.lang.String" itemvalue="Application.std_srvs_generate_messages_py" />
-      <item index="20" class="java.lang.String" itemvalue="Application.data_saver_node" />
-      <item index="21" class="java.lang.String" itemvalue="Application._catkin_empty_exported_target" />
-      <item index="22" class="java.lang.String" itemvalue="Application._laser_detect_generate_messages_check_deps_detect_msg" />
-      <item index="23" class="java.lang.String" itemvalue="Application._laser_detect_generate_messages_check_deps_laser_detect_srv" />
-      <item index="24" class="java.lang.String" itemvalue="Application.actionlib_generate_messages_cpp" />
-      <item index="25" class="java.lang.String" itemvalue="Application.actionlib_generate_messages_lisp" />
-      <item index="26" class="java.lang.String" itemvalue="Application.actionlib_generate_messages_py" />
-      <item index="27" class="java.lang.String" itemvalue="Application.actionlib_msgs_generate_messages_cpp" />
-      <item index="28" class="java.lang.String" itemvalue="Application.actionlib_msgs_generate_messages_lisp" />
-      <item index="29" class="java.lang.String" itemvalue="Application.actionlib_msgs_generate_messages_py" />
-      <item index="30" class="java.lang.String" itemvalue="Application.laser_detect_gencpp" />
-      <item index="31" class="java.lang.String" itemvalue="Application.laser_detect_generate_messages" />
-      <item index="32" class="java.lang.String" itemvalue="Application.laser_detect_generate_messages_cpp" />
-      <item index="33" class="java.lang.String" itemvalue="Application.laser_detect_generate_messages_lisp" />
-      <item index="34" class="java.lang.String" itemvalue="Application.laser_detect_generate_messages_py" />
-      <item index="35" class="java.lang.String" itemvalue="Application.laser_detect_genlisp" />
-      <item index="36" class="java.lang.String" itemvalue="Application.laser_detect_genpy" />
-      <item index="37" class="java.lang.String" itemvalue="Application.laser_node" />
-      <item index="38" class="java.lang.String" itemvalue="Application.tf2_msgs_generate_messages_cpp" />
-      <item index="39" class="java.lang.String" itemvalue="Application.tf2_msgs_generate_messages_lisp" />
-      <item index="40" class="java.lang.String" itemvalue="Application.tf2_msgs_generate_messages_py" />
-      <item index="41" class="java.lang.String" itemvalue="Application.tf_generate_messages_cpp" />
-      <item index="42" class="java.lang.String" itemvalue="Application.tf_generate_messages_lisp" />
-      <item index="43" class="java.lang.String" itemvalue="Application.tf_generate_messages_py" />
-      <item index="44" class="java.lang.String" itemvalue="Application.visualization_msgs_generate_messages_cpp" />
-      <item index="45" class="java.lang.String" itemvalue="Application.visualization_msgs_generate_messages_lisp" />
-      <item index="46" class="java.lang.String" itemvalue="Application.visualization_msgs_generate_messages_py" />
-      <item index="47" class="java.lang.String" itemvalue="Application.nav_msgs_generate_messages_cpp" />
-      <item index="48" class="java.lang.String" itemvalue="Application.nav_msgs_generate_messages_lisp" />
-      <item index="49" class="java.lang.String" itemvalue="Application.nav_msgs_generate_messages_py" />
-      <item index="50" class="java.lang.String" itemvalue="Application._laser_msgs_generate_messages_check_deps_amcl_srv" />
-      <item index="51" class="java.lang.String" itemvalue="Application._laser_msgs_generate_messages_check_deps_detect_msg" />
-      <item index="52" class="java.lang.String" itemvalue="Application._laser_msgs_generate_messages_check_deps_laser_detect_srv" />
-      <item index="53" class="java.lang.String" itemvalue="Application._laser_msgs_generate_messages_check_deps_lidar_srv" />
-      <item index="54" class="java.lang.String" itemvalue="Application._laser_msgs_generate_messages_check_deps_nav_srv" />
-      <item index="55" class="java.lang.String" itemvalue="Application._laser_msgs_generate_messages_check_deps_tcp_srv" />
-      <item index="56" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_cpp" />
-      <item index="57" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_lisp" />
-      <item index="58" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_py" />
-      <item index="59" class="java.lang.String" itemvalue="Application.laser_msgs_gencpp" />
-      <item index="60" class="java.lang.String" itemvalue="Application.laser_msgs_generate_messages" />
-      <item index="61" class="java.lang.String" itemvalue="Application.laser_msgs_generate_messages_cpp" />
-      <item index="62" class="java.lang.String" itemvalue="Application.laser_msgs_generate_messages_lisp" />
-      <item index="63" class="java.lang.String" itemvalue="Application.laser_msgs_generate_messages_py" />
-      <item index="64" class="java.lang.String" itemvalue="Application.laser_msgs_genlisp" />
-      <item index="65" class="java.lang.String" itemvalue="Application.laser_msgs_genpy" />
-      <item index="66" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_cpp" />
-      <item index="67" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_lisp" />
-      <item index="68" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_py" />
-      <item index="69" class="java.lang.String" itemvalue="Application._run_tests_lms1xx" />
-      <item index="70" class="java.lang.String" itemvalue="Application._run_tests_lms1xx_gtest" />
-      <item index="71" class="java.lang.String" itemvalue="Application._run_tests_lms1xx_gtest_test_buffer" />
-      <item index="72" class="java.lang.String" itemvalue="Application._run_tests_lms1xx_roslaunch-check" />
-      <item index="73" class="java.lang.String" itemvalue="Application._run_tests_lms1xx_roslaunch-check_launch_LMS1xx.launch" />
-      <item index="74" class="java.lang.String" itemvalue="Application.clean_test_results_lms1xx" />
-      <item index="75" class="java.lang.String" itemvalue="Application.LMS1xx" />
-      <item index="76" class="java.lang.String" itemvalue="Application.LMS1xx_node" />
-      <item index="77" class="java.lang.String" itemvalue="Application.roslint_lms1xx" />
-      <item index="78" class="java.lang.String" itemvalue="Application.run_tests_lms1xx" />
-      <item index="79" class="java.lang.String" itemvalue="Application.run_tests_lms1xx_gtest" />
-      <item index="80" class="java.lang.String" itemvalue="Application.run_tests_lms1xx_gtest_test_buffer" />
-      <item index="81" class="java.lang.String" itemvalue="Application.run_tests_lms1xx_roslaunch-check" />
-      <item index="82" class="java.lang.String" itemvalue="Application.run_tests_lms1xx_roslaunch-check_launch_LMS1xx.launch" />
-      <item index="83" class="java.lang.String" itemvalue="Application.test_buffer" />
-      <item index="84" class="java.lang.String" itemvalue="Application._run_tests_robot_upstart" />
-      <item index="85" class="java.lang.String" itemvalue="Application._run_tests_robot_upstart_nosetests" />
-      <item index="86" class="java.lang.String" itemvalue="Application._run_tests_robot_upstart_nosetests_test" />
-      <item index="87" class="java.lang.String" itemvalue="Application._run_tests_robot_upstart_roslint" />
-      <item index="88" class="java.lang.String" itemvalue="Application._run_tests_robot_upstart_roslint_package" />
-      <item index="89" class="java.lang.String" itemvalue="Application.clean_test_results_robot_upstart" />
-      <item index="90" class="java.lang.String" itemvalue="Application.roslint" />
-      <item index="91" class="java.lang.String" itemvalue="Application.roslint_robot_upstart" />
-      <item index="92" class="java.lang.String" itemvalue="Application.run_tests_robot_upstart" />
-      <item index="93" class="java.lang.String" itemvalue="Application.run_tests_robot_upstart_nosetests" />
-      <item index="94" class="java.lang.String" itemvalue="Application.run_tests_robot_upstart_nosetests_test" />
-      <item index="95" class="java.lang.String" itemvalue="Application.run_tests_robot_upstart_roslint" />
-      <item index="96" class="java.lang.String" itemvalue="Application.run_tests_robot_upstart_roslint_package" />
-      <item index="97" class="java.lang.String" itemvalue="Application.state_node" />
-      <item index="98" class="java.lang.String" itemvalue="Application.tcp_driver_node" />
-      <item index="99" class="java.lang.String" itemvalue="Application.gtest" />
-      <item index="100" class="java.lang.String" itemvalue="Application.gtest_main" />
+      <item index="8" class="java.lang.String" itemvalue="Application.force_update_node" />
+      <item index="9" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_cpp" />
+      <item index="10" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_lisp" />
+      <item index="11" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_py" />
+      <item index="12" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_cpp" />
+      <item index="13" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_lisp" />
+      <item index="14" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_py" />
+      <item index="15" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_cpp" />
+      <item index="16" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_lisp" />
+      <item index="17" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_py" />
+      <item index="18" class="java.lang.String" itemvalue="Application.std_srvs_generate_messages_cpp" />
+      <item index="19" class="java.lang.String" itemvalue="Application.std_srvs_generate_messages_lisp" />
+      <item index="20" class="java.lang.String" itemvalue="Application.std_srvs_generate_messages_py" />
+      <item index="21" class="java.lang.String" itemvalue="Application.data_saver_node" />
+      <item index="22" class="java.lang.String" itemvalue="Application._catkin_empty_exported_target" />
+      <item index="23" class="java.lang.String" itemvalue="Application._laser_detect_generate_messages_check_deps_detect_msg" />
+      <item index="24" class="java.lang.String" itemvalue="Application._laser_detect_generate_messages_check_deps_laser_detect_srv" />
+      <item index="25" class="java.lang.String" itemvalue="Application.actionlib_generate_messages_cpp" />
+      <item index="26" class="java.lang.String" itemvalue="Application.actionlib_generate_messages_lisp" />
+      <item index="27" class="java.lang.String" itemvalue="Application.actionlib_generate_messages_py" />
+      <item index="28" class="java.lang.String" itemvalue="Application.actionlib_msgs_generate_messages_cpp" />
+      <item index="29" class="java.lang.String" itemvalue="Application.actionlib_msgs_generate_messages_lisp" />
+      <item index="30" class="java.lang.String" itemvalue="Application.actionlib_msgs_generate_messages_py" />
+      <item index="31" class="java.lang.String" itemvalue="Application.icp_intfc_node" />
+      <item index="32" class="java.lang.String" itemvalue="Application.laser_detect_gencpp" />
+      <item index="33" class="java.lang.String" itemvalue="Application.laser_detect_generate_messages" />
+      <item index="34" class="java.lang.String" itemvalue="Application.laser_detect_generate_messages_cpp" />
+      <item index="35" class="java.lang.String" itemvalue="Application.laser_detect_generate_messages_lisp" />
+      <item index="36" class="java.lang.String" itemvalue="Application.laser_detect_generate_messages_py" />
+      <item index="37" class="java.lang.String" itemvalue="Application.laser_detect_genlisp" />
+      <item index="38" class="java.lang.String" itemvalue="Application.laser_detect_genpy" />
+      <item index="39" class="java.lang.String" itemvalue="Application.laser_node" />
+      <item index="40" class="java.lang.String" itemvalue="Application.tf2_msgs_generate_messages_cpp" />
+      <item index="41" class="java.lang.String" itemvalue="Application.tf2_msgs_generate_messages_lisp" />
+      <item index="42" class="java.lang.String" itemvalue="Application.tf2_msgs_generate_messages_py" />
+      <item index="43" class="java.lang.String" itemvalue="Application.tf_generate_messages_cpp" />
+      <item index="44" class="java.lang.String" itemvalue="Application.tf_generate_messages_lisp" />
+      <item index="45" class="java.lang.String" itemvalue="Application.tf_generate_messages_py" />
+      <item index="46" class="java.lang.String" itemvalue="Application.visualization_msgs_generate_messages_cpp" />
+      <item index="47" class="java.lang.String" itemvalue="Application.visualization_msgs_generate_messages_lisp" />
+      <item index="48" class="java.lang.String" itemvalue="Application.visualization_msgs_generate_messages_py" />
+      <item index="49" class="java.lang.String" itemvalue="Application.nav_msgs_generate_messages_cpp" />
+      <item index="50" class="java.lang.String" itemvalue="Application.nav_msgs_generate_messages_lisp" />
+      <item index="51" class="java.lang.String" itemvalue="Application.nav_msgs_generate_messages_py" />
+      <item index="52" class="java.lang.String" itemvalue="Application._laser_msgs_generate_messages_check_deps_amcl_srv" />
+      <item index="53" class="java.lang.String" itemvalue="Application._laser_msgs_generate_messages_check_deps_detect_msg" />
+      <item index="54" class="java.lang.String" itemvalue="Application._laser_msgs_generate_messages_check_deps_laser_detect_srv" />
+      <item index="55" class="java.lang.String" itemvalue="Application._laser_msgs_generate_messages_check_deps_lidar_srv" />
+      <item index="56" class="java.lang.String" itemvalue="Application._laser_msgs_generate_messages_check_deps_nav_srv" />
+      <item index="57" class="java.lang.String" itemvalue="Application._laser_msgs_generate_messages_check_deps_tcp_srv" />
+      <item index="58" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_cpp" />
+      <item index="59" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_lisp" />
+      <item index="60" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_py" />
+      <item index="61" class="java.lang.String" itemvalue="Application.laser_msgs_gencpp" />
+      <item index="62" class="java.lang.String" itemvalue="Application.laser_msgs_generate_messages" />
+      <item index="63" class="java.lang.String" itemvalue="Application.laser_msgs_generate_messages_cpp" />
+      <item index="64" class="java.lang.String" itemvalue="Application.laser_msgs_generate_messages_lisp" />
+      <item index="65" class="java.lang.String" itemvalue="Application.laser_msgs_generate_messages_py" />
+      <item index="66" class="java.lang.String" itemvalue="Application.laser_msgs_genlisp" />
+      <item index="67" class="java.lang.String" itemvalue="Application.laser_msgs_genpy" />
+      <item index="68" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_cpp" />
+      <item index="69" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_lisp" />
+      <item index="70" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_py" />
+      <item index="71" class="java.lang.String" itemvalue="Application._run_tests_lms1xx" />
+      <item index="72" class="java.lang.String" itemvalue="Application._run_tests_lms1xx_gtest" />
+      <item index="73" class="java.lang.String" itemvalue="Application._run_tests_lms1xx_gtest_test_buffer" />
+      <item index="74" class="java.lang.String" itemvalue="Application._run_tests_lms1xx_roslaunch-check" />
+      <item index="75" class="java.lang.String" itemvalue="Application._run_tests_lms1xx_roslaunch-check_launch_LMS1xx.launch" />
+      <item index="76" class="java.lang.String" itemvalue="Application.clean_test_results_lms1xx" />
+      <item index="77" class="java.lang.String" itemvalue="Application.LMS1xx" />
+      <item index="78" class="java.lang.String" itemvalue="Application.LMS1xx_node" />
+      <item index="79" class="java.lang.String" itemvalue="Application.roslint_lms1xx" />
+      <item index="80" class="java.lang.String" itemvalue="Application.run_tests_lms1xx" />
+      <item index="81" class="java.lang.String" itemvalue="Application.run_tests_lms1xx_gtest" />
+      <item index="82" class="java.lang.String" itemvalue="Application.run_tests_lms1xx_gtest_test_buffer" />
+      <item index="83" class="java.lang.String" itemvalue="Application.run_tests_lms1xx_roslaunch-check" />
+      <item index="84" class="java.lang.String" itemvalue="Application.run_tests_lms1xx_roslaunch-check_launch_LMS1xx.launch" />
+      <item index="85" class="java.lang.String" itemvalue="Application.test_buffer" />
+      <item index="86" class="java.lang.String" itemvalue="Application._run_tests_robot_upstart" />
+      <item index="87" class="java.lang.String" itemvalue="Application._run_tests_robot_upstart_nosetests" />
+      <item index="88" class="java.lang.String" itemvalue="Application._run_tests_robot_upstart_nosetests_test" />
+      <item index="89" class="java.lang.String" itemvalue="Application._run_tests_robot_upstart_roslint" />
+      <item index="90" class="java.lang.String" itemvalue="Application._run_tests_robot_upstart_roslint_package" />
+      <item index="91" class="java.lang.String" itemvalue="Application.clean_test_results_robot_upstart" />
+      <item index="92" class="java.lang.String" itemvalue="Application.roslint" />
+      <item index="93" class="java.lang.String" itemvalue="Application.roslint_robot_upstart" />
+      <item index="94" class="java.lang.String" itemvalue="Application.run_tests_robot_upstart" />
+      <item index="95" class="java.lang.String" itemvalue="Application.run_tests_robot_upstart_nosetests" />
+      <item index="96" class="java.lang.String" itemvalue="Application.run_tests_robot_upstart_nosetests_test" />
+      <item index="97" class="java.lang.String" itemvalue="Application.run_tests_robot_upstart_roslint" />
+      <item index="98" class="java.lang.String" itemvalue="Application.run_tests_robot_upstart_roslint_package" />
+      <item index="99" class="java.lang.String" itemvalue="Application.state_node" />
+      <item index="100" class="java.lang.String" itemvalue="Application.tcp_driver_node" />
+      <item index="101" class="java.lang.String" itemvalue="Application.gtest" />
+      <item index="102" class="java.lang.String" itemvalue="Application.gtest_main" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -666,27 +825,29 @@
       <updated>1532940659579</updated>
       <workItem from="1532940660990" duration="33000" />
       <workItem from="1532940729028" duration="663000" />
+      <workItem from="1533190338399" duration="603000" />
+      <workItem from="1533192596608" duration="6696000" />
+      <workItem from="1533212245316" duration="2308000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="696000" />
+    <option name="totallyTimeSpent" value="10303000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-11" width="1537" height="912" extended-state="6" />
-    <editor active="true" />
+    <frame x="112" y="24" width="1855" height="1084" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2495114" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24905661" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32957393" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32957393" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39974937" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4243354" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -704,11 +865,124 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/laser_detect/include/laser_detect/FindSurface.hpp</url>
+          <line>43</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="14" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/laser_detect/src/laser_detect_node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amcl_intfc/src/amcl_intfc.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2646">
+          <caret line="147" column="43" lean-forward="false" selection-start-line="147" selection-start-column="43" selection-end-line="147" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/laser_detect_node.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/ContainerDetect.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1062">
+          <caret line="59" column="44" lean-forward="false" selection-start-line="59" selection-start-column="44" selection-end-line="59" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_msgs/include/laser_msgs/PcPlcConvert.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/LaserDataType.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2034">
+          <caret line="113" column="0" lean-forward="false" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7074">
+          <caret line="393" column="0" lean-forward="false" selection-start-line="393" selection-start-column="0" selection-end-line="393" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/src/laser_detect_node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="23" lean-forward="false" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7074">
+          <caret line="393" column="0" lean-forward="false" selection-start-line="393" selection-start-column="0" selection-end-line="393" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/ContainerDetect.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2664">
+          <caret line="148" column="31" lean-forward="false" selection-start-line="148" selection-start-column="31" selection-end-line="148" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/src/laser_detect_node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="23" lean-forward="false" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7074">
+          <caret line="393" column="0" lean-forward="false" selection-start-line="393" selection-start-column="0" selection-end-line="393" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/ContainerDetect.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2394">
+          <caret line="133" column="37" lean-forward="true" selection-start-line="133" selection-start-column="37" selection-end-line="133" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -718,7 +992,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/laser_detect/src/laser_detect_node.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-468">
+        <state relative-caret-position="234">
           <caret line="13" column="23" lean-forward="false" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
           <folding />
         </state>
@@ -726,7 +1000,7 @@
     </entry>
     <entry file="file:///usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
+        <state relative-caret-position="7074">
           <caret line="393" column="0" lean-forward="false" selection-start-line="393" selection-start-column="0" selection-end-line="393" selection-end-column="0" />
           <folding />
         </state>
@@ -734,8 +1008,118 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/ContainerDetect.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="133" column="37" lean-forward="true" selection-start-line="133" selection-start-column="37" selection-end-line="133" selection-end-column="37" />
+        <state relative-caret-position="179">
+          <caret line="133" column="37" lean-forward="false" selection-start-line="133" selection-start-column="37" selection-end-line="133" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7074">
+          <caret line="393" column="0" lean-forward="false" selection-start-line="393" selection-start-column="0" selection-end-line="393" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_msgs/include/laser_msgs/MyMatTypes.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="25" column="5" lean-forward="false" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/x86_64-linux-gnu/bits/mathcalls.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="59" column="51" lean-forward="false" selection-start-line="59" selection-start-column="51" selection-end-line="59" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/eigen3/Eigen/src/LU/Inverse.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="319" column="66" lean-forward="false" selection-start-line="319" selection-start-column="66" selection-end-line="319" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/LaserScanDataType.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/LineDetector.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amcl_intfc/src/amcl_intfc.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="143" column="53" lean-forward="false" selection-start-line="143" selection-start-column="53" selection-end-line="143" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/laser_detect_node.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/ContainerDetect.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="33" column="24" lean-forward="false" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_msgs/include/laser_msgs/PcPlcConvert.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/LaserDataType.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="110" column="13" lean-forward="false" selection-start-line="110" selection-start-column="13" selection-end-line="110" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/src/laser_detect_node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="101" column="54" lean-forward="false" selection-start-line="101" selection-start-column="54" selection-end-line="101" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/FindSurface.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="87" column="7" lean-forward="false" selection-start-line="87" selection-start-column="7" selection-end-line="87" selection-end-column="7" />
           <folding />
         </state>
       </provider>

@@ -3,9 +3,9 @@
 //
 // Code generated for Simulink model 'CoreStateMachine'.
 //
-// Model version                  : 1.71
+// Model version                  : 1.74
 // Simulink Coder version         : 8.11 (R2016b) 25-Aug-2016
-// C/C++ source code generated on : Wed Jul 25 08:50:57 2018
+// C/C++ source code generated on : Wed Aug 01 15:34:08 2018
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -35,7 +35,6 @@
 // Block states (auto storage) for system '<Root>'
 typedef struct {
 	uint16_T	cal_count;                      // '<S2>/DetectState'
-	uint16_T	init_count;                     // '<S2>/AMCL_Interface'
 	uint16_T	send_count;                     // '<S2>/AMCL_Interface'
 	uint16_T	update_count;                   // '<S2>/AMCL_Interface'
 	uint8_T		is_active_c1_CoreStateMachine;  // '<S1>/StateMachine'

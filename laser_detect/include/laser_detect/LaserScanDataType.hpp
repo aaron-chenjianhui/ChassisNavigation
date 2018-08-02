@@ -49,7 +49,7 @@ void UpdateData(const sensor_msgs::LaserScan& laser_data)
 	LimitLaserData({ m_laser_limit });
 }
 
-sensor_msgs::LaserScan ToLaserScan()
+sensor_msgs::LaserScan ToLaserScan() const
 {
 	sensor_msgs::LaserScan msgs;
 
@@ -72,10 +72,6 @@ sensor_msgs::LaserScan ToLaserScan()
 }
 
 
-sensor_msgs::LaserScan ToLaserScan() const
-{
-	return ToLaserScan();
-}
 
 
 void ChooseBetterRange(Line2D& line, double min_range, double max_range)

@@ -47,7 +47,7 @@
   <node pkg="icp_intfc" type="icp_intfc_node" name="continuous_location" output="screen" />
 
   <!-- <node pkg="laser_detect" type="laser_detect_node" name="laser_detect" output="screen" launch-prefix="gnome-terminal -e"></node> -->
-  <node pkg="laser_detect" type="laser_node" name="laser_detect"></node>
+  <!-- <node pkg="laser_detect" type="laser_node" name="laser_detect"></node> -->
 
   <!-- <node pkg="state" type="state_node" name="state_machine" output="screen" launch-prefix="gnome-terminal -e"> -->
   <node pkg="state" type="state_node" name="state_machine" output="screen">

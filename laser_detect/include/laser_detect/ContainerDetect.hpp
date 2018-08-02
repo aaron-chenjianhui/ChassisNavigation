@@ -31,7 +31,7 @@ public:
 ContainerDetect()
 {
 	double width = 2350;
-	double length = 1700;
+	double length = 5650;
 	Pose2D pose(-length, -width / 2.0, 0);
 
 	UpdateRange(pose, width, length, DEG2RAD(5));
@@ -39,6 +39,7 @@ ContainerDetect()
 
 ContainerDetect(Pose2D& pose, double container_width, double container_length)
 {
+
 	UpdateRange(pose, container_width, container_length, DEG2RAD(5));
 }
 
@@ -65,6 +66,14 @@ void UpdateRange(const Pose2D& pose, double width, double length, double delta)
 
 	m_param.width = width;
 	m_param.length = length;
+
+	// debug
+	DEBUGLOG("left min is: " << m_param.left_min);
+	DEBUGLOG("left max is: " << m_param.left_max);
+	DEBUGLOG("front min is: " << m_param.front_min);
+	DEBUGLOG("front max is: " << m_param.front_max);
+	DEBUGLOG("right min is: " << m_param.right_min);
+	DEBUGLOG("right max is: " << m_param.right_max);
 }
 
 void FindWallLine(const LaserData& raw_laser_data, ContainerParam& param)
@@ -145,18 +154,18 @@ void CalRange(const Point2D& min_p, const Point2D& max_p,
 
 	mat3x1 min_in_ori, min_in_laser;
 	mat3x1 max_in_ori, max_in_laser;
-	min_in_ori(0) = min_p.x - pose.m_x;
-	min_in_ori(1) = min_p.y - pose.m_y;
+	min_in_ori(0) = min_p.x;
+	min_in_ori(1) = min_p.y;
 	min_in_ori(2) = 1;
-	max_in_ori(0) = max_p.x - pose.m_x;
-	max_in_ori(1) = max_p.y - pose.m_y;
+	max_in_ori(0) = max_p.x;
+	max_in_ori(1) = max_p.y;
 	max_in_ori(2) = 1;
 
-	min_in_laser = T_laser_in_ori * max_in_laser;
-	max_in_laser = T_laser_in_ori * max_in_laser;
+	min_in_laser = T_laser_in_ori.inverse() * min_in_ori;
+	max_in_laser = T_laser_in_ori.inverse() * max_in_ori;
 
-	min_angle = atan2(min_in_laser(2), min_in_laser(1)) - delta;
-	max_angle = atan2(max_in_laser(2), max_in_laser(1)) + delta;
+	min_angle = atan2(min_in_laser(1), min_in_laser(0)) - delta;
+	max_angle = atan2(max_in_laser(1), max_in_laser(0)) + delta;
 }
 
 

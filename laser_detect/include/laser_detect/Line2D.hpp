@@ -23,10 +23,6 @@ Line2D(double ax, double ay, double nx, double ny)
 {
 }
 
-Point2D Normal()
-{
-	return Point2D(m_nx, m_ny);
-}
 
 Point2D Normal() const
 {
@@ -36,11 +32,6 @@ Point2D Normal() const
 double GetYVal(double x)
 {
 	return (m_ax * m_nx + m_ay * m_ny - x * m_nx) / m_ny;
-}
-
-Point2D PointInLine()
-{
-	return Point2D(m_ax, m_ay);
 }
 
 Point2D PointInLine() const

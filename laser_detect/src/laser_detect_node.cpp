@@ -20,8 +20,8 @@ LaserDetectNode::~LaserDetectNode()
 
 void LaserDetectNode::CoarsePoseCallback(const geometry_msgs::Pose2D& pose)
 {
-	m_coarse_pose.m_x = pose.x;
-	m_coarse_pose.m_y = pose.y;
+	m_coarse_pose.m_x = M2MM(pose.x);
+	m_coarse_pose.m_y = M2MM(pose.y);
 	m_coarse_pose.m_theta = pose.theta;
 }
 
@@ -70,13 +70,20 @@ bool LaserDetectNode::statusCallback(laser_msgs::laser_detect_srv::Request &req,
 		m_filter_count = 0;
 
 		double width = 2350;
-		double length = 1700;
+		double length = 5650;
 
+		DEBUGLOG("In update range");
 		m_detect.UpdateRange(m_coarse_pose, width, length, DEG2RAD(5));
+		DEBUGLOG("m_coarse_pose is: " << m_coarse_pose.m_x << ", " <<
+			 m_coarse_pose.m_y << ", " << m_coarse_pose.m_theta);
+		DEBUGLOG("width is: " << width);
+		DEBUGLOG("length is: " << length);
 
+		DEBUGLOG("FindWallLine");
 		ContainerParam param;
 		m_detect.FindWallLine(m_laser_data, param);
 
+		DEBUGLOG("Choose better region");
 		double left_min, left_max, front_min, front_max, right_min, right_max;
 		m_detect.ChooseBetterRegion(param.left_line, param.left_min, param.left_max, left_min, left_max);
 		LaserScanData left_laser;
@@ -90,8 +97,10 @@ bool LaserDetectNode::statusCallback(laser_msgs::laser_detect_srv::Request &req,
 		LaserScanData right_laser;
 		param.right_data.DataInRange(right_min, right_max, right_laser);
 
+		DEBUGLOG("Get left surface");
 		// local detection
 		Line2D left_revise_line = m_surf_finder.GetSurface(left_laser, param.left_line);
+		DEBUGLOG("Get front surface");
 		Line2D front_revise_line = m_surf_finder.GetSurface(front_laser, param.front_line);
 		Point2D pos = Line2D::CrossPoint(left_revise_line, front_revise_line);
 		double theta = atan2(pos.y - left_revise_line.m_ay, pos.x - left_revise_line.m_ax);

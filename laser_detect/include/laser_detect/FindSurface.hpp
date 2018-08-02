@@ -32,12 +32,17 @@ Line2D Execute(const PointsT points, const Line2D& line, int max_count = 10)
 	VoteT vote;
 	Line2D off_line = line;
 
+	DEBUGLOG("begin to execute");
 	for (int i = 0; i < max_count; ++i) {
+		DEBUGLOG("step" << i);
+
 		SeperatePoints(all_points, off_line, inner_points, outer_points);
 		all_points = inner_points;
 
 		FindLine(inner_points, off_line, vote);
+		double err = Error();
 		if (Error() < m_off_thre) {
+			DEBUGLOG("find offset line");
 			return off_line;
 		}
 	}

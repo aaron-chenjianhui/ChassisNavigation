@@ -3,9 +3,9 @@
 //
 // Code generated for Simulink model 'CoreStateMachine'.
 //
-// Model version                  : 1.71
+// Model version                  : 1.74
 // Simulink Coder version         : 8.11 (R2016b) 25-Aug-2016
-// C/C++ source code generated on : Wed Jul 25 08:50:57 2018
+// C/C++ source code generated on : Wed Aug 01 15:34:08 2018
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: Intel->x86-64 (Linux 64)
@@ -99,8 +99,6 @@ void CoreStateMachine_step(void)
 					CoreStateMachine_IN_AMCLDisconn;
 			} else if (CoreStateMachine_Y.sys_status == 2) {
 				// Transition: '<S5>:21'
-				// Transition: '<S5>:22'
-				CoreStateMachine_DW.init_count = 0U;
 				CoreStateMachine_DW.is_c4_CoreStateMachine =
 					CoreStateMachin_IN_SendInitPose;
 
@@ -130,13 +128,6 @@ void CoreStateMachine_step(void)
 					CoreStateMachine_IN_AMCLReady;
 			} else if (CoreStateMachine_DW.send_count >= 3) {
 				// Transition: '<S5>:25'
-				// Transition: '<S5>:26'
-				tmp = CoreStateMachine_DW.init_count + 1;
-				if (tmp > 65535) {
-					tmp = 65535;
-				}
-
-				CoreStateMachine_DW.init_count = (uint16_T)tmp;
 				CoreStateMachine_DW.is_c4_CoreStateMachine =
 					CoreStateMachine_IN_UpdatePose;
 
@@ -179,18 +170,10 @@ void CoreStateMachine_step(void)
 			} else if (CoreStateMachine_DW.update_count > 200) {
 				// Transition: '<S5>:29'
 				CoreStateMachine_DW.is_c4_CoreStateMachine = CoreStateMachine_IN_Error;
-			} else if ((CoreStateMachine_DW.init_count >= 2) &&
-				   CoreStateMachine_U.cov_is_small) {
+			} else if (CoreStateMachine_U.cov_is_small) {
 				// Transition: '<S5>:31'
 				CoreStateMachine_DW.is_c4_CoreStateMachine =
 					CoreStateM_IN_SendToughLocation;
-			} else if (CoreStateMachine_U.cov_is_small) {
-				// Transition: '<S5>:27'
-				CoreStateMachine_DW.is_c4_CoreStateMachine =
-					CoreStateMachin_IN_SendInitPose;
-
-				// Entry 'SendInitPose': '<S5>:2'
-				CoreStateMachine_DW.send_count = 0U;
 			} else {
 				// Outport: '<Root>/amcl_status'
 				CoreStateMachine_Y.amcl_status = 2U;
@@ -620,7 +603,6 @@ void CoreStateMachine_initialize(void)
 	// SystemInitialize for Chart: '<S2>/AMCL_Interface'
 	CoreStateMachine_DW.is_active_c4_CoreStateMachine = 0U;
 	CoreStateMachine_DW.is_c4_CoreStateMachine = CoreStateMac_IN_NO_ACTIVE_CHILD;
-	CoreStateMachine_DW.init_count = 0U;
 	CoreStateMachine_DW.send_count = 0U;
 	CoreStateMachine_DW.update_count = 0U;
 

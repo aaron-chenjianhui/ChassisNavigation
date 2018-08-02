@@ -83,7 +83,7 @@ typedef std::vector<bool> VoteT;
 
 public:
 
-void InsertData(LaserDataT::iterator& iter_low, LaserDataT::iterator& iter_up)
+void InsertData(LaserDataT::const_iterator& iter_low, LaserDataT::const_iterator& iter_up)
 {
 	m_laser_data.insert(iter_low, iter_up);
 }
@@ -100,12 +100,12 @@ void EmptyData()
 	m_laser_data.clear();
 }
 
-PointsT ScanToPoint()
+PointsT ScanToPoint() const
 {
 	Point2D point;
 	PointsT points;
 
-	LaserDataT::iterator it;
+	LaserDataT::const_iterator it = m_laser_data.begin();
 
 	for (; it != m_laser_data.end(); ++it) {
 		point.x = (it->second) * cos(it->first);
@@ -117,33 +117,27 @@ PointsT ScanToPoint()
 	return points;
 }
 
-PointsT ScanToPoint() const
-{
-	return ScanToPoint();
-}
 
 bool DataInRange(double		min_angle,
 		 double		max_angle,
-		 LaserData&	lidar_data_out)
+		 LaserData&	lidar_data_out) const
 {
-	if (min_angle <= max_angle) {
-		LaserDataT::iterator iter_low = m_laser_data.lower_bound(min_angle);
-		LaserDataT::iterator iter_up = m_laser_data.upper_bound(max_angle);
-
-		lidar_data_out.EmptyData();
-		lidar_data_out.InsertData(iter_low, iter_up);
-
-		return true;
-	} else {
-		DEBUGLOG("min_angle is bigger than max_angle");
+	if (min_angle > max_angle) {
+		ROS_INFO_STREAM("min_angle is bigger than max_angle");
 		return false;
 	}
-}
+	if (min_angle < m_laser_limit.ang_limit_min ||
+	    max_angle > m_laser_limit.ang_limit_max) {
+		ROS_INFO_STREAM("select angular range is out of angular limitation");
+		return false;
+	}
+	LaserDataT::const_iterator iter_low = m_laser_data.lower_bound(min_angle);
+	LaserDataT::const_iterator iter_up = m_laser_data.upper_bound(max_angle);
 
-bool DataInRange(double min_angle, double max_angle,
-		 LaserData& lidar_data_out) const
-{
-	return DataInRange(min_angle, max_angle, lidar_data_out);
+	lidar_data_out.EmptyData();
+	lidar_data_out.InsertData(iter_low, iter_up);
+
+	return true;
 }
 
 void DataEliminated(const AngSeqT&	angle_seq,
@@ -223,10 +217,10 @@ AngSeqT GetAngSeq()
 	return angle_seq;
 }
 
-RangeSeqT GetRangeData()
+RangeSeqT GetRangeData() const
 {
 	RangeSeqT range_seq;
-	LaserDataT::iterator iter = m_laser_data.begin();
+	LaserDataT::const_iterator iter = m_laser_data.begin();
 
 	for (; iter != m_laser_data.end(); ++iter) {
 		range_seq.push_back(iter->second);
@@ -235,12 +229,12 @@ RangeSeqT GetRangeData()
 	return range_seq;
 }
 
-IntenSeqT GetInten()
+IntenSeqT GetInten() const
 {
 	return IntenSeqT(DataSize());
 }
 
-unsigned int DataSize()
+unsigned int DataSize() const
 {
 	return m_laser_data.size();
 }
@@ -267,6 +261,7 @@ double range_max;
 
 protected:
 LaserDataT m_laser_data;
+LaserLimit m_laser_limit;
 };
 
 
