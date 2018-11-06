@@ -39,7 +39,7 @@ void UpdateData(const sensor_msgs::LaserScan& laser_data)
 	double lidar_data_now;
 
 	for (iter = ranges.begin(); iter != ranges.end(); ++iter) {
-		lidar_data_now = (double)(*iter);
+		lidar_data_now = M2MM((double)(*iter));
 		InsertData(std::pair<double, double>(angle_now, lidar_data_now));
 
 		angle_now += angle_increment;

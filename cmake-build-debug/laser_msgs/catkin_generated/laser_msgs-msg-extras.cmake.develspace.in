@@ -1,0 +1,2 @@
+set(laser_msgs_MESSAGE_FILES "/home/midearobot/catkin_ws/src/laser_msgs/msg/detect_msg.msg")
+set(laser_msgs_SERVICE_FILES "/home/midearobot/catkin_ws/src/laser_msgs/srv/lidar_srv.srv;/home/midearobot/catkin_ws/src/laser_msgs/srv/tcp_srv.srv;/home/midearobot/catkin_ws/src/laser_msgs/srv/laser_detect_srv.srv;/home/midearobot/catkin_ws/src/laser_msgs/srv/nav_srv.srv;/home/midearobot/catkin_ws/src/laser_msgs/srv/amcl_srv.srv")

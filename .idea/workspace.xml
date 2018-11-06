@@ -114,23 +114,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ae8161e0-8940-4f69-83ea-5a0bdfeca947" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/amcl_intfc/CMakeLists.txt" afterPath="$PROJECT_DIR$/amcl_intfc/CMakeLists.txt" />
-      <change beforePath="$PROJECT_DIR$/amcl_intfc/src/amcl_intfc.cpp" afterPath="$PROJECT_DIR$/amcl_intfc/src/amcl_intfc.cpp" />
-      <change beforePath="$PROJECT_DIR$/laser_detect/include/laser_detect/ContainerDetect.hpp" afterPath="$PROJECT_DIR$/laser_detect/include/laser_detect/ContainerDetect.hpp" />
       <change beforePath="$PROJECT_DIR$/laser_detect/include/laser_detect/FindSurface.hpp" afterPath="$PROJECT_DIR$/laser_detect/include/laser_detect/FindSurface.hpp" />
-      <change beforePath="$PROJECT_DIR$/laser_detect/include/laser_detect/LaserDataType.hpp" afterPath="$PROJECT_DIR$/laser_detect/include/laser_detect/LaserDataType.hpp" />
       <change beforePath="$PROJECT_DIR$/laser_detect/include/laser_detect/LaserScanDataType.hpp" afterPath="$PROJECT_DIR$/laser_detect/include/laser_detect/LaserScanDataType.hpp" />
       <change beforePath="$PROJECT_DIR$/laser_detect/include/laser_detect/Line2D.hpp" afterPath="$PROJECT_DIR$/laser_detect/include/laser_detect/Line2D.hpp" />
-      <change beforePath="$PROJECT_DIR$/laser_detect/include/laser_detect/laser_detect_node.h" afterPath="$PROJECT_DIR$/laser_detect/include/laser_detect/laser_detect_node.h" />
-      <change beforePath="$PROJECT_DIR$/laser_detect/src/laser_detect_node.cpp" afterPath="$PROJECT_DIR$/laser_detect/src/laser_detect_node.cpp" />
-      <change beforePath="$PROJECT_DIR$/laser_msgs/include/laser_msgs/PcPlcConvert.hpp" afterPath="$PROJECT_DIR$/laser_msgs/include/laser_msgs/PcPlcConvert.hpp" />
-      <change beforePath="$PROJECT_DIR$/state/include/state/CoreStateMachine.h" afterPath="$PROJECT_DIR$/state/include/state/CoreStateMachine.h" />
-      <change beforePath="$PROJECT_DIR$/state/include/state/CoreStateMachine_private.h" afterPath="$PROJECT_DIR$/state/include/state/CoreStateMachine_private.h" />
-      <change beforePath="$PROJECT_DIR$/state/include/state/CoreStateMachine_types.h" afterPath="$PROJECT_DIR$/state/include/state/CoreStateMachine_types.h" />
-      <change beforePath="$PROJECT_DIR$/state/include/state/rtwtypes.h" afterPath="$PROJECT_DIR$/state/include/state/rtwtypes.h" />
-      <change beforePath="$PROJECT_DIR$/state/launch/all_task_test.launch" afterPath="$PROJECT_DIR$/state/launch/all_task_test.launch" />
-      <change beforePath="$PROJECT_DIR$/state/src/CoreStateMachine.cpp" afterPath="$PROJECT_DIR$/state/src/CoreStateMachine.cpp" />
-      <change beforePath="$PROJECT_DIR$/state/src/CoreStateMachine_data.cpp" afterPath="$PROJECT_DIR$/state/src/CoreStateMachine_data.cpp" />
+      <change beforePath="$PROJECT_DIR$/laser_detect/include/laser_detect/LineDetector.h" afterPath="$PROJECT_DIR$/laser_detect/include/laser_detect/LineDetector.h" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -146,31 +133,19 @@
       <file leaf-file-name="laser_detect_node.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laser_detect/src/laser_detect_node.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="101" column="54" lean-forward="false" selection-start-line="101" selection-start-column="54" selection-end-line="101" selection-end-column="54" />
+            <state relative-caret-position="-198">
+              <caret line="85" column="0" lean-forward="false" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FindSurface.hpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FindSurface.hpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/FindSurface.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="87" column="7" lean-forward="false" selection-start-line="87" selection-start-column="7" selection-end-line="87" selection-end-column="7" />
+            <state relative-caret-position="18">
+              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="amcl_intfc.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/amcl_intfc/src/amcl_intfc.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="143" column="53" lean-forward="false" selection-start-line="143" selection-start-column="53" selection-end-line="143" selection-end-column="53" />
-              <folding>
-                <element signature="e#0#34#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -185,11 +160,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ContainerDetect.hpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ContainerDetect.hpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/ContainerDetect.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="33" column="24" lean-forward="false" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="24" />
+            <state relative-caret-position="266">
+              <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -208,8 +183,8 @@
       <file leaf-file-name="LaserDataType.hpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/LaserDataType.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="110" column="13" lean-forward="false" selection-start-line="110" selection-start-column="13" selection-end-line="110" selection-end-column="13" />
+            <state relative-caret-position="1332">
+              <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -218,28 +193,38 @@
       <file leaf-file-name="LineDetector.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/LineDetector.h">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RANSAC.hpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/RANSAC.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3042">
+              <caret line="169" column="21" lean-forward="false" selection-start-line="169" selection-start-column="21" selection-end-line="169" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="laser_detect.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laser_detect/src/laser_detect.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="1034" column="0" lean-forward="false" selection-start-line="1034" selection-start-column="0" selection-end-line="1038" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="laser_detect.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/laser_detect.h">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="178">
-              <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LaserScanDataType.hpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/LaserScanDataType.hpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DenseCoeffsBase.h" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7074">
-              <caret line="393" column="0" lean-forward="false" selection-start-line="393" selection-start-column="0" selection-end-line="393" selection-end-column="0" />
+              <caret line="119" column="5" lean-forward="false" selection-start-line="119" selection-start-column="5" selection-end-line="119" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -266,6 +251,8 @@
         <option value="$PROJECT_DIR$/laser_detect/include/laser_detect/LaserDataType.hpp" />
         <option value="$PROJECT_DIR$/laser_detect/src/laser_detect_node.cpp" />
         <option value="$PROJECT_DIR$/laser_detect/include/laser_detect/FindSurface.hpp" />
+        <option value="$PROJECT_DIR$/laser_detect/src/laser_detect.cpp" />
+        <option value="$PROJECT_DIR$/laser_detect/include/laser_detect/LineDetector.h" />
       </list>
     </option>
   </component>
@@ -828,14 +815,16 @@
       <workItem from="1533190338399" duration="603000" />
       <workItem from="1533192596608" duration="6696000" />
       <workItem from="1533212245316" duration="2308000" />
+      <workItem from="1533275976563" duration="2844000" />
+      <workItem from="1533289644012" duration="1792000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10303000" />
+    <option name="totallyTimeSpent" value="14939000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="112" y="24" width="1855" height="1084" extended-state="6" />
+    <frame x="112" y="24" width="1857" height="1092" extended-state="6" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24905661" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -865,18 +854,159 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/laser_detect/include/laser_detect/FindSurface.hpp</url>
-          <line>43</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="14" />
+      <option name="time" value="25" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="points_input.size()" language="ObjectiveC" />
+        <watch expression="m_param" language="ObjectiveC" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="watch">
+      <expression>
+        <expression-string>m_param</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>points_input.size()</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/laser_detect_node.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/ContainerDetect.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1404">
+          <caret line="78" column="5" lean-forward="false" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_msgs/include/laser_msgs/PcPlcConvert.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/LaserDataType.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1980">
+          <caret line="110" column="13" lean-forward="false" selection-start-line="110" selection-start-column="13" selection-end-line="110" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/LineDetector.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/LaserScanDataType.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/src/laser_detect_node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1818">
+          <caret line="101" column="54" lean-forward="false" selection-start-line="101" selection-start-column="54" selection-end-line="101" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/amcl_intfc/src/amcl_intfc.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2574">
+          <caret line="143" column="53" lean-forward="false" selection-start-line="143" selection-start-column="53" selection-end-line="143" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/laser_detect_node.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/ContainerDetect.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="33" column="24" lean-forward="false" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_msgs/include/laser_msgs/PcPlcConvert.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/LaserDataType.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1980">
+          <caret line="110" column="13" lean-forward="false" selection-start-line="110" selection-start-column="13" selection-end-line="110" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/LineDetector.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/LaserScanDataType.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7074">
+          <caret line="393" column="0" lean-forward="false" selection-start-line="393" selection-start-column="0" selection-end-line="393" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/FindSurface.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1566">
+          <caret line="87" column="7" lean-forward="false" selection-start-line="87" selection-start-column="7" selection-end-line="87" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/laser_detect/src/laser_detect_node.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -931,7 +1061,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7074">
           <caret line="393" column="0" lean-forward="false" selection-start-line="393" selection-start-column="0" selection-end-line="393" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -947,7 +1076,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7074">
           <caret line="393" column="0" lean-forward="false" selection-start-line="393" selection-start-column="0" selection-end-line="393" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -971,7 +1099,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7074">
           <caret line="393" column="0" lean-forward="false" selection-start-line="393" selection-start-column="0" selection-end-line="393" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1002,7 +1129,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7074">
           <caret line="393" column="0" lean-forward="false" selection-start-line="393" selection-start-column="0" selection-end-line="393" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1025,7 +1151,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7074">
           <caret line="393" column="0" lean-forward="false" selection-start-line="393" selection-start-column="0" selection-end-line="393" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1058,17 +1183,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/LineDetector.h">
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/Line2D.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        <state relative-caret-position="322">
+          <caret line="38" column="26" lean-forward="false" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/amcl_intfc/src/amcl_intfc.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
+        <state relative-caret-position="500">
           <caret line="143" column="53" lean-forward="false" selection-start-line="143" selection-start-column="53" selection-end-line="143" selection-end-column="53" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
@@ -1076,18 +1201,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/laser_detect_node.h">
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/laser_detect.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state relative-caret-position="178">
+          <caret line="119" column="5" lean-forward="false" selection-start-line="119" selection-start-column="5" selection-end-line="119" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/ContainerDetect.hpp">
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/RANSAC.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="33" column="24" lean-forward="false" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="24" />
+        <state relative-caret-position="3042">
+          <caret line="169" column="21" lean-forward="false" selection-start-line="169" selection-start-column="21" selection-end-line="169" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/src/laser_detect.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="1034" column="0" lean-forward="false" selection-start-line="1034" selection-start-column="0" selection-end-line="1038" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -1100,26 +1233,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/laser_detect_node.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/LaserDataType.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="110" column="13" lean-forward="false" selection-start-line="110" selection-start-column="13" selection-end-line="110" selection-end-column="13" />
+        <state relative-caret-position="1332">
+          <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/LineDetector.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laser_detect/src/laser_detect_node.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="101" column="54" lean-forward="false" selection-start-line="101" selection-start-column="54" selection-end-line="101" selection-end-column="54" />
+        <state relative-caret-position="-198">
+          <caret line="85" column="0" lean-forward="false" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/FindSurface.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="87" column="7" lean-forward="false" selection-start-line="87" selection-start-column="7" selection-end-line="87" selection-end-column="7" />
+        <state relative-caret-position="18">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laser_detect/include/laser_detect/ContainerDetect.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding />
         </state>
       </provider>

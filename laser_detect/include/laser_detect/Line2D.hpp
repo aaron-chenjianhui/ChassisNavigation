@@ -62,6 +62,15 @@ static Point2D CrossPoint(const Line2D& line1, const Line2D& line2)
 	return Point2D(p(0), p(1));
 }
 
+// distance from point to line
+double PointDist(const Point2D& point) const
+{
+	Point2D p1(point.x - m_ax, point.y - m_ay);
+	Point2D p2(m_nx, m_ny);
+
+	return fabs(DotProduct(p1, p2));
+}
+
 // Find the reference location of point
 void PointLoc()
 {

@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: loader_startup
+Description: Description of loader_startup
+Version: 0.0.0
+Cflags: 
+Libs: -L/usr/local/lib 
+Requires: 

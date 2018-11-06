@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: robot_upstart
+Description: Description of robot_upstart
+Version: 0.1.3
+Cflags: 
+Libs: -L/usr/local/lib 
+Requires: 

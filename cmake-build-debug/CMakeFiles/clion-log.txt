@@ -1,0 +1,104 @@
+/home/midearobot/Software/clion-2017.3.4/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/midearobot/catkin_ws/src
+-- The C compiler identification is GNU 4.8.4
+-- The CXX compiler identification is GNU 4.8.4
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- CMAKE_PREFIX_PATH IS 
+-- STD MSG IS 
+-- Using CATKIN_DEVEL_PREFIX: /home/midearobot/catkin_ws/src/cmake-build-debug/devel
+-- Using CMAKE_PREFIX_PATH: /home/midearobot/catkin_ws/devel;/opt/ros/indigo
+-- This workspace overlays: /home/midearobot/catkin_ws/devel;/opt/ros/indigo
+-- Found PythonInterp: /usr/bin/python (found version "2.7.6") 
+-- Using PYTHON_EXECUTABLE: /usr/bin/python
+-- Using Debian Python package layout
+-- Using empy: /usr/bin/empy
+-- Using CATKIN_ENABLE_TESTING: ON
+-- Call enable_testing()
+-- Using CATKIN_TEST_RESULTS_DIR: /home/midearobot/catkin_ws/src/cmake-build-debug/test_results
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Looking for pthread_create
+-- Looking for pthread_create - not found
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- Found gtest sources under '/usr/src/gtest': gtests will be built
+-- Using Python nosetests: /usr/bin/nosetests-2.7
+-- catkin 0.6.19
+-- BUILD_SHARED_LIBS is on
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- ~~  traversing 12 packages in topological order:
+-- ~~  - gyro_driver
+-- ~~  - loader_startup
+-- ~~  - robot_upstart
+-- ~~  - laser_msgs
+-- ~~  - amcl_intfc
+-- ~~  - data_saver
+-- ~~  - lms1xx
+-- ~~  - state
+-- ~~  - tcp_driver
+-- ~~  - icp_intfc
+-- ~~  - laser_detect
+-- ~~  - laser_match_nav
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- +++ processing catkin package: 'gyro_driver'
+-- ==> add_subdirectory(gyro_driver)
+-- +++ processing catkin package: 'loader_startup'
+-- ==> add_subdirectory(loader_startup)
+-- +++ processing catkin package: 'robot_upstart'
+-- ==> add_subdirectory(robot_upstart)
+-- +++ processing catkin package: 'laser_msgs'
+-- ==> add_subdirectory(laser_msgs)
+-- Using these message generators: gencpp;genlisp;genpy
+-- Found PkgConfig: /usr/bin/pkg-config (found version "0.26") 
+-- Checking for module 'eigen3'
+--   Found eigen3, version 3.2.0
+-- Found Eigen: /usr/include/eigen3  
+-- Eigen found (include: /usr/include/eigen3)
+-- laser_msgs: 1 messages, 5 services
+-- +++ processing catkin package: 'amcl_intfc'
+-- ==> add_subdirectory(amcl_intfc)
+-- Boost version: 1.54.0
+-------------------/home/midearobot/catkin_ws/src/cmake-build-debug/devel/include;/home/midearobot/catkin_ws/src/laser_msgs/include;/opt/ros/indigo/include;/usr/include;/usr/include/eigen3
+-- +++ processing catkin package: 'data_saver'
+-- ==> add_subdirectory(data_saver)
+-- +++ processing catkin package: 'lms1xx'
+-- ==> add_subdirectory(LMS1xx)
+-- +++ processing catkin package: 'state'
+-- ==> add_subdirectory(state)
+-- +++ processing catkin package: 'tcp_driver'
+-- ==> add_subdirectory(tcp_driver)
+-- Checking for module 'eigen3'
+--   Found eigen3, version 3.2.0
+-- Eigen found (include: /usr/include/eigen3)
+-- +++ processing catkin package: 'icp_intfc'
+-- ==> add_subdirectory(icp_intfc)
+-- Using these message generators: gencpp;genlisp;genpy
+-- +++ processing catkin package: 'laser_detect'
+-- ==> add_subdirectory(laser_detect)
+-- Using these message generators: gencpp;genlisp;genpy
+-- Checking for module 'eigen3'
+--   Found eigen3, version 3.2.0
+-- Eigen found (include: /usr/include/eigen3)
+-- laser_detect: 1 messages, 1 services
+-- +++ processing catkin package: 'laser_match_nav'
+-- ==> add_subdirectory(laser_match_nav)
+-- Using these message generators: gencpp;genlisp;genpy
+-- Checking for module 'eigen3'
+--   Found eigen3, version 3.2.0
+-- Eigen found (include: /usr/include/eigen3)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/midearobot/catkin_ws/src/cmake-build-debug

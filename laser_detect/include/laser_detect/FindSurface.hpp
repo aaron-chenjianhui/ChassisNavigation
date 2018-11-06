@@ -28,8 +28,7 @@ Line2D Execute(const PointsT points, const Line2D& line, int max_count = 10)
 {
 	PointsT all_points = points;
 	PointsT outer_points;
-	PointsT inner_points;
-	VoteT vote;
+	PointsT inner_points; VoteT vote;
 	Line2D off_line = line;
 
 	DEBUGLOG("begin to execute");
@@ -40,8 +39,10 @@ Line2D Execute(const PointsT points, const Line2D& line, int max_count = 10)
 		all_points = inner_points;
 
 		FindLine(inner_points, off_line, vote);
-		double err = Error();
-		if (Error() < m_off_thre) {
+		double err = Error(inner_points, off_line);
+        auto len = inner_points.size();
+
+		if (err < m_off_thre) {
 			DEBUGLOG("find offset line");
 			return off_line;
 		}
@@ -66,6 +67,9 @@ private:
 void SeperatePoints(const PointsT& points_input, const Line2D& line,
 		    PointsT& points_inner, PointsT& points_outer)
 {
+	// points_inner is reused
+	points_inner.clear();
+
 	PointsT::const_iterator iter = points_input.begin();
 
 	for (; iter != points_input.end(); ++iter) {
@@ -84,11 +88,21 @@ void FindLine(const PointsT& points, Line2D& line, VoteT& vote)
 	m_line_detector.FindLine(points, line, vote);
 }
 
-// TODO(CJH)
-double Error()
+double Error(const PointsT& points, const Line2D& line)
 {
-	// return m_line_detector(m_points, m_line);
-	return 100.;
+	// check container before dereference
+	if (points.empty()) {
+		return 100.;
+	}
+
+	double sum_dist = 0.;
+	PointsT::const_iterator iter = points.begin();
+	for (; iter != points.end(); ++iter) {
+		double val = line.PointDist(*iter);
+		sum_dist += val;
+	}
+
+	return sum_dist / points.size();
 }
 
 private:

@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: laser_match_nav
+Description: Description of laser_match_nav
+Version: 0.0.0
+Cflags: 
+Libs: -L/usr/local/lib 
+Requires: 

@@ -26,6 +26,12 @@ void FindLine(const PointsT& points, Line2D& line, VoteT& vote)
 	LineParamT line_param;
 	double used_data = RANSAC<Point2D, double>::compute(line_param, &m_estimator,
 							    const_cast<PointsT &>(points), m_probability, vote);
+    // Line Parameter
+    line.m_nx = line_param[0];
+    line.m_ny = line_param[1];
+    line.m_ax = line_param[2];
+    line.m_ay = line_param[3];
+
 }
 
 /**

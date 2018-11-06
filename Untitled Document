@@ -1,0 +1,940 @@
+/home/midearobot/catkin_ws/src/cmake-build-debug/devel/lib/laser_detect/laser_node
+[ INFO] [1533291131.710318698]: Start Laser Detect node
+
+
+[ERROR] [1533291131.846257982]: [registerPublisher] Failed to contact master at [midearobot:11311].  Retrying...
+[ INFO] [1533291157.391598974]: Connected to master at [midearobot:11311]
+left min is: 0.117776
+left max is: 1.65806
+front min is: -0.292308
+front max is: 0.292308
+right min is: -1.65806
+right max is: -0.117776
+[ INFO] [1533291158.732079589]: Laser Detect Node encounters error
+[ INFO] [1533291159.731399494]: Laser Detect Node encounters error
+[ INFO] [1533291160.733143598]: Laser Detect Node encounters error
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+step5
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+step5
+step6
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+step5
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+step5
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+step5
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+In update range
+left min is: 0.0947412
+left max is: 1.43445
+front min is: -0.298519
+front max is: 0.269274
+right min is: -1.46482
+right max is: -0.123986
+m_coarse_pose is: -5897.88, -1114.22, 0.00471003
+width is: 2350
+length is: 5650
+FindWallLine
+Choose better region
+Get left surface
+begin to execute
+step0
+step1
+step2
+step3
+step4
+find offset line
+Get front surface
+begin to execute
+step0
+step1
+step2
+step3
+find offset line
+
+Process finished with exit code 1
+
